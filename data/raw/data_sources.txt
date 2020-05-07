@@ -1,0 +1,3 @@
+ANP 	- http://www.anp.gov.br/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos
+IBGE 	- ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/
+EPE 	- http://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/zoneamento-nacional-de-recursos-de-oleo-e-gas-2017-2019
