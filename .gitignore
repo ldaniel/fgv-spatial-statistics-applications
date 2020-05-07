@@ -38,5 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-"documentation\EPE_DPG_ZNMT_2017-2019_18dez2019.pdf"
-data\raw\BIZROG_ZNMT2017_2019_Publ_10.4
+documentation/EPE_DPG_ZNMT_2017-2019_18dez2019.pdf
+data/raw/BIZROG_ZNMT2017_2019_Publ_10.4/
