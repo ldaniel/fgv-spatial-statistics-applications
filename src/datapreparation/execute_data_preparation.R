@@ -32,9 +32,9 @@ if (data_prep_full) {
   source("./src/datapreparation/step_02_data_ingestion.R")
   source("./src/datapreparation/step_03_data_cleaning.R")
   source("./src/datapreparation/step_04_data_enhancement.R")
-  source("./src/datapreparation/step_05_data_save.R")
+  source("./src/datapreparation/step_05_dataset_preparation.R")
+  source("./src/datapreparation/step_06_data_save.R")
 
 }
 
-source("./src/datapreparation/step_06_data_load.R")
-#source("./src/datapreparation/step_07_dataset_preparation.R")
+source("./src/datapreparation/step_07_data_load.R")

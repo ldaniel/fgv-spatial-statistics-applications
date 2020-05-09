@@ -54,7 +54,11 @@ library(spgwr)
 library(hmeasure)
 library(pROC)
 
-# create CSV files to be read by Power BI -------------------------------------
-write.csv(gas_prices_hist,    file = "data/processed/gas_prices_hist.csv")
-write.csv(gas_prices_station, file = "data/processed/gas_prices_station.csv")
+# first regression atempt ----
+model <- lm(data = gas_prices_station, 
+            formula = 'PcVenda ~ DistMean + DistDev + DistMin + DistMax + RefinMean + RefinDev + RefinMin  + RefinMax')
+
+summary(model)
+
+plot(model)
 
