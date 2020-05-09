@@ -13,7 +13,7 @@ library(janitor, warn.conflicts = FALSE)
 library(ggmap)
 library(rgdal, warn.conflicts = FALSE)
 
-# set TRUE to recalculate the datasets, inclusing the geocoding steps
+# set TRUE to recalculate the datasets, including the geocoding steps
 # --------------------------------- WARNING -----------------------------------
 # before you recalculate the dataset, make sure you have set up you google maps
 # API Key in step_01_config_environment.R
