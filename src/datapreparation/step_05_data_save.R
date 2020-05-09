@@ -7,3 +7,6 @@ invisible(gc)
 # save datasets ----
 write_rds(gas_prices_hist, 'data/processed/gas_prices_hist.rds')
 write_rds(gas_prices_station, 'data/processed/gas_prices_station.rds')
+
+write_csv(gas_prices_hist, 'data/processed/gas_prices_hist.csv')
+write_csv(gas_prices_station, 'data/processed/gas_prices_station.csv')

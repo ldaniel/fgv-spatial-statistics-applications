@@ -51,3 +51,9 @@ gas_prices_station$place <- paste(gas_prices_station$endereço,
   
 gas_prices_station <- mutate_geocode(gas_prices_station, place)
 
+gas_prices_station <- filter(gas_prices_station, !(lon < -78))
+
+# adding adding index to gas_prices dataset ----
+
+gas_prices_station <- rowid_to_column(gas_prices_station, 'station.id')
+gas_prices_hist <- rowid_to_column(gas_prices_hist, 'index')

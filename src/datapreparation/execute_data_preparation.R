@@ -2,6 +2,8 @@
 
 # libraries for data prep
 library(dplyr, warn.conflicts = FALSE)
+library(magrittr, warn.conflicts = FALSE)
+library(tibble)
 library(tidyr)
 library(readr)
 library(readxl)

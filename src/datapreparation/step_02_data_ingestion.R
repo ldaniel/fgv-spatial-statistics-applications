@@ -108,5 +108,13 @@ for (file in files) {
 
 names(gas_prices_station) <- str_to_lower(names(gas_prices_station))
 
+names(gas_prices_station)[names(gas_prices_station) == 'modelidade.de.compra'] <- 'modalidade.de.compra'
+
 rm(df, file, files)
 invisible(gc())
+
+# load mnemônico ----
+
+gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_hist')
+gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_station')
+
