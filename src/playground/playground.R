@@ -54,9 +54,7 @@ library(spgwr)
 library(hmeasure)
 library(pROC)
 
-# loading other scripts do be used here ---------------------------------------
-source("./src/util/auxiliary_functions.R")
+# create CSV files to be read by Power BI -------------------------------------
+write.csv(gas_prices_hist,    file = "data/processed/gas_prices_hist.csv")
+write.csv(gas_prices_station, file = "data/processed/gas_prices_station.csv")
 
-# well, here is your playground. 
-# feel free to do whatever you want to find out 
-# the best approach for you data science project. =)
