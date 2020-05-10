@@ -1,6 +1,7 @@
 # load datasets ----
-gas_prices_hist     <- read_rds('data/processed/gas_prices_hist.rds')
-gas_prices_station  <- read_rds('data/processed/gas_prices_station.rds')
+gas_prices_hist           <- read_rds('data/processed/gas_prices_hist.rds')
+gas_prices_historical     <- read_rds('data/processed/gas_prices_historical.rds')
+gas_prices_station        <- read_rds('data/processed/gas_prices_station.rds')
 
 # load mnemônico ----
 

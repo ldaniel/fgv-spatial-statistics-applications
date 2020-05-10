@@ -40,3 +40,10 @@ shp_gas_prices_hist@data$CfVarRev %<>% as.double()
 shp_gas_prices_hist@data$CfVarDist %<>% as.double()
 shp_gas_prices_hist@data$DtInicial %<>% as_date(format = '%Y-%m-%d')
 shp_gas_prices_hist@data$DtFinal %<>% as_date(format = '%Y-%m-%d')
+
+# prep gas_prices_historical ----
+
+names(gas_prices_hist) <- plyr::mapvalues(names(gas_prices_hist), 
+                                          gas_prices_hist_header$descricao, 
+                                          gas_prices_hist_header$mnemonico, 
+                                          warn_missing = FALSE)
