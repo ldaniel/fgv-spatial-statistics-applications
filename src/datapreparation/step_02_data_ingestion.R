@@ -59,7 +59,7 @@ names(gas_prices_hist) <- str_to_lower(make.names(names(gas_prices_hist)))
 
 # import gas prices by gas station ----
 
-files <- list.files('data/raw/ANP_precos_gasolina/', full.names = TRUE)
+files <- list.files('data/raw/ANP_precos_gasolina', full.names = TRUE)
 files <- files[str_detect(files, 'data/raw/ANP_precos_gasolina/RelatorioResumoPorMunicipioPosto*?')]
 
 gas_prices_station <- tibble()
