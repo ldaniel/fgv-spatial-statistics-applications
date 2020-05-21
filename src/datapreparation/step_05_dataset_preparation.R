@@ -20,9 +20,9 @@ shp_gas_prices_station@data$PcVenda %<>% as.double()
 shp_gas_prices_station@data$PcCompra %<>% as.double()
 shp_gas_prices_station@data$Lon %<>% as.double()
 shp_gas_prices_station@data$Lat %<>% as.double()
-shp_gas_prices_station@data$DtColeta %<>% as_date(format = '%Y-%m-%d')
-shp_gas_prices_station@data$DtFinal %<>% as_date(format = '%Y-%m-%d')
-shp_gas_prices_station@data$DtInicial %<>% as_date(format = '%Y-%m-%d')
+shp_gas_prices_station@data$DtColeta %<>% as_date(format = '%Y-%m-%d', tz = "America/Sao_Paulo")
+shp_gas_prices_station@data$DtFinal %<>% as_date(format = '%Y-%m-%d', tz = "America/Sao_Paulo")
+shp_gas_prices_station@data$DtInicial %<>% as_date(format = '%Y-%m-%d', tz = "America/Sao_Paulo")
  
 shp_gas_prices_hist@data$Index %<>% as.integer()
 shp_gas_prices_hist@data$NmPostPesq %<>% as.integer()
@@ -38,8 +38,8 @@ shp_gas_prices_hist@data$MgMedRev %<>% as.double()
 shp_gas_prices_hist@data$MgMedDist %<>% as.double()
 shp_gas_prices_hist@data$CfVarRev %<>% as.double()
 shp_gas_prices_hist@data$CfVarDist %<>% as.double()
-shp_gas_prices_hist@data$DtInicial %<>% as_date(format = '%Y-%m-%d')
-shp_gas_prices_hist@data$DtFinal %<>% as_date(format = '%Y-%m-%d')
+shp_gas_prices_hist@data$DtInicial %<>% as_date(format = '%Y-%m-%d', tz = "America/Sao_Paulo")
+shp_gas_prices_hist@data$DtFinal %<>% as_date(format = '%Y-%m-%d', tz = "America/Sao_Paulo")
 
 # prep gas_prices_historical ----
 
