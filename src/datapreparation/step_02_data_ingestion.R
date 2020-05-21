@@ -2,7 +2,9 @@
 
 # unzip required raw data sources ----
 
-files_to_unzip <- c('data/raw/IBGE/br_municipios.zip', 'data/raw/BIZROG_ZNMT2017_2019_Publ_10.4.zip')
+files_to_unzip <- c('data/raw/IBGE/br_municipios.zip', 
+                    'data/raw/BIZROG_ZNMT2017_2019_Publ_10.4.zip', 
+                    'data\processed\gas_prices_hist\gas_prices_hist.zip')
 
 for (file_to_unzip in files_to_unzip) {
   unzip(file_to_unzip, exdir = tools::file_path_sans_ext(file_to_unzip), overwrite = FALSE)
