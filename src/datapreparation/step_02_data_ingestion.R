@@ -4,7 +4,11 @@
 
 files_to_unzip <- c('data/raw/IBGE/br_municipios.zip', 
                     'data/raw/BIZROG_ZNMT2017_2019_Publ_10.4.zip', 
+<<<<<<< HEAD
                     'data/processed/gas_prices_hist/gas_prices_hist.zip')
+=======
+                    'data\processed\gas_prices_hist\gas_prices_hist.zip')
+>>>>>>> 1af152f4227aba2c7240c27340560eca58c145e8
 
 for (file_to_unzip in files_to_unzip) {
   unzip(file_to_unzip, exdir = tools::file_path_sans_ext(file_to_unzip), overwrite = FALSE)
