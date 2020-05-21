@@ -23,3 +23,7 @@ install.packages('ggpubr')
 # knit libraries
 install.packages('knitr')
 install.packages('rmarkdown')
+
+# install fgvr
+install.packages('devtools')
+devtools::install_github("ldaniel/fgvr")
