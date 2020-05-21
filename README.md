@@ -11,7 +11,7 @@ This repository intends to present the work analysis for the *"Spatial Statistic
 
 :octocat: Alternatively run the project on binder at:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ldaniel/Spatial-Statistics-Applications/master?path=r_studio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ldaniel/Spatial-Statistics-Applications/master?urlpath=rstudio)
 
 ## Professor
 - Eduardo de Rezende Francisco
