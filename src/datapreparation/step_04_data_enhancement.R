@@ -41,6 +41,12 @@ gas_prices_hist$codigo.ibge <- plyr::mapvalues(paste(gas_prices_hist$estado, gas
                                                paste(cities@data$NM_ESTADO, cities@data$NM_MUNICIP), 
                                                cities@data$CD_GEOCMU, warn_missing = FALSE)
 
+# fix manual do codigo do IBGE (não encontrou no shapefile do IBGE por causa de caracter especial)
+gas_prices_hist$codigo.ibge <- if_else(gas_prices_hist$codigo.ibge == 'RIO GRANDE DO SUL SANTANA DO LIVRAMENTO', 
+                                         '4317103', 
+                                         gas_prices_hist$codigo.ibge)
+
+
 # adding geocoding using ggmap library ----
 
 gas_prices_station$place <- paste(gas_prices_station$endereço, 

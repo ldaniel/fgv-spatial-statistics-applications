@@ -19,7 +19,7 @@ library(rgdal, warn.conflicts = FALSE)
 # --------------------------------- WARNING -----------------------------------
 # before you recalculate the dataset, make sure you have set up you google maps
 # API Key in step_01_config_environment.R
-data_prep_full <- FALSE
+data_prep_full <- TRUE
 
 # load auxiliary functions ----------------------------------------------------
 source("./src/util/auxiliary_functions.R")

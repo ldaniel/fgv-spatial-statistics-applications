@@ -68,7 +68,6 @@ files <- files[str_detect(files, 'data/raw/ANP_precos_gasolina/RelatorioResumoPo
 
 gas_prices_station <- tibble()
 
-
 for (file in files) {
 
   df <- read_xlsx(file, col_names = as.character(c(1:9)))
@@ -131,4 +130,3 @@ invisible(gc())
 
 gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_hist')
 gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_station')
-
