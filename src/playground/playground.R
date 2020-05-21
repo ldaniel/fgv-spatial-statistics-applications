@@ -67,3 +67,7 @@ ggplot(data = gas_prices_station, aes(x = DistMin, y = PcVenda)) +
   geom_point(aes(color = PcVenda), position = 'jitter') +
   geom_smooth(method = 'lm', formula = 'y ~ x', se = FALSE, color = 'black') +
   scale_x_log10()
+
+
+
+
