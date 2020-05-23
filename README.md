@@ -9,9 +9,7 @@ This repository intends to present the work analysis for the *"Spatial Statistic
 
 :octocat: See the final website report at: [https://ldaniel.github.io/Spatial-Statistics-Applications](https://ldaniel.github.io/Spatial-Statistics-Applications).
 
-:octocat: Alternatively run the project on binder at:
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ldaniel/Spatial-Statistics-Applications/master?urlpath=rstudio)
+:octocat: Alternatively, run the project on binder at: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ldaniel/Spatial-Statistics-Applications/master?urlpath=rstudio)
 
 ## Professor
 - Eduardo de Rezende Francisco
