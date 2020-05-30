@@ -45,21 +45,17 @@ O mapa abaixo mostra a estrutura da solução com a sua divisão de scripts.
 
 ```{r solution_mindmap, echo = FALSE, out.width = '100%'}
 
-input <- c("# 1. Data Preparation", 
+input <- c("# Data Preparation", 
               "## 1.1 Config Environment", 
               "## 1.2 Data Download",
               "## 1.3 Data Ingestion",
               "## 1.4 Data Cleaning",
               "## 1.5 Data Enhancement",
               "## 1.6 Dataset Preparation", 
-           "# 2. Data Analysis",
-              "## 2.1 Config Environment", 
-              "## 2.2 Tokenization",
            "# Playground",
            "# Util",
               "## Auxiliary functions", 
-              "## Generate markdown website",
-              "## Sync Kaggle")
+              "## Generate markdown website")
 mm(from = input, 
    type = "text", 
    root = "src (scripts folder)")

@@ -30,10 +30,6 @@ library(geojsonio)
 ```{r scripts_exploration, include=FALSE}
 # loading required steps before performing the analysis
 source("./src/util/auxiliary_functions.R")
-source("./src/datapreparation/step_02_data_ingestion.R")
-source("./src/datapreparation/step_03_data_cleaning.R")
-source("./src/datapreparation/step_04_label_translation.R")
-source("./src/datapreparation/step_05_data_enhancement.R")
 ```
 
 # Exploration 1
