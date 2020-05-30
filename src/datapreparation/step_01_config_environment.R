@@ -1,3 +1,5 @@
+## ---- step_01_config_environment.R
+
 # clearing everything before starting -----------------------------------------
 # clear environment and memory
 rm(list = ls()[ls() != 'data_prep_full'])
