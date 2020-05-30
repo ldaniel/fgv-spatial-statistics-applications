@@ -15,7 +15,7 @@ navbar:
         - text: "Preparação dos Dados"
           href: 02_data_preparation.html
         - text: "Exploração dos Dados"
-          href: 03_data_exploration.html
+          href: 03_exploration_report.html
     - text: "Desenvolvimento"
       icon: fa-file-text-o
       menu: 
