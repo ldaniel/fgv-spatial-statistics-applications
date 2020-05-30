@@ -4,6 +4,10 @@ title: "Sobre os dados"
 
 # Definindo o cenário
 
+Dentre os combustíveis não renováveis, o diesel usado em caminhões e ônibus, a gasolina usada em carros, o óleo usado em grandes navios e o querosene de aviação são produzidos a partir do petróleo. O petróleo é extraído a partir da perfuração do solo (no Brasil, principalmente no mar) e levado a refinarias, onde é transformado nesses vários produtos, conhecidos como derivados de petróleo (veja os Infográficos Petróleo e Gás Natural).
+
+
+
 Para execução deste trabalho, foram utilizadas algumas fontes de dados públicos:
 
 * Agência Nacional do Petróleo **(ANP)**
