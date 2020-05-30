@@ -4,11 +4,13 @@ title: "Sobre os dados"
 
 # Definindo o cenário
 
+Planejar significa definir antecipadamente um conjunto de ações ou intenções. Podemos entender ainda como “prever, antecipar ou vislumbrar algo que ainda não aconteceu; preparar; projetar”. Ou seja, o planejamento energético deve considerar as necessidades futuras de energia e como o país poderá atendê-las.
+
 Dentre os combustíveis não renováveis, o diesel usado em caminhões e ônibus, a gasolina usada em carros, o óleo usado em grandes navios e o querosene de aviação são produzidos a partir do petróleo. O petróleo é extraído a partir da perfuração do solo (no Brasil, principalmente no mar) e levado a refinarias, onde é transformado nesses vários produtos, conhecidos como derivados de petróleo (veja os Infográficos Petróleo e Gás Natural).
 
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/cadeia-combustivel.png)
 
-
-Para execução deste trabalho, foram utilizadas algumas fontes de dados públicos:
+Para execução deste trabalho, a **gasolina** foi escolhida como alvo das análises, e os dados foram extraídos de algumas fontes de dados públicos:
 
 * Agência Nacional do Petróleo **(ANP)**
 * Empresa de Pesquisa Energética **(EPE)**
@@ -18,6 +20,8 @@ Para execução deste trabalho, foram utilizadas algumas fontes de dados públic
 ## Agência Nacional do Petróleo (ANP)
 
 A **Agência Nacional do Petróleo** (ANP), Gás Natural e Biocombustíveis é o órgão federal responsável pela regulação das indústrias de petróleo e gás natural e de biocombustíveis no Brasil. Vinculada ao Ministério de Minas e Energia, é uma autarquia federal especial que executa a política nacional para o setor, com foco na garantia do abastecimento de combustíveis e na defesa dos interesses dos consumidores.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/banner-atribuicoes-anp.png)
 
 A Agência tem atuação “do poço ao posto”, ou seja, regula mais de 110 mil empresas, em atividades desde a prospecção de petróleo e gás natural nas bacias sedimentares do Brasil até os procedimentos para assegurar a qualidade os combustíveis vendidos ao consumidor final. A atividade de regulação implica, necessariamente, a constante fiscalização do cumprimento das normas estabelecidas.
 
