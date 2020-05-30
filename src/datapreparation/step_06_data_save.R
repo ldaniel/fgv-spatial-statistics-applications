@@ -15,5 +15,14 @@ write_csv(as_tibble(shp_gas_prices_hist@data), 'data/processed/gas_prices_hist.c
 write_csv(as_tibble(shp_gas_prices_station@data), 'data/processed/gas_prices_station.csv')
 write_csv(gas_prices_hist, 'data/processed/gas_prices_historical.csv')
 
-writeOGR(obj = shp_gas_prices_hist, dsn = 'data/processed/gas_prices_hist', layer = 'gas_prices_hist', driver = "ESRI Shapefile", overwrite_layer = TRUE)
-writeOGR(obj = shp_gas_prices_station, dsn = 'data/processed/gas_prices_station', layer = 'gas_prices_station', driver = "ESRI Shapefile", overwrite_layer = TRUE)
+writeOGR(obj = shp_gas_prices_hist, 
+         dsn = 'data/processed/gas_prices_hist', 
+         layer = 'gas_prices_hist', 
+         driver = "ESRI Shapefile", 
+         overwrite_layer = TRUE)
+
+writeOGR(obj = shp_gas_prices_station, 
+         dsn = 'data/processed/gas_prices_station',
+         layer = 'gas_prices_station', 
+         driver = "ESRI Shapefile", 
+         overwrite_layer = TRUE)

@@ -22,7 +22,8 @@ gas_prices_hist <- read_xlsx('data/raw/ANP_precos_gasolina/SEMANAL_MUNICIPIOS-20
                              col_names = as.character(c(1:19)))
 
 gas_prices_hist$`INTERVALO DE TEMPO` <- gas_prices_hist[[7, 1]]
-gas_prices_hist$`INTERVALO DE TEMPO` <- str_remove_all(gas_prices_hist$`INTERVALO DE TEMPO`, 'INTERVALO DE TEMPO: ')
+gas_prices_hist$`INTERVALO DE TEMPO` <- 
+  str_remove_all(gas_prices_hist$`INTERVALO DE TEMPO`, 'INTERVALO DE TEMPO: ')
 
 gas_prices_hist$`PERÍODO` <- gas_prices_hist[[8, 1]]
 gas_prices_hist$`PERÍODO` <- str_remove_all(gas_prices_hist$PERÍODO, 'PERÍODO: ')
@@ -31,7 +32,8 @@ gas_prices_hist$`COMBUSTÍVEL` <- gas_prices_hist[[9, 1]]
 gas_prices_hist$`COMBUSTÍVEL` <- str_remove_all(gas_prices_hist$COMBUSTÍVEL, 'COMBUSTÍVEL: ')
 
 gas_prices_hist$`TIPO RELATÓRIO` <- gas_prices_hist[[10, 1]]
-gas_prices_hist$`TIPO RELATÓRIO` <- str_remove_all(gas_prices_hist$`TIPO RELATÓRIO`, 'TIPO RELATÓRIO: ')
+gas_prices_hist$`TIPO RELATÓRIO` <- 
+  str_remove_all(gas_prices_hist$`TIPO RELATÓRIO`, 'TIPO RELATÓRIO: ')
 
 names(gas_prices_hist)[1:19] <- as.character(as.vector(gas_prices_hist[13, 1:19]))
 
@@ -66,7 +68,8 @@ names(gas_prices_hist) <- str_to_lower(make.names(names(gas_prices_hist)))
 # import gas prices by gas station ----
 
 files <- list.files('data/raw/ANP_precos_gasolina', full.names = TRUE)
-files <- files[str_detect(files, 'data/raw/ANP_precos_gasolina/RelatorioResumoPorMunicipioPosto*?')]
+files <- files[str_detect(files, 
+                          'data/raw/ANP_precos_gasolina/RelatorioResumoPorMunicipioPosto*?')]
 
 gas_prices_station <- tibble()
 
@@ -123,12 +126,16 @@ for (file in files) {
 
 names(gas_prices_station) <- str_to_lower(names(gas_prices_station))
 
-names(gas_prices_station)[names(gas_prices_station) == 'modelidade.de.compra'] <- 'modalidade.de.compra'
+names(gas_prices_station)[names(gas_prices_station) == 'modelidade.de.compra'] <- 
+  'modalidade.de.compra'
 
 rm(df, file, files)
 invisible(gc())
 
 # load mnemônico ----
 
-gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_hist')
-gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_station')
+gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', 
+                                    sheet = 'gas_prices_hist')
+
+gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', 
+                                       sheet = 'gas_prices_station')

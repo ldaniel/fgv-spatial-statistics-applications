@@ -15,7 +15,8 @@ master_cidade_estado <- distinct(master_cidade_estado)
 
 gas_prices_station$estado <- plyr::mapvalues(gas_prices_station$cidade, 
                                              master_cidade_estado$cidade, 
-                                             master_cidade_estado$estado, warn_missing = FALSE)
+                                             master_cidade_estado$estado, 
+                                             warn_missing = FALSE)
 
 # adding IBGE city code in gas_prices datasets ----
 
@@ -34,11 +35,16 @@ UFs <- readOGR('data/raw/IBGE/br_unidades_da_federacao/BRUFE250GC_SIR.dbf',
 UFs@data$NM_ESTADO    <- iconv(UFs@data$NM_ESTADO, to = 'ASCII//TRANSLIT')
 
 cities@data$CD_GEOCUF  <- str_sub(cities@data$CD_GEOCMU, 1, 2)
-cities@data$NM_ESTADO  <- plyr::mapvalues(cities@data$CD_GEOCUF, UFs@data$CD_GEOCUF, UFs@data$NM_ESTADO)
+cities@data$NM_ESTADO  <- plyr::mapvalues(cities@data$CD_GEOCUF, 
+                                          UFs@data$CD_GEOCUF, 
+                                          UFs@data$NM_ESTADO)
 
-gas_prices_station$codigo.ibge <- plyr::mapvalues(paste(gas_prices_station$estado, gas_prices_station$cidade), 
-                                                  paste(cities@data$NM_ESTADO, cities@data$NM_MUNICIP), 
-                                                  cities@data$CD_GEOCMU, warn_missing = FALSE)
+gas_prices_station$codigo.ibge <- plyr::mapvalues(paste(gas_prices_station$estado, 
+                                                        gas_prices_station$cidade), 
+                                                  paste(cities@data$NM_ESTADO, 
+                                                        cities@data$NM_MUNICIP), 
+                                                  cities@data$CD_GEOCMU, 
+                                                  warn_missing = FALSE)
 
 gas_prices_hist$codigo.ibge <- plyr::mapvalues(paste(gas_prices_hist$estado, gas_prices_hist$município), 
                                                paste(cities@data$NM_ESTADO, cities@data$NM_MUNICIP), 

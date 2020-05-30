@@ -7,8 +7,11 @@ gas_prices_station        <- read_rds('data/processed/gas_prices_station.rds')
 
 # load mnemônico ----
 
-gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_hist')
-gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', sheet = 'gas_prices_station')
+gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', 
+                                    sheet = 'gas_prices_hist')
+
+gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', 
+                                       sheet = 'gas_prices_station')
 
 
 # load_shape_files ----
