@@ -41,24 +41,32 @@ Utilize o menu acima para navegar pelo site e visualizar o relatório final.
 Este projeto pode ser baixado do GitHub: https://github.com/ldaniel/Spatial-Statistics-Applications
 
 ## Estrutura da solução
-O mapa abaixo mostra a estrutura da solução com a sua divisão de scripts.
+O mapa abaixo mostra a estrutura da solução com a sua divisão de scripts e arquivos.
 
 ```{r solution_mindmap, echo = FALSE, out.width = '100%'}
 
-input <- c("# Data Preparation", 
-              "## 1.1 Config Environment", 
-              "## 1.2 Data Download",
-              "## 1.3 Data Ingestion",
-              "## 1.4 Data Cleaning",
-              "## 1.5 Data Enhancement",
-              "## 1.6 Dataset Preparation", 
-           "# Playground",
-           "# Util",
+input <- c("# [data]",
+              "## processed", 
+              "## raw",
+           "# [documentation]",
+           "# [images]",
+           "# [markdown]",
+           "# [src] Data Preparation", 
+              "## step 01 - Config Environment", 
+              "## step 02 - Data Ingestion",
+              "## step 03 - Data Cleaning",
+              "## step 04 - Data Enhancement",
+              "## step 05 - Dataset Preparation",
+              "## step 06 - Data Save",
+              "## step 07 - Data Load", 
+           "# [src] Playground",
+           "# [src] Util",
               "## Auxiliary functions", 
-              "## Generate markdown website")
+              "## Generate markdown website",
+           "# [visualizations]")
 mm(from = input, 
    type = "text", 
-   root = "src (scripts folder)")
+   root = "solution folder")
 ```
 
 
