@@ -2,21 +2,69 @@
 title: 'FGV MBA: Business Analytics & Big Data'
 ---
 
+```{r setup_evaluation, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.pos =  "h")
+knitr::opts_knit$set(root.dir = "./")
+
+# loading markdown libraries
+library(rmarkdown)
+library(knitr)
+
+# loading mind map library
+library(mindr)
+
+# setting the encoding up
+options(encoding = "UTF-8")
+
+```
+
 # Spatial-Statistics-Applications
 
-Describe your project using an short overview about the objectives.
+O objetivo deste website é apresentar a solução para o trabalho proposto no módulo de Aplicações de Estatística Espacial do curso de MBA em Business Analytics e Big Data da FGV (turma Berrini).
 
-Use the menu above to navigate and see the final report.
+Utilize o menu acima para navegar pelo site e visualizar o relatório final.
 
 ## Professor
-- Professor name (name@email.com)
+- Eduardo de Rezende Francisco (eduardo.francisco@fgv.br)
 
-## Students / ID (matrícula)
+## Alunos / ID (matrícula)
 
-- [Student name 1](mailto:name@email.com) / A123456789
-- [Student name 2](mailto:name@email.com) / A123456789
-- [Student name 3](mailto:name@email.com) / A123456789
-- [Student name n](mailto:name@email.com) / A123456789
+- <a href="https://github.com/DanielFCampos"><img src="https://avatars2.githubusercontent.com/u/31582602?s=460&v=4" title="DanielFCampos" width="40" height="40"></a> [Daniel Campos](mailto:daniel.ferraz.campos@gmail.com) / A57635769
+- <a href="https://github.com/ldaniel"><img src="https://avatars2.githubusercontent.com/u/205534?s=460&v=4" title="ldaniel" width="40" height="40"></a>  [Leandro Daniel](mailto:contato@leandrodaniel.com) / A57622988
+- <a href="https://github.com/ricardobreis"><img src="https://avatars2.githubusercontent.com/u/4885152?s=64&v=4" title="RodriGonca" width="40" height="40"></a> [Ricardo Reis](mailto:ricardo.l.b.reis@gmail.com) / A57590919
+- <a href="https://github.com/RodriGonca"><img src="https://avatars2.githubusercontent.com/u/50252438?s=460&v=4" title="RodriGonca" width="40" height="40"></a> [Rodrigo Goncalves](mailto:rodrigo.goncalves@me.com) / A57566093
+- <a href="https://github.com/ygorlima1"><img src="https://avatars2.githubusercontent.com/u/52429828?s=460&v=4" title="ygorlima1" width="40" height="40"></a>  [Ygor Lima](mailto:ygor_redesocial@hotmail.com) / A57549661
 
-## Where to find the source code of this project?
-This project can be found and downloaded on GitHub: https://github.com/your_user/your_project
+## Onde encontrar o código-fonte deste projeto?
+Este projeto pode ser baixado do GitHub: https://github.com/ldaniel/Spatial-Statistics-Applications
+
+## Estrutura da solução
+O mapa abaixo mostra a estrutura da solução com a sua divisão de scripts.
+
+```{r solution_mindmap, echo = FALSE, out.width = '100%'}
+
+input <- c("# 1. Data Preparation", 
+              "## 1.1 Config Environment", 
+              "## 1.2 Data Download",
+              "## 1.3 Data Ingestion",
+              "## 1.4 Data Cleaning",
+              "## 1.5 Data Enhancement",
+              "## 1.6 Dataset Preparation", 
+           "# 2. Data Analysis",
+              "## 2.1 Config Environment", 
+              "## 2.2 Tokenization",
+           "# Playground",
+           "# Util",
+              "## Auxiliary functions", 
+              "## Generate markdown website",
+              "## Sync Kaggle")
+mm(from = input, 
+   type = "text", 
+   root = "src (scripts folder)")
+```
+
+
+> Valar Morghulis!
+> :)

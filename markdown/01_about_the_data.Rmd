@@ -1,16 +1,72 @@
 ---
-title: "About the data"
+title: "Sobre os dados"
 ---
 
-# Setting the scene
+# Definindo o cenário
 
-## Introduction
-Include an introduction here.
+Para execução deste trabalho, foram utilizadas algumas fontes de dados públicos:
 
-## Task descripion
+* Agência Nacional do Petróleo **(ANP)**
+* Empresa de Pesquisa Energética **(EPE)**
+* Instituto Brasileiro de Geografia e Estatística **(IBGE)**
 
-Include a taks description here.
 
-## Data description
+## Agência Nacional do Petróleo (ANP)
 
-Include a data description here.
+A **Agência Nacional do Petróleo** (ANP), Gás Natural e Biocombustíveis é o órgão federal responsável pela regulação das indústrias de petróleo e gás natural e de biocombustíveis no Brasil. Vinculada ao Ministério de Minas e Energia, é uma autarquia federal especial que executa a política nacional para o setor, com foco na garantia do abastecimento de combustíveis e na defesa dos interesses dos consumidores.
+
+A Agência tem atuação “do poço ao posto”, ou seja, regula mais de 110 mil empresas, em atividades desde a prospecção de petróleo e gás natural nas bacias sedimentares do Brasil até os procedimentos para assegurar a qualidade os combustíveis vendidos ao consumidor final. A atividade de regulação implica, necessariamente, a constante fiscalização do cumprimento das normas estabelecidas.
+
+### ANP - Levantamento de Preços e de Margens de Comercialização de Combustíveis
+
+Uma das atribuições da ANP é implementar a política nacional de petróleo e gás natural e garantir a proteção dos interesses dos consumidores quanto a preço, qualidade e oferta de produtos ([Lei n° 9478/97](http://legislacao.anp.gov.br/?path=legislacao-federal/leis/1997&item=lei-9.478--1997), artigo 8º). Cumprindo essa determinação, a Agência promove uma pesquisa de preços semanal para acompanhar os preços praticados pelas distribuidoras e postos revendedores de combustíveis.
+
+Atualmente, o Levantamento de Preços e de Margens de Comercialização de Combustíveis (LPMCC) abrange gasolina comum, etanol hidratado combustível (álcool etílico hidratado combustível - AEHC), óleo diesel S-500, óleo diesel S-10, gás natural veicular (GNV) e gás liquefeito de petróleo (GLP - botijão de 13 quilos), pesquisados em 459 localidades, de acordo com procedimentos estabelecidos pela [Portaria ANP nº 202, de 15/8/2000](http://legislacao.anp.gov.br/?path=legislacao-anp/portarias-anp/tecnicas/2000/agosto&item=panp-202--2000).
+
+A pesquisa contempla todos os estados brasileiros e o Distrito Federal e é planejada com base em critérios estatísticos voltados para sua significância e confiabilidade. O serviço é prestado para a ANP, com periodicidade semanal em âmbito nacional, por uma empresa contratada por meio de licitação.
+
+A frequência semanal da pesquisa de preços abrange: (i) seleção das revendas em operação cadastradas na ANP que integrarão a amostra; (ii) coleta de dados em campo pelos pesquisadores selecionados pela empresa contratada, em sua quase totalidade, nos três primeiros dias úteis de cada semana; (iii) realização de procedimentos que visem elevar a qualidade e confiabilidade das informações; e (iv) publicação no sítio eletrônico da ANP, a qual ocorre, como regra geral, às sextas-feiras de forma a permitir o acesso da sociedade ao seu resultado o mais rapidamente possível.
+
+### Apresentação da pesquisa
+
+O resultado do LPMCC é apresentado em tabelas que contêm os seguintes dados:
+
+* Preços de distribuição e de venda ao consumidor de gasolina comum, etanol hidratado combustível, óleo diesel não aditivado, GNV e GLP P13 praticados pelos postos revendedores;
+* Preços médios e desvio padrão de gasolina comum, etanol hidratado combustível, óleo diesel não aditivado, GNV e GLP, observados em cada município;
+* Relação de postos revendedores que se recusaram a apresentar notas fiscais de compra de combustíveis;
+* Síntese de preços médios, mínimos, máximos, margens brutas de revenda e desvio-padrão, em cada município pesquisado;
+* Universo pesquisado;
+* Período e data da coleta.
+
+### Metodologia
+
+A pesquisa de preços é feita semanalmente em todos os estados da Federação mais o Distrito Federal. A seleção das 459 localidades foi estabelecida a partir de critérios econômicos, em função de variáveis como renda, população, número de postos revendedores e frota de veículos. O detalhamento da metodologia e a lista das localidades abordadas está disponível aqui.
+
+
+## Empresa de Pesquisa Energética (EPE)
+
+A **Empresa de Pesquisa Energética** (EPE) tem por finalidade prestar serviços ao Ministério de Minas e Energia (MME) na área de estudos e pesquisas destinadas a subsidiar o planejamento do setor energético, cobrindo energia elétrica, petróleo e gás natural e seus derivados e biocombustiveis. Somos uma empresa pública federal, 100% dependente do Orçamento Geral da União. A empresa foi criada por meio de medida provisória convertida em lei pelo Congresso Nacional - Lei 10.847, de 15 de Março de 2004. E a efetivação se deu em um decreto de agosto de 2004.
+
+###  Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019
+
+A Empresa de Pesquisa Energética - EPE disponibiliza a versão final do documento "Zoneamento Nacional de Recursos de Óleo e Gás 2019.
+
+O Zoneamento é um estudo contínuo realizado em ciclos bianuais pela EPE com o objetivo de manter atualizada uma base de informações georreferenciadas, que permita representar zonas de importância petrolífera relativa das diversas áreas do País. Esta versão destaca a importância petrolífera das áreas selecionadas pela agenda de rodadas de 2019-2021 e dedica, de forma inédita, um capítulo complementar sobre a ocorrência de CO2 nas bacias sedimentares brasileiras.
+
+## Instituto Brasileiro de Geografia e Estatística (IBGE)
+
+O Instituto Brasileiro de Geografia e Estatística - IBGE se constitui no principal provedor de dados e informações do País, que atendem às necessidades dos mais diversos segmentos da sociedade civil, bem como dos órgãos das esferas governamentais federal, estadual e municipal.
+
+O IBGE oferece uma visão completa e atual do País, através do desempenho de suas principais funções:
+
+* Produção e análise de informações estatísticas;
+* Coordenação e consolidação das informações estatísticas;
+* Produção e análise de informações geográficas;
+* Coordenação e consolidação das informações geográficas;
+* Estruturação e implantação de um sistema da informações ambientais;
+* Documentação e disseminação de informações;
+* Coordenação dos sistemas estatístico e cartográfico nacionais.
+
+Os dados e mapas do IBGE podem ser acessados através do endereço de FTP abaixo:
+
+[ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/](ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/)

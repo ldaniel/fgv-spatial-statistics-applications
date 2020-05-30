@@ -5,23 +5,28 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
-    - text: "Business Case"
+    - text: "Cenário Proposto"
       icon: fa-hand-holding-usd
       menu: 
-        - text: "About the Data"
+        - text: "Sobre os dados"
           href: 01_about_the_data.html
         - text: "---------"
-        - text: "Initial Analysis"
-        - text: "Data Preparation"
+        - text: "Análise Inicial"
+        - text: "Preparação dos Dados"
           href: 02_data_preparation.html
-        - text: "Data Exploration"
-          href: 03_exploration_report.html
-    - text: "Final Report"
+        - text: "Exploração dos Dados"
+          href: 03_data_exploration.html
+    - text: "Desenvolvimento"
+      icon: fa-file-text-o
+      menu: 
+        - text: "To-do"
+          href: 04_to-do.html
+    - text: "Relatório Final"
       icon: fa-file-invoice-dollar
       menu:
-        - text: "Conclusion"
+        - text: "Conclusão"
           href: conclusion.html
-        - text: "References"
+        - text: "Referências"
           href: references.html
 output:
   html_document: 
