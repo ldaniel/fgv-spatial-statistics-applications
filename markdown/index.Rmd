@@ -69,6 +69,11 @@ mm(from = input,
    root = "solution folder")
 ```
 
+# Objetivos
+
+A intenção inicial deste projeto de pesquisa está em explorar, utilizando técnicas de estatística geoespacial abordados durante o curso, a influência das distâncias dos postos de combustíveis das distribuidoras e refinarias assim como possível autocorrelação espacial dos preços de combustíveis.
+
+O objetivo é desenvolver um sistema de monitoramento utilizando dados públicos da agência nacional de petróleo e gás, combinados com dados georreferenciados da infraestrutura de petróleo e gás fornecidos pela Empresa de Pesquisa Energética e dados georreferenciados publicados pelo Instituto Brasileiro de Geografia e Estatística (IBGE).
 
 > Valar Morghulis!
 > :)
