@@ -1,6 +1,6 @@
 # To-do list
 
-@Rodrigo: gerar um CSV contendo:
+**@Rodrigo:**, por favor, gerar um CSV contendo:
 
 Id | Lat | Lon | Tipo | Relevance 
 
