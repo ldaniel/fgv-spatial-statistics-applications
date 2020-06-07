@@ -19,8 +19,8 @@ navbar:
     - text: "Desenvolvimento"
       icon: fa-file-text-o
       menu: 
-        - text: "To-do"
-          href: 04_to-do.html
+        - text: "Autocorrelação Espacial"
+          href: 04_spatial_autocorrelation.html
     - text: "Relatório Final"
       icon: fa-file-invoice-dollar
       menu:
