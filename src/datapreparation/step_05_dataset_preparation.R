@@ -49,3 +49,5 @@ names(gas_prices_hist) <- plyr::mapvalues(names(gas_prices_hist),
                                           gas_prices_hist_header$descricao, 
                                           gas_prices_hist_header$mnemonico, 
                                           warn_missing = FALSE)
+
+# 

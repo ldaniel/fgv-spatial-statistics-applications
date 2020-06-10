@@ -4,7 +4,7 @@
 library(dplyr, warn.conflicts = FALSE)
 library(magrittr, warn.conflicts = FALSE)
 library(tibble)
-library(tidyr)
+library(tidyr, warn.conflicts = FALSE)
 library(readr)
 library(readxl)
 library(stringr)

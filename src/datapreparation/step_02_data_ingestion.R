@@ -132,10 +132,29 @@ names(gas_prices_station)[names(gas_prices_station) == 'modelidade.de.compra'] <
 rm(df, file, files)
 invisible(gc())
 
-# load mnemônico ----
+# load mnemonic ----
 
 gas_prices_hist_header <- read_xlsx('data/processed/mnemonico.xlsx', 
                                     sheet = 'gas_prices_hist')
 
 gas_prices_station_header <- read_xlsx('data/processed/mnemonico.xlsx', 
                                        sheet = 'gas_prices_station')
+
+PIB_header <- read_xlsx('data/processed/mnemonico.xlsx',
+                        sheet = 'PIB')
+
+POP_header <- read_xlsx('data/processed/mnemonico.xlsx',
+                        sheet = 'Pop')
+
+# import PIB data ----
+
+pib <- read_xls('data/raw/IBGE/PIB dos Municípios - base de dados 2010-2017.xls', 
+                col_names = PIB_header$mnemonico, 
+                skip = 1)
+
+# import POP data ----
+
+pop <- read_xls('data/raw/IBGE/estimativa_TCU_2019_20200427.xls', 
+                col_names = POP_header$mnemonico, 
+                sheet = 'Municípios', 
+                skip = 2)
