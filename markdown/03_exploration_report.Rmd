@@ -1,5 +1,5 @@
 ---
-title: "The exploration's report"
+title: "Análise Exploratório de Dados (EDA)"
 date: "Junho de 2020"
 ---
 

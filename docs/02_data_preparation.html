@@ -385,7 +385,33 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="04_to-do.html">To-do</a>
+      <a href="04_spatial_autocorrelation.html">Autocorrelação Espacial</a>
+    </li>
+    <li>
+      <a href="05_sar_gwr.html">Aplicando SAR e GWR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-globe"></span>
+     
+    Visualizações
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Para cientistas de dados</li>
+    <li>
+      <a href="viz_qgis.html">QGIS</a>
+    </li>
+    <li>
+      <a href="viz_geoda.html">GeoDa</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Para executivos</li>
+    <li>
+      <a href="viz_power_bi.html">Power BI</a>
     </li>
   </ul>
 </li>
@@ -620,20 +646,43 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb2-130" title="130"><span class="kw">rm</span>(df, file, files)</a>
 <a class="sourceLine" id="cb2-131" title="131"><span class="kw">invisible</span>(<span class="kw">gc</span>())</a>
 <a class="sourceLine" id="cb2-132" title="132"></a>
-<a class="sourceLine" id="cb2-133" title="133"><span class="co"># load mnemônico ----</span></a>
+<a class="sourceLine" id="cb2-133" title="133"><span class="co"># load mnemonic ----</span></a>
 <a class="sourceLine" id="cb2-134" title="134"></a>
 <a class="sourceLine" id="cb2-135" title="135">gas_prices_hist_header &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&#39;data/processed/mnemonico.xlsx&#39;</span>, </a>
 <a class="sourceLine" id="cb2-136" title="136">                                    <span class="dt">sheet =</span> <span class="st">&#39;gas_prices_hist&#39;</span>)</a>
 <a class="sourceLine" id="cb2-137" title="137"></a>
 <a class="sourceLine" id="cb2-138" title="138">gas_prices_station_header &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&#39;data/processed/mnemonico.xlsx&#39;</span>, </a>
-<a class="sourceLine" id="cb2-139" title="139">                                       <span class="dt">sheet =</span> <span class="st">&#39;gas_prices_station&#39;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-139" title="139">                                       <span class="dt">sheet =</span> <span class="st">&#39;gas_prices_station&#39;</span>)</a>
+<a class="sourceLine" id="cb2-140" title="140"></a>
+<a class="sourceLine" id="cb2-141" title="141">PIB_header &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&#39;data/processed/mnemonico.xlsx&#39;</span>,</a>
+<a class="sourceLine" id="cb2-142" title="142">                        <span class="dt">sheet =</span> <span class="st">&#39;PIB&#39;</span>)</a>
+<a class="sourceLine" id="cb2-143" title="143"></a>
+<a class="sourceLine" id="cb2-144" title="144">POP_header &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&#39;data/processed/mnemonico.xlsx&#39;</span>,</a>
+<a class="sourceLine" id="cb2-145" title="145">                        <span class="dt">sheet =</span> <span class="st">&#39;Pop&#39;</span>)</a>
+<a class="sourceLine" id="cb2-146" title="146"></a>
+<a class="sourceLine" id="cb2-147" title="147"><span class="co"># import PIB data ----</span></a>
+<a class="sourceLine" id="cb2-148" title="148"></a>
+<a class="sourceLine" id="cb2-149" title="149">pib &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&#39;data/raw/IBGE/PIB dos Municípios - base de dados 2010-2017.xls&#39;</span>, </a>
+<a class="sourceLine" id="cb2-150" title="150">                <span class="dt">col_names =</span> PIB_header<span class="op">$</span>mnemonico, </a>
+<a class="sourceLine" id="cb2-151" title="151">                <span class="dt">skip =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-152" title="152"></a>
+<a class="sourceLine" id="cb2-153" title="153"><span class="co"># import POP data ----</span></a>
+<a class="sourceLine" id="cb2-154" title="154"></a>
+<a class="sourceLine" id="cb2-155" title="155">pop &lt;-<span class="st"> </span><span class="kw">read_xls</span>(<span class="st">&#39;data/raw/IBGE/estimativa_TCU_2019_20200427.xls&#39;</span>, </a>
+<a class="sourceLine" id="cb2-156" title="156">                <span class="dt">col_names =</span> POP_header<span class="op">$</span>mnemonico, </a>
+<a class="sourceLine" id="cb2-157" title="157">                <span class="dt">sheet =</span> <span class="st">&#39;Municípios&#39;</span>, </a>
+<a class="sourceLine" id="cb2-158" title="158">                <span class="dt">skip =</span> <span class="dv">2</span>)</a></code></pre></div>
 </div>
 <div id="step-03-tratamento-dos-dados" class="section level2">
 <h2><span class="header-section-number">1.3</span> Step 03: Tratamento dos dados</h2>
 <p>O objetivo desta etapa é analisar valores ausentes (missing values) e outras condições estranhas.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># analysing missing values and other strange conditions -----------------------</span></a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co"># For this project, this step was not required.</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co"># For this project, this step was not required.</span></a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co"># clean POP dataset ----</span></a>
+<a class="sourceLine" id="cb3-6" title="6"></a>
+<a class="sourceLine" id="cb3-7" title="7">pop &lt;-<span class="st"> </span><span class="kw">filter</span>(pop, <span class="op">!</span><span class="kw">is.na</span>(pop<span class="op">$</span>CdUF))</a></code></pre></div>
 </div>
 <div id="step-04-aprimoramento-dos-dados" class="section level2">
 <h2><span class="header-section-number">1.4</span> Step 04: Aprimoramento dos dados</h2>
@@ -761,7 +810,9 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb5-46" title="46"><span class="kw">names</span>(gas_prices_hist) &lt;-<span class="st"> </span>plyr<span class="op">::</span><span class="kw">mapvalues</span>(<span class="kw">names</span>(gas_prices_hist), </a>
 <a class="sourceLine" id="cb5-47" title="47">                                          gas_prices_hist_header<span class="op">$</span>descricao, </a>
 <a class="sourceLine" id="cb5-48" title="48">                                          gas_prices_hist_header<span class="op">$</span>mnemonico, </a>
-<a class="sourceLine" id="cb5-49" title="49">                                          <span class="dt">warn_missing =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-49" title="49">                                          <span class="dt">warn_missing =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-50" title="50"></a>
+<a class="sourceLine" id="cb5-51" title="51"><span class="co"># </span></a></code></pre></div>
 </div>
 <div id="step-06-salvamento-dos-datasets-processados" class="section level2">
 <h2><span class="header-section-number">1.6</span> Step 06: Salvamento dos datasets processados</h2>
