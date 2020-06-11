@@ -17,18 +17,10 @@ library(readxl)
 library(forcats)
 library(ggplot2)
 library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
 library(tidyr)
 library(lubridate)
 library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
 library(knitr)
-library(leaflet)
-library(geojsonio)
 ```
 
 ```{r scripts_exploration, include=FALSE}
@@ -63,13 +55,13 @@ ggplot(data = gas_prices_station) +
 
 Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país assim como a localização de todas as refinarias de combustíveis em território nacionnal.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_dist_combust.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_dist_combust.svg)
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_refin_combust.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_refin_combust.svg)
 
 Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana dos dia 26-Abr-2020 a 02-Mai-2020 podemos verificar a distribuição dos 458 municipios pesquisados que serão objeto de estudo neste projeto de pesauisa.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_cidade_combust.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_cidade_combust.svg)
 
 # Distâncias das sedes dos munícipios pesquisados para as distribuídoras.
 
@@ -77,8 +69,8 @@ Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Pad
 
 Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/dist_sedes_dist.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_dist.png)
 
 Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/dist_sedes_refin.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_refin.svg)
