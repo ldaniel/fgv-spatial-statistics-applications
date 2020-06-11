@@ -67,6 +67,7 @@ Describe your exploration 2 here, including some plots, tables or any resource u
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_refin_combust.svg)
 
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_cidade_combust.svg)
 
 ```{r exploration_target_2, echo=TRUE, out.width = '100%'}
 # your code with the exploration 2 goes here
