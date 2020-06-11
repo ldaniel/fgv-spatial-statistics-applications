@@ -79,10 +79,6 @@ Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisa
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/dist_sedes_dist.png)
 
-# Exploration n
+Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
-Describe your exploration n here, including some plots, tables or any resource used.
-
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/dist_sedes_refin.svg)
