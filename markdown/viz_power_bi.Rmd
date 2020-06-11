@@ -7,60 +7,89 @@ date: "Junho de 2020"
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")
-
-# loading required libraries
-library(rmarkdown)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
-library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
-library(knitr)
-library(leaflet)
-library(geojsonio)
 ```
 
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-```
+# O que é o Power BI?
 
-# Exploration 1
+O **Power BI** é uma coleção de serviços de software, aplicativos e conectores que trabalham juntos para transformar suas fontes de dados não relacionadas em informações coerentes, visualmente envolventes e interativas. Os dados podem estar em uma planilha do Excel ou em uma coleção de data warehouses híbridos locais ou baseados na nuvem. 
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+O Power BI permite a conexão a fontes de dados, visualização e descoberta de conteúdo, podendo ser compartilhado com todas as pessoas, por:
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
-```
+* Um aplicativo de desktop do Windows chamado Power BI Desktop;
+* Um serviço SaaS (software como serviço) online chamado de serviço do Power BI;
+* Aplicativos móveis do Power BI para dispositivos Windows, iOS e Android.
 
-# Exploration 2
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/o_que_powerbi.jpg)
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
+Para desenvolvedores, é possível usar APIs do Power BI para efetuar push dos dados para conjuntos de dados ou para inserir relatórios e dashboards em seus próprios aplicativos personalizados. É possível usar cada elemento do Power BI em momentos diferentes, dependendo do objetivo ou da função em determinado projeto.
 
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
+A maneira de usar o Power BI depende do respectivo recurso ou serviço que seja mais adequado como ferramenta para o caso. Por exemplo, é possível usar o Power BI Desktop para criar relatórios para sua própria equipe sobre as estatísticas de participação do cliente e exibir o inventário e o progresso da fabricação em um dashboard em tempo real no serviço do Power BI.
 
+# Quais são as vantagens de usar o Power BI? 
 
-# Exploration 3
+* Power BI é muito barato ou até mesmo grátis; 
+* Existem comunidades de Power BI, em que qualquer um pode se cadastrar, criar um tópico e/ou votar num tópico existente tirando dúvidas; 
+* Nessa ferramenta, é possível criar relatórios interativos e painéis personalizados; 
+* Os relatórios criados no Power BI podem ser exportados para o PowerPoint, o que facilita bastante se você gosta de usar essa ferramenta para apresentações em reuniões ou eventos semelhantes; 
+* Com o Power BI você consegue se conectar a uma página da Web através do seu link de acesso, importar os dados tabulados e criar indicadores mostrando os dados de forma muito mais prática.
 
-Describe your exploration 3 here, including some plots, tables or any resource used.
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-overview-blocks.png)
 
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
+# Onde baixar o Power BI?
 
-# Exploration n
+Com o Power BI Desktop, você pode explorar visualmente seus dados por meio de uma tela do tipo "arrastar e soltar" de formato livre, uma ampla variedade de visualizações de dados modernas e uma experiência de criação de relatórios fácil de usar. Para o desenvolvimento deste trabalho, disponibilizamos um arquivo ***.PBIX** para ser visualizado através do **Power BI Desktop**, cujo download pode ser feito no link a seguir:
 
-Describe your exploration n here, including some plots, tables or any resource used.
+[Página de dowloads do Power BI](https://powerbi.microsoft.com/en-us/downloads/) no site da Microsoft
 
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+# Onde baixar o Power BI criado para este projeto?
+
+[Clique neste link para baixar o arquivo Power BI Desktop deste projeto](https://github.com/ldaniel/Spatial-Statistics-Applications/blob/master/visualizations/FGV-Spatial-Statistics-Applications.pbix?raw=true), disponível no repositório GitHub.
+
+## Quais visualizações você encontrará?
+
+### Página inicial
+
+Esta é a página inicial, onde constam informações básicas sobre o projeto e links para todas as visualizações.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-home.png)
+
+### Postos de gasolina, distribuidoras e refinarias analisadas
+
+Mapa com a localização de todos os postos de gasolina, distribuidoras e refinarias analisadas no projeto. Diversos filtros estão disponíveis para refinar a consulta, sendo que todos estão conectados entre si.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-details.png)
+
+### Evolução história dos preços por cidade
+
+Mapa com animação da evolução dos preços por cidade.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-historical.png)
+
+### Mapa de relevância por preço de venda
+
+Nesta visualização é possível observar os pontos analisados com uma relevância por preço médio do combustível por capital. Diversos filtros estão disponíveis em um menu localizado no canto esquerdo do relatório. Esta visualização também conta com um **Treemap** (ou mapa de árvore).
+
+Gráficos de mapa de árvore são gráficos de retângulos coloridos, com um tamanho que representa o valor. Eles podem ser hierárquicos, com retângulos aninhados nos retângulos principais. O espaço dentro de cada retângulo é alocado com base no valor que está sendo medido. E os retângulos são organizados no tamanho da parte superior esquerda (maior) à parte inferior direita (menor).
+
+Os treemps são uma ótima opção:
+
+* para exibir grandes quantidades de dados hierárquicos;
+* quando um gráfico de barras não puder lidar efetivamente com grande número de valores;
+* para mostrar as proporções entre cada parte e o todo;
+* para mostrar o padrão da distribuição da medida em cada nível das categorias na hierarquia;
+* para mostrar atributos usando a codificação de cor e tamanho;
+* para identificar padrões, exceções, colaboradores mais importantes e exceções.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-relevance.png)
+
+### Mapa detalhado por satélite
+
+Visualização com mapa por satélite para detalhe das ruas e localização de cada posto de gasolina, distribuidora e refinaria.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-streets.png)
+
+### Top 10 cidades por preço médio do combustível
+
+Um divertido infográfico mostrando as top 10 cidades por preço médio do combustível, onde um personagem animado expressa suas emoções dependendo do valor analisado.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-infographic.png)
