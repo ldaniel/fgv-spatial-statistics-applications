@@ -37,11 +37,13 @@ source("./src/util/auxiliary_functions.R")
 source("./src/datapreparation/step_07_data_load.R")
 ```
 
-# Exploration 1
+# Avaliação dos Preços de Gasolina Comum
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+Com base em nosso dataset de `1.236` postos de gasolina das 27 capitais brasileiras avaliamos qual a distribuição dos preços de Gasolina comum por capital.
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%', fig.height = 6}
+Verificamos que o Rio de Janeiro claramente apresenta maiores preços (cerca de 4,4 Reais) em relação as demais capitais, e Macapa apresenta o menor preço de gasolina por volta de 3,00 R$.
+
+```{r exploration_target_1, echo = FALSE, out.width = '100%', fig.height = 6}
 ggplot(data = gas_prices_station) +
   geom_boxplot(aes(y = PcVenda, 
                    x = fct_reorder(Cidade, PcVenda, .desc = FALSE),
@@ -51,7 +53,7 @@ ggplot(data = gas_prices_station) +
   coord_flip() +
   labs(title = 'Preço de Gasolina Comum por Estado',
        subtitle = 'Semana de 2020-04-26 a 2020-05-02',
-       x = 'Estado',
+       x = 'Capital',
        y = 'Preço') + 
   theme(panel.grid = element_blank(),
         aspect.ratio = 1.2)
