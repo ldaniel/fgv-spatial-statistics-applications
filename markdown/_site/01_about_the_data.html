@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Sobre os dados</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">FGV MBA</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-hand-holding-usd"></span>
+     
+    Cenário Proposto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="01_about_the_data.html">Sobre os dados</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Análise Inicial</li>
+    <li>
+      <a href="02_data_preparation.html">Preparação dos Dados</a>
+    </li>
+    <li>
+      <a href="03_exploration_report.html">Exploração dos Dados</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-text-o"></span>
+     
+    Desenvolvimento
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="04_spatial_autocorrelation.html">Autocorrelação Espacial</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-invoice-dollar"></span>
+     
+    Relatório Final
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="conclusion.html">Conclusão</a>
+    </li>
+    <li>
+      <a href="references.html">Referências</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Sobre os dados</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#definindo-o-cenário"><span class="toc-section-number">1</span> Definindo o cenário</a><ul>
+<li><a href="#agência-nacional-do-petróleo-anp"><span class="toc-section-number">1.1</span> Agência Nacional do Petróleo (ANP)</a><ul>
+<li><a href="#anp---levantamento-de-preços-e-de-margens-de-comercialização-de-combustíveis"><span class="toc-section-number">1.1.1</span> ANP - Levantamento de Preços e de Margens de Comercialização de Combustíveis</a></li>
+<li><a href="#apresentação-da-pesquisa"><span class="toc-section-number">1.1.2</span> Apresentação da pesquisa</a></li>
+<li><a href="#metodologia"><span class="toc-section-number">1.1.3</span> Metodologia</a></li>
+</ul></li>
+<li><a href="#empresa-de-pesquisa-energética-epe"><span class="toc-section-number">1.2</span> Empresa de Pesquisa Energética (EPE)</a><ul>
+<li><a href="#zoneamento-nacional-de-recursos-de-óleo-e-gás-2017-2019"><span class="toc-section-number">1.2.1</span> Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019</a></li>
+</ul></li>
+<li><a href="#instituto-brasileiro-de-geografia-e-estatística-ibge"><span class="toc-section-number">1.3</span> Instituto Brasileiro de Geografia e Estatística (IBGE)</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="definindo-o-cenário" class="section level1">
+<h1><span class="header-section-number">1</span> Definindo o cenário</h1>
+<p>Planejar significa definir antecipadamente um conjunto de ações ou intenções. Podemos entender ainda como “prever, antecipar ou vislumbrar algo que ainda não aconteceu; preparar; projetar”. Ou seja, o planejamento energético deve considerar as necessidades futuras de energia e como o país poderá atendê-las.</p>
+<p>Dentre os combustíveis não renováveis, o diesel usado em caminhões e ônibus, a gasolina usada em carros, o óleo usado em grandes navios e o querosene de aviação são produzidos a partir do petróleo. O petróleo é extraído a partir da perfuração do solo (no Brasil, principalmente no mar) e levado a refinarias, onde é transformado nesses vários produtos, conhecidos como derivados de petróleo (veja os Infográficos Petróleo e Gás Natural).</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/cadeia-combustivel.png" /></p>
+<p>Para execução deste trabalho, a <strong>gasolina</strong> foi escolhida como alvo das análises, e os dados foram extraídos de algumas fontes de dados públicos:</p>
+<ul>
+<li>Agência Nacional do Petróleo <strong>(ANP)</strong></li>
+<li>Empresa de Pesquisa Energética <strong>(EPE)</strong></li>
+<li>Instituto Brasileiro de Geografia e Estatística <strong>(IBGE)</strong></li>
+</ul>
+<div id="agência-nacional-do-petróleo-anp" class="section level2">
+<h2><span class="header-section-number">1.1</span> Agência Nacional do Petróleo (ANP)</h2>
+<p>A <strong>Agência Nacional do Petróleo</strong> (ANP), Gás Natural e Biocombustíveis é o órgão federal responsável pela regulação das indústrias de petróleo e gás natural e de biocombustíveis no Brasil. Vinculada ao Ministério de Minas e Energia, é uma autarquia federal especial que executa a política nacional para o setor, com foco na garantia do abastecimento de combustíveis e na defesa dos interesses dos consumidores.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/banner-atribuicoes-anp.png" /></p>
+<p>A Agência tem atuação “do poço ao posto”, ou seja, regula mais de 110 mil empresas, em atividades desde a prospecção de petróleo e gás natural nas bacias sedimentares do Brasil até os procedimentos para assegurar a qualidade os combustíveis vendidos ao consumidor final. A atividade de regulação implica, necessariamente, a constante fiscalização do cumprimento das normas estabelecidas.</p>
+<div id="anp---levantamento-de-preços-e-de-margens-de-comercialização-de-combustíveis" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> ANP - Levantamento de Preços e de Margens de Comercialização de Combustíveis</h3>
+<p>Uma das atribuições da ANP é implementar a política nacional de petróleo e gás natural e garantir a proteção dos interesses dos consumidores quanto a preço, qualidade e oferta de produtos (<a href="http://legislacao.anp.gov.br/?path=legislacao-federal/leis/1997&amp;item=lei-9.478--1997">Lei n° 9478/97</a>, artigo 8º). Cumprindo essa determinação, a Agência promove uma pesquisa de preços semanal para acompanhar os preços praticados pelas distribuidoras e postos revendedores de combustíveis.</p>
+<p>Atualmente, o Levantamento de Preços e de Margens de Comercialização de Combustíveis (LPMCC) abrange gasolina comum, etanol hidratado combustível (álcool etílico hidratado combustível - AEHC), óleo diesel S-500, óleo diesel S-10, gás natural veicular (GNV) e gás liquefeito de petróleo (GLP - botijão de 13 quilos), pesquisados em 459 localidades, de acordo com procedimentos estabelecidos pela <a href="http://legislacao.anp.gov.br/?path=legislacao-anp/portarias-anp/tecnicas/2000/agosto&amp;item=panp-202--2000">Portaria ANP nº 202, de 15/8/2000</a>.</p>
+<p>A pesquisa contempla todos os estados brasileiros e o Distrito Federal e é planejada com base em critérios estatísticos voltados para sua significância e confiabilidade. O serviço é prestado para a ANP, com periodicidade semanal em âmbito nacional, por uma empresa contratada por meio de licitação.</p>
+<p>A frequência semanal da pesquisa de preços abrange: (i) seleção das revendas em operação cadastradas na ANP que integrarão a amostra; (ii) coleta de dados em campo pelos pesquisadores selecionados pela empresa contratada, em sua quase totalidade, nos três primeiros dias úteis de cada semana; (iii) realização de procedimentos que visem elevar a qualidade e confiabilidade das informações; e (iv) publicação no sítio eletrônico da ANP, a qual ocorre, como regra geral, às sextas-feiras de forma a permitir o acesso da sociedade ao seu resultado o mais rapidamente possível.</p>
+</div>
+<div id="apresentação-da-pesquisa" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Apresentação da pesquisa</h3>
+<p>O resultado do LPMCC é apresentado em tabelas que contêm os seguintes dados:</p>
+<ul>
+<li>Preços de distribuição e de venda ao consumidor de gasolina comum, etanol hidratado combustível, óleo diesel não aditivado, GNV e GLP P13 praticados pelos postos revendedores;</li>
+<li>Preços médios e desvio padrão de gasolina comum, etanol hidratado combustível, óleo diesel não aditivado, GNV e GLP, observados em cada município;</li>
+<li>Relação de postos revendedores que se recusaram a apresentar notas fiscais de compra de combustíveis;</li>
+<li>Síntese de preços médios, mínimos, máximos, margens brutas de revenda e desvio-padrão, em cada município pesquisado;</li>
+<li>Universo pesquisado;</li>
+<li>Período e data da coleta.</li>
+</ul>
+</div>
+<div id="metodologia" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Metodologia</h3>
+<p>A pesquisa de preços é feita semanalmente em todos os estados da Federação mais o Distrito Federal. A seleção das 459 localidades foi estabelecida a partir de critérios econômicos, em função de variáveis como renda, população, número de postos revendedores e frota de veículos. O detalhamento da metodologia e a lista das localidades abordadas está disponível aqui.</p>
+</div>
+</div>
+<div id="empresa-de-pesquisa-energética-epe" class="section level2">
+<h2><span class="header-section-number">1.2</span> Empresa de Pesquisa Energética (EPE)</h2>
+<p>A <strong>Empresa de Pesquisa Energética</strong> (EPE) tem por finalidade prestar serviços ao Ministério de Minas e Energia (MME) na área de estudos e pesquisas destinadas a subsidiar o planejamento do setor energético, cobrindo energia elétrica, petróleo e gás natural e seus derivados e biocombustiveis. Somos uma empresa pública federal, 100% dependente do Orçamento Geral da União. A empresa foi criada por meio de medida provisória convertida em lei pelo Congresso Nacional - Lei 10.847, de 15 de Março de 2004. E a efetivação se deu em um decreto de agosto de 2004.</p>
+<div id="zoneamento-nacional-de-recursos-de-óleo-e-gás-2017-2019" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019</h3>
+<p>A Empresa de Pesquisa Energética - EPE disponibiliza a versão final do documento "Zoneamento Nacional de Recursos de Óleo e Gás 2019.</p>
+<p>O Zoneamento é um estudo contínuo realizado em ciclos bianuais pela EPE com o objetivo de manter atualizada uma base de informações georreferenciadas, que permita representar zonas de importância petrolífera relativa das diversas áreas do País. Esta versão destaca a importância petrolífera das áreas selecionadas pela agenda de rodadas de 2019-2021 e dedica, de forma inédita, um capítulo complementar sobre a ocorrência de CO2 nas bacias sedimentares brasileiras.</p>
+</div>
+</div>
+<div id="instituto-brasileiro-de-geografia-e-estatística-ibge" class="section level2">
+<h2><span class="header-section-number">1.3</span> Instituto Brasileiro de Geografia e Estatística (IBGE)</h2>
+<p>O Instituto Brasileiro de Geografia e Estatística - IBGE se constitui no principal provedor de dados e informações do País, que atendem às necessidades dos mais diversos segmentos da sociedade civil, bem como dos órgãos das esferas governamentais federal, estadual e municipal.</p>
+<p>O IBGE oferece uma visão completa e atual do País, através do desempenho de suas principais funções:</p>
+<ul>
+<li>Produção e análise de informações estatísticas;</li>
+<li>Coordenação e consolidação das informações estatísticas;</li>
+<li>Produção e análise de informações geográficas;</li>
+<li>Coordenação e consolidação das informações geográficas;</li>
+<li>Estruturação e implantação de um sistema da informações ambientais;</li>
+<li>Documentação e disseminação de informações;</li>
+<li>Coordenação dos sistemas estatístico e cartográfico nacionais.</li>
+</ul>
+<p>Os dados e mapas do IBGE podem ser acessados através do endereço de FTP abaixo:</p>
+<p><a href="ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/">ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/</a></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
