@@ -7,60 +7,18 @@ date: "Junho de 2020"
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")
-
-# loading required libraries
-library(rmarkdown)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
-library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
-library(knitr)
-library(leaflet)
-library(geojsonio)
 ```
 
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-```
+# O que é o Power BI?
 
-# Exploration 1
+O Power BI é uma coleção de serviços de software, aplicativos e conectores que trabalham juntos para transformar suas fontes de dados não relacionadas em informações coerentes, visualmente envolventes e interativas. Os dados podem estar em uma planilha do Excel ou em uma coleção de data warehouses híbridos locais ou baseados na nuvem. 
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+O Power BI permite a conexão a fontes de dados, visualização e descoberta de conteúdo, podendo ser compartilhado com todas as pessoas, por:
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
-```
+* Um aplicativo de desktop do Windows chamado Power BI Desktop;
+* Um serviço SaaS (software como serviço) online chamado de serviço do Power BI;
+* Aplicativos móveis do Power BI para dispositivos Windows, iOS e Android.
 
-# Exploration 2
+Para desenvolvedores, é possível usar APIs do Power BI para efetuar push dos dados para conjuntos de dados ou para inserir relatórios e dashboards em seus próprios aplicativos personalizados. É possível usar cada elemento do Power BI em momentos diferentes, dependendo do objetivo ou da função em determinado projeto.
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
-
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
-
-
-# Exploration 3
-
-Describe your exploration 3 here, including some plots, tables or any resource used.
-
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
-
-# Exploration n
-
-Describe your exploration n here, including some plots, tables or any resource used.
-
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+A maneira de usar o Power BI depende do respectivo recurso ou serviço que seja mais adequado como ferramenta para o caso. Por exemplo, é possível usar o Power BI Desktop para criar relatórios para sua própria equipe sobre as estatísticas de participação do cliente e exibir o inventário e o progresso da fabricação em um dashboard em tempo real no serviço do Power BI.
