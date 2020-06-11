@@ -61,26 +61,23 @@ ggplot(data = gas_prices_station) +
 
 # Localização de Refinarias e Distribuidoras de Combustíveis no Território nacional
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
+Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país assim como a localização de todas as refinarias de combustíveis em território nacionnal.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_dist_combust.svg)
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_refin_combust.svg)
 
+Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana dos dia 26-Abr-2020 a 02-Mai-2020 podemos verificar a distribuição dos 458 municipios pesquisados que serão objeto de estudo neste projeto de pesauisa.
+
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/loc_cidade_combust.svg)
 
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
+# Distâncias das sedes dos munícipios pesquisados para as distribuídoras.
 
+Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Padrão de cada sede de municipio pesquisado para as 10 distribuidoras mais próximas, assim como as distâncias Mínima, Máxima, Média e Desvio Padrão para todas as 13 refinarias de combustível presentes em nosso dataset.
 
-# Exploration 3
+Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
-Describe your exploration 3 here, including some plots, tables or any resource used.
-
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/visualizations/EDA/dist_sedes_dist.png)
 
 # Exploration n
 
