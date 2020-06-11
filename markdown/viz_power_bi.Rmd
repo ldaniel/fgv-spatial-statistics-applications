@@ -37,10 +37,59 @@ A maneira de usar o Power BI depende do respectivo recurso ou serviço que seja 
 
 # Onde baixar o Power BI?
 
-Com o Power BI Desktop, você pode explorar visualmente seus dados por meio de uma tela do tipo "arrastar e soltar" de formato livre, uma ampla variedade de visualizações de dados modernas e uma experiência de criação de relatórios fácil de usar. Para o desenvolvimento deste trabalho, disponibilizamos um arquivo ****.PBIX** para ser visualizado através do **Power BI Desktop**, cujo download pode ser feito no link a seguir:
+Com o Power BI Desktop, você pode explorar visualmente seus dados por meio de uma tela do tipo "arrastar e soltar" de formato livre, uma ampla variedade de visualizações de dados modernas e uma experiência de criação de relatórios fácil de usar. Para o desenvolvimento deste trabalho, disponibilizamos um arquivo ***.PBIX** para ser visualizado através do **Power BI Desktop**, cujo download pode ser feito no link a seguir:
 
 [Página de dowloads do Power BI](https://powerbi.microsoft.com/en-us/downloads/) no site da Microsoft
 
 # Onde baixar o Power BI criado para este projeto?
 
 [Clique neste link para baixar o arquivo Power BI Desktop deste projeto](https://github.com/ldaniel/Spatial-Statistics-Applications/blob/master/visualizations/FGV-Spatial-Statistics-Applications.pbix?raw=true), disponível no repositório GitHub.
+
+## Quais visualizações você encontrará?
+
+### Página inicial
+
+Esta é a página inicial, onde constam informações básicas sobre o projeto e links para todas as visualizações.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-home.png)
+
+### Postos de gasolina, distribuidoras e refinarias analisadas
+
+Mapa com a localização de todos os postos de gasolina, distribuidoras e refinarias analisadas no projeto. Diversos filtros estão disponíveis para refinar a consulta, sendo que todos estão conectados entre si.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-details.png)
+
+### Evolução história dos preços por cidade
+
+Mapa com animação da evolução dos preços por cidade.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-historical.png)
+
+### Mapa de relevância por preço de venda
+
+Nesta visualização é possível observar os pontos analisados com uma relevância por preço médio do combustível por capital. Diversos filtros estão disponíveis em um menu localizado no canto esquerdo do relatório. Esta visualização também conta com um **Treemap** (ou mapa de árvore).
+
+Gráficos de mapa de árvore são gráficos de retângulos coloridos, com um tamanho que representa o valor. Eles podem ser hierárquicos, com retângulos aninhados nos retângulos principais. O espaço dentro de cada retângulo é alocado com base no valor que está sendo medido. E os retângulos são organizados no tamanho da parte superior esquerda (maior) à parte inferior direita (menor).
+
+Os treemps são uma ótima opção:
+
+* para exibir grandes quantidades de dados hierárquicos;
+* quando um gráfico de barras não puder lidar efetivamente com grande número de valores;
+* para mostrar as proporções entre cada parte e o todo;
+* para mostrar o padrão da distribuição da medida em cada nível das categorias na hierarquia;
+* para mostrar atributos usando a codificação de cor e tamanho;
+* para identificar padrões, exceções, colaboradores mais importantes e exceções.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-relevance.png)
+
+### Mapa detalhado por satélite
+
+Visualização com mapa por satélite para detalhe das ruas e localização de cada posto de gasolina, distribuidora e refinaria.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-streets.png)
+
+### Top 10 cidades por preço médio do combustível
+
+Um divertido infográfico mostrando as top 10 cidades por preço médio do combustível, onde um personagem animado expressa suas emoções dependendo do valor analisado.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-viz-infographic.png)
