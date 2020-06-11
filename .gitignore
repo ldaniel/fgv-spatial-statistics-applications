@@ -34,8 +34,8 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
-/markdown/_site/
-/markdown/sitelib/
+markdown/_site/
+markdown/sitelib/
 
 # R Environment Variables
 .Renviron
