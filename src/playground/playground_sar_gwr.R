@@ -33,7 +33,9 @@ source("./src/util/auxiliary_functions.R")
 
 # performing data (processed) loading -----------------------------------------
 dataProcessedDirectory <- "./data/processed/"
-shapefile_to_read <- paste(dataProcessedDirectory, "distancias_municipios_distribuidoras", sep = "")
+shapefile_to_read <- paste(dataProcessedDirectory, 
+                           "distancias_municipios_distribuidoras", 
+                           sep = "")
 target <- readOGR(shapefile_to_read, encoding="UTF-8")
 
 # doing some spatial exploratory analysis -------------------------------------
@@ -49,12 +51,12 @@ names(target)
 # HubName
 # HubDist 
 
-# Pergunta 1 ------------------------------------------------------------------
-# Qual das variáveis quantitativas apresentadas no shapefile crime_mg apresenta 
-# maior auto-correlação espacial? Descreva como implementou a matriz de 
-# vizinhança. Apresente o I de Moran e o mapa de auto-correlação espacial local 
-# (LISA map) da variável escolhida e também de pelo menos outras 3 variáveis.
-# Obs: desconsidere as variáveis Codmuni, ID, X_coord e Y_coord nessa análise.
+# variables analysis ----------------------------------------------------------
+# Avaliando quais variáveis quantitativas apresentadas no shapefile apresenta 
+# maior auto-correlação espacial. Descreva como implementou a matriz de 
+# vizinhança. Apresentando o I de Moran e o mapa de auto-correlação espacial 
+# local (LISA map) da variável escolhida.
+# Obs: desconsidar as variáveis Codmuni, ID, X_coord e Y_coord nessa análise.
 
 # getting the centroids of the polygons
 xy <- coordinates(target) 
@@ -217,12 +219,13 @@ plot(target, col = colors[np])
 mtext("Local Moran's I - POPRUR", cex = 1.5, side = 3, line = 1)
 legend("topleft", legend = labels, fill = colors, bty = "n")
 
-# Pergunta 2 ------------------------------------------------------------------
-# Implemente o modelo espacial auto-regressivo (SAR) da variável Indice95 
-# (índice de criminalidade em 1995 de Minas Gerais) a partir de apenas uma 
-# variável independente (não pode ser Indice94, Codmuni, ID, X_coord nem 
-# Y_coord). Apresente o resultado da regressão linear simples e da regressão 
-# linear espacial. Apresente as equações e interprete seus coeficientes.
+
+# implementing SAR ------------------------------------------------------------
+# Implementando o modelo espacial auto-regressivo (SAR) da variável y
+# a partir de apenas uma variável independente (não pode ser Codmuni, 
+# ID, X_coord nem Y_coord). Apresentando o resultado da regressão linear 
+# simples e da regressão linear espacial. Apresentando as equações e 
+# interpretando seus coeficientes.
 
 # initial setup
 res.palette <- colorRampPalette(c("red","orange","white","lightgreen","green"), 
@@ -278,20 +281,13 @@ legend(x = "bottom", cex = 1, fill = attr(cols.sar, "palette"), bty = "n",
 
 moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
-# Pergunta 3 ------------------------------------------------------------------
-# Para essa variável que você escolheu, o modelo espacial SAR apresentou ganhos 
-# significantes com relação ao modelo linear simples? Justifique sua resposta.
-# Obs: Sugere-se fazer essa atividade no GeoDA ou no R.
-
-# Pergunta 4 ------------------------------------------------------------------
-# Implemente a regressão espacial GWR da variável Indice95 (índice de 
-# criminalidade em 1995 de Minas Gerais) a partir de apenas uma variável 
-# independente (não pode ser Indice94, Codmuni, ID, X_coord nem Y_coord). 
-# Apresente o resultado da regressão linear simples e da regressão linear 
-# espacial por GWR. Apresente medidas da distribuição dos coeficientes 
+# implementing GWR ------------------------------------------------------------
+# Implementando a regressão espacial GWR da variável y a partir de apenas 
+# uma variável independente (não pode ser Codmuni, ID, X_coord nem Y_coord). 
+# Apresentando o resultado da regressão linear simples e da regressão linear 
+# espacial por GWR. Apresentando medidas da distribuição dos coeficientes 
 # (min, Q1, Q2, Q3, máx), e da distribuição do R2 (min, Q1, Q2, Q3, máx) e 
 # apresente os resultados globais da regressão (R2 global, basicamente).
-# Obs: Sugere-se fazer essa atividade no ArcGIS ou no R.
 
 # initial setup
 res.palette <- colorRampPalette(c("red","orange","white","lightgreen","green"), 
@@ -394,16 +390,11 @@ legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty 
 
 moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 
-# Pergunta 5 ------------------------------------------------------------------
-# Para essa variável que você escolheu, o modelo espacial GWR apresentou ganhos 
-# significantes com relação ao modelo linear simples? Justifique sua resposta.
-
-# Pergunta 6 ------------------------------------------------------------------
-# Implemente um modelo de regressão linear multivariado stepwise da variável 
-# Indice95 (significante a 5% ou 10%, utilize o que achar melhor). Depois, 
-# “promova-o” a um modelo SAR. Apresente os resultados comparados (equação, 
-# R2). Qual modelo você escolheria como final? Se desejar, apresente mapas 
-# que sustente sua justificativa.
+# implementing stepwise -------------------------------------------------------
+# Implementando um modelo de regressão linear multivariado stepwise da 
+# variável y (significante a 5% ou 10%, utilize o que achar melhor). 
+# Depois, “promovendo-a” a um modelo SAR. Apresentando os resultados 
+# comparados (equação, R2).
 
 # initial exploration in INDICE95 x AREA
 indice95_by_urblevel_plot <- ggplot(data = target@data, 
@@ -496,10 +487,9 @@ names(target.sar.model.stepwise$coefficients) <-
   stringr::str_sub(names(target.sar.model.stepwise$coefficients), 1, 25)
 summary(target.sar.model.stepwise)
 
-# Pergunta 7 (bônus) ----------------------------------------------------------
-# Promova o modelo final linear da Pergunta 6 a um modelo GWR. Apresente os 
-# resultados comparados (equação, R2). Qual modelo você escolheria como final? 
-# Se desejar, apresente mapas que sustente sua justificativa.
+# implementing GWR with stepwise ----------------------------------------------
+# Promovendo o modelo final linear da Pergunta 6 a um modelo GWR. 
+# Apresentando os resultados comparados (equação, R2).
 
 # initial setup
 res.palette <- colorRampPalette(c("red","orange","white","lightgreen","green"), 
