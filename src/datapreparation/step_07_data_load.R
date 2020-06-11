@@ -4,6 +4,8 @@
 gas_prices_hist           <- read_rds('./data/processed/gas_prices_hist.rds')
 gas_prices_historical     <- read_rds('./data/processed/gas_prices_historical.rds')
 gas_prices_station        <- read_rds('./data/processed/gas_prices_station.rds')
+PIB_change                <- read_rds('./data/processed/pib_change.rds')
+
 
 # load mnemônico ----
 
@@ -12,6 +14,9 @@ gas_prices_hist_header <- read_xlsx('./data/processed/mnemonico.xlsx',
 
 gas_prices_station_header <- read_xlsx('./data/processed/mnemonico.xlsx', 
                                        sheet = 'gas_prices_station')
+
+PIB_change_header <- read_xlsx('./data/processed/mnemonico.xlsx', 
+                                       sheet = 'PIB_change')
 
 
 # load_shape_files ----

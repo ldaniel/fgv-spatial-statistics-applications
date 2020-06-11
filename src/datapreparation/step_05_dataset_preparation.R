@@ -50,7 +50,7 @@ names(gas_prices_hist) <- plyr::mapvalues(names(gas_prices_hist),
                                           gas_prices_hist_header$mnemonico, 
                                           warn_missing = FALSE)
 
-# Adding PIB and POp Data to shape file
+# Adding PIB and POP Data
 
 PIB_change <- select(pib, CodIBGE, Ano, PIBCorr, PIBPerCapCorr) %>%
   filter(Ano >= 2016) %>% 
@@ -61,5 +61,8 @@ PIB_change <- select(pib, CodIBGE, Ano, PIBCorr, PIBPerCapCorr) %>%
 PIB_change <-
   left_join(shp_gas_prices_hist@data, PIB_change, by = 'CodIBGE') %>%
   left_join(pop, by = 'CodIBGE') %>% 
-  select(-c(UF, CdUF, Munip.y)) %>% as.data.frame()
+  select(c(CodIBGE, PIBCorr_2016, PIBCorr_2017, PIBPerCapCorr_2016, PIBPerCapCorr_2017, ChgPIB, ChgPIBCap, PopEstimada)) %>% as_tibble()
 
+names(PIB_change) <- c("CodIBGE", "PIB_2016", "PIB_2017", "PIBCap2016", "PIBCap2017", "ChgPIB", "ChgPIBCap", "PopEst")
+
+PIB_change$CodIBGE <- as.integer(PIB_change$CodIBGE)
