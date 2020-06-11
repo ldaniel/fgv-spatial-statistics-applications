@@ -11,7 +11,7 @@ knitr::opts_knit$set(root.dir = "../")
 
 # O que é o Power BI?
 
-O Power BI é uma coleção de serviços de software, aplicativos e conectores que trabalham juntos para transformar suas fontes de dados não relacionadas em informações coerentes, visualmente envolventes e interativas. Os dados podem estar em uma planilha do Excel ou em uma coleção de data warehouses híbridos locais ou baseados na nuvem. 
+O **Power BI** é uma coleção de serviços de software, aplicativos e conectores que trabalham juntos para transformar suas fontes de dados não relacionadas em informações coerentes, visualmente envolventes e interativas. Os dados podem estar em uma planilha do Excel ou em uma coleção de data warehouses híbridos locais ou baseados na nuvem. 
 
 O Power BI permite a conexão a fontes de dados, visualização e descoberta de conteúdo, podendo ser compartilhado com todas as pessoas, por:
 
@@ -33,4 +33,14 @@ A maneira de usar o Power BI depende do respectivo recurso ou serviço que seja 
 * Os relatórios criados no Power BI podem ser exportados para o PowerPoint, o que facilita bastante se você gosta de usar essa ferramenta para apresentações em reuniões ou eventos semelhantes; 
 * Com o Power BI você consegue se conectar a uma página da Web através do seu link de acesso, importar os dados tabulados e criar indicadores mostrando os dados de forma muito mais prática.
 
-Leia mais em: https://www.voitto.com.br/blog/artigo/o-que-e-power-bi
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/power-bi-overview-blocks.png)
+
+# Onde baixar o Power BI?
+
+Com o Power BI Desktop, você pode explorar visualmente seus dados por meio de uma tela do tipo "arrastar e soltar" de formato livre, uma ampla variedade de visualizações de dados modernas e uma experiência de criação de relatórios fácil de usar. Para o desenvolvimento deste trabalho, disponibilizamos um arquivo ****.PBIX** para ser visualizado através do **Power BI Desktop**, cujo download pode ser feito no link a seguir:
+
+[Página de dowloads do Power BI](https://powerbi.microsoft.com/en-us/downloads/) no site da Microsoft
+
+# Onde baixar o Power BI criado para este projeto?
+
+[Clique neste link para baixar o arquivo Power BI Desktop deste projeto](https://github.com/ldaniel/Spatial-Statistics-Applications/blob/master/visualizations/FGV-Spatial-Statistics-Applications.pbix?raw=true), disponível no repositório GitHub.
