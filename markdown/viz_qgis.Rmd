@@ -1,5 +1,5 @@
 ---
-title: "Avaliando a Autocorrelação Espacial"
+title: "Visualização no QGIS"
 date: "Junho de 2020"
 ---
 

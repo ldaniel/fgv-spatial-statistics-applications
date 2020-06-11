@@ -1,5 +1,5 @@
 ---
-title: "Avaliando a Autocorrelação Espacial"
+title: "Aplicando os modelos SAR e GWR"
 date: "Junho de 2020"
 ---
 

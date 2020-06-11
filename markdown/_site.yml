@@ -21,6 +21,20 @@ navbar:
       menu: 
         - text: "Autocorrelação Espacial"
           href: 04_spatial_autocorrelation.html
+        - text: "Aplicando SAR e GWR"
+          href: 05_sar_gwr.html
+    - text: "Visualizações"
+      icon: fa-globe
+      menu: 
+        - text: "Para cientistas de dados"
+        - text: "QGIS"
+          href: viz_qgis.html
+        - text: "GeoDa"
+          href: viz_geoda.html
+        - text: "---------"
+        - text: "Para executivos"
+        - text: "Power BI"
+          href: viz_power_bi.html
     - text: "Relatório Final"
       icon: fa-file-invoice-dollar
       menu:

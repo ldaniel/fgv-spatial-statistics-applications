@@ -1,6 +1,6 @@
 ---
 title: "The exploration's report"
-date: "August, 2019"
+date: "Junho de 2020"
 ---
 
 ```{r setup_exploration, include=FALSE}
