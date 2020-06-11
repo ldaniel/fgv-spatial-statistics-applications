@@ -19,7 +19,7 @@ O Power BI permite a conexão a fontes de dados, visualização e descoberta de 
 * Um serviço SaaS (software como serviço) online chamado de serviço do Power BI;
 * Aplicativos móveis do Power BI para dispositivos Windows, iOS e Android.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/o_que_powerbi.jpg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/o_que_powerbi.jpg)
 
 Para desenvolvedores, é possível usar APIs do Power BI para efetuar push dos dados para conjuntos de dados ou para inserir relatórios e dashboards em seus próprios aplicativos personalizados. É possível usar cada elemento do Power BI em momentos diferentes, dependendo do objetivo ou da função em determinado projeto.
 
@@ -33,7 +33,7 @@ A maneira de usar o Power BI depende do respectivo recurso ou serviço que seja 
 * Os relatórios criados no Power BI podem ser exportados para o PowerPoint, o que facilita bastante se você gosta de usar essa ferramenta para apresentações em reuniões ou eventos semelhantes; 
 * Com o Power BI você consegue se conectar a uma página da Web através do seu link de acesso, importar os dados tabulados e criar indicadores mostrando os dados de forma muito mais prática.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/power-bi-overview-blocks.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/powerbi/power-bi-overview-blocks.png)
 
 # Onde baixar o Power BI?
 
