@@ -17,10 +17,19 @@ library(dplyr)
 library(pryr)
 
 
+# loading other scripts do be used here ---------------------------------------
+source("./src/util/auxiliary_functions.R")
+
+# performing data (processed) loading -----------------------------------------
+dataProcessedDirectory <- "./data/processed/"
+shapefile_to_read <- paste(dataProcessedDirectory, 
+                           "gas_prices_hist/gas_prices_hist.shp", 
+                           sep = "")
+
 # CARREGA MAPAS, DADOS E PREPARA O MAPA BASE ------------------------------
 
 #Carrega o shapefile do mapa utilizando o pacote SF (Mais simples que o RGDAL)
-mapa <- st_read("C:/Users/Ricardo/Documents/R-Projetos/Spatial-Statistics-Applications/data/processed/gas_prices_hist/gas_prices_hist.shp")
+mapa <- st_read(shapefile_to_read)
 
 #O pacote SF carrega o shapefile como um dataframe (Diferente do RGDAL que carrega um SpatialPolygonsDataFrame)
 class(mapa)
@@ -31,7 +40,10 @@ plot(st_geometry(mapa))
 
 # CRIANDO O DF DE LOCALIZAçÕES E TRANSFORMANDO EM SF ----------------------
 
-gas_prices_station <- read.csv("~/R-Projetos/Spatial-Statistics-Applications/data/processed/gas_prices_station.csv")
+csv_to_read <- paste(dataProcessedDirectory, 
+                     "gas_prices_station.csv", 
+                     sep = "")
+gas_prices_station <- read.csv(csv_to_read)
 
 #Pegar o CRS do mapa
 st_crs(mapa)
