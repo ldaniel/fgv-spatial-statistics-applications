@@ -70,7 +70,13 @@ ggplot(data = gas_prices_station) +
                    fill = Estado), 
                show.legend = FALSE
                ) +
-  coord_flip()
+  coord_flip() +
+  labs(title = 'Preço de Gasolina Comum por Estado',
+       subtitle = 'Semana de 2020-04-26 a 2020-05-02',
+       x = 'Estado',
+       y = 'Preço') + 
+  theme(panel.grid = element_blank(),
+        aspect.ratio = 1.2)
 
 # preços de gasolina vs DistMIn
 ggplot(data = gas_prices_station, aes(x = DistMin, y = PcVenda)) +

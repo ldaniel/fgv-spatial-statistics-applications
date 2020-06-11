@@ -11,6 +11,10 @@ knitr::opts_knit$set(root.dir = "../")
 # loading required libraries
 library(rmarkdown)
 library(dplyr)
+library(readr)
+library(rgdal)
+library(readxl)
+library(forcats)
 library(ggplot2)
 library(ggthemes)
 library(ggpubr)
@@ -30,14 +34,27 @@ library(geojsonio)
 ```{r scripts_exploration, include=FALSE}
 # loading required steps before performing the analysis
 source("./src/util/auxiliary_functions.R")
+source("./src/datapreparation/step_07_data_load.R")
 ```
 
 # Exploration 1
 
 Describe your exploration 1 here, including some plots, tables or any resource used.
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
+```{r exploration_target_1, echo=TRUE, out.width = '100%', fig.height = 6}
+ggplot(data = gas_prices_station) +
+  geom_boxplot(aes(y = PcVenda, 
+                   x = fct_reorder(Cidade, PcVenda, .desc = FALSE),
+                   fill = Estado), 
+               show.legend = FALSE
+               ) +
+  coord_flip() +
+  labs(title = 'Preço de Gasolina Comum por Estado',
+       subtitle = 'Semana de 2020-04-26 a 2020-05-02',
+       x = 'Estado',
+       y = 'Preço') + 
+  theme(panel.grid = element_blank(),
+        aspect.ratio = 1.2)
 ```
 
 # Exploration 2
