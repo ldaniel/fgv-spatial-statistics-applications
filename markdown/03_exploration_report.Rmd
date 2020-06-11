@@ -21,6 +21,7 @@ library(tidyr)
 library(lubridate)
 library(stringr)
 library(knitr)
+library(DT)
 ```
 
 ```{r scripts_exploration, include=FALSE}
@@ -31,7 +32,7 @@ source("./src/datapreparation/step_07_data_load.R")
 
 # Avaliação dos Preços de Gasolina Comum
 
-Com base em nosso dataset de `1.236` postos de gasolina das 27 capitais brasileiras avaliamos qual a distribuição dos preços de Gasolina comum por capital.
+Com base em nosso dataset de **`1.236`** postos de gasolina das **`27`** capitais brasileiras avaliamos qual a distribuição dos preços de Gasolina comum por capital.
 
 Verificamos que o Rio de Janeiro claramente apresenta maiores preços (cerca de 4,4 Reais) em relação as demais capitais, e Macapa apresenta o menor preço de gasolina por volta de 3,00 R$.
 
@@ -43,7 +44,7 @@ ggplot(data = gas_prices_station) +
                show.legend = FALSE
                ) +
   coord_flip() +
-  labs(title = 'Preço de Gasolina Comum por Estado',
+  labs(title = 'Preço de Gasolina Comum por Capital',
        subtitle = 'Semana de 2020-04-26 a 2020-05-02',
        x = 'Capital',
        y = 'Preço') + 
@@ -53,19 +54,32 @@ ggplot(data = gas_prices_station) +
 
 # Localização de Refinarias e Distribuidoras de Combustíveis no Território nacional
 
-Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país assim como a localização de todas as refinarias de combustíveis em território nacionnal.
+Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país (**`338`**) assim como a localização de todas as refinarias de combustíveis (**`16`**)em território nacionnal.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_dist_combust.svg)
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_refin_combust.svg)
 
-Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana dos dia 26-Abr-2020 a 02-Mai-2020 podemos verificar a distribuição dos 458 municipios pesquisados que serão objeto de estudo neste projeto de pesauisa.
+```{r exploration_target_2, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
+refin <- readOGR('data/processed/refinarias/refinarias.shp', 
+                 encoding = 'UTF-8', 
+                 use_iconv = TRUE,
+                 verbose = FALSE)
+
+names(refin) <- c("OBJECTID","Sigla", "Nome", "Municipio", "Estado", "Início de Operação", "Capacidade-m3", "Tipo_Inst", "Titularida", "Observaç", "CLASSIFICA")
+
+
+kable(select(as_tibble(refin@data), `Sigla`, `Nome`, `Municipio`, `Estado`, `Início de Operação`, `Capacidade-m3`))
+
+```
+
+Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana dos dia **26-Abr-2020 a 02-Mai-2020** podemos verificar a distribuição dos **`458`** municipios pesquisados que serão objeto de estudo neste projeto de pesauisa.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_cidade_combust.svg)
 
 # Distâncias das sedes dos munícipios pesquisados para as distribuídoras.
 
-Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Padrão de cada sede de municipio pesquisado para as 10 distribuidoras mais próximas, assim como as distâncias Mínima, Máxima, Média e Desvio Padrão para todas as 13 refinarias de combustível presentes em nosso dataset.
+Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Padrão de cada sede de municipio pesquisado para as **`10`** distribuidoras mais próximas, assim como as distâncias Mínima, Máxima, Média e Desvio Padrão para todas as **`16`** refinarias de combustível presentes em nosso dataset.
 
 Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
@@ -74,3 +88,12 @@ Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisa
 Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_refin.svg)
+
+Abaixo os **`458`** municípios com seus respectivos preços médios de revenda de Gasolina Comum e as distâncias até as **`10`** Distribuidoras mais próximas e Refinarias.
+
+```{r exploration_target_3, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
+filter(gas_prices_hist, !is.na(Index)) %>% 
+  select(Munip, Estado, PcMedRev, DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin) %>% 
+  mutate(across(c(DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin), round)) %>% 
+  datatable()
+```

@@ -152,9 +152,13 @@ pib <- read_xls('data/raw/IBGE/PIB dos Municípios - base de dados 2010-2017.xls
                 col_names = PIB_header$mnemonico, 
                 skip = 1)
 
+pib$CodIBGE <- as.character(pib$CodIBGE)
+
 # import POP data ----
 
 pop <- read_xls('data/raw/IBGE/estimativa_TCU_2019_20200427.xls', 
                 col_names = POP_header$mnemonico, 
                 sheet = 'Municípios', 
                 skip = 2)
+
+pop$CodIBGE <- paste(pop$CdUF, pop$CodIBGE, sep = '')
