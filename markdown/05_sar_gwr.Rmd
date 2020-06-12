@@ -143,3 +143,66 @@ moran.plot(target$PIBCap2016,
            main = "Moran Scatterplot")
 
 ```
+
+# Aplicando os modelos
+
+Nas etapas a seguir, serão aplicados vários modelos a fim de entendermos se existe relacionamento espacial entre as variáveis do shapefile.
+
+
+```{r model_initial_setup, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+# initial setup
+res.palette <- colorRampPalette(c("red","orange","white","lightgreen","green"), 
+                                space = "rgb")
+pal <- res.palette(5)
+par(mar = c(2, 0, 4, 0))
+
+```
+
+## Implementando o modelo regressivo linear
+
+Os modelos lineares de regressão são utilizados para modelar a relação entre variáveis quantitativas:
+
+* **Variável Resposta (y):** variável quantitativa (também chamada de variável dependente).
+* **Variáveis Preditoras (x):** variáveis quantitativas (também chamadas de variáveis independentes).
+
+A função utilizada para construir modelos lineares de regressão é a função **lm**. 
+
+```{r linear_regression_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+target.lm.model <- lm(PcMedRev ~ PIBCap2016, data = target)
+summary(target.lm.model)
+
+target.lm.model.residuals <- target.lm.model$residuals
+
+target.lm.model.class_fx <- classIntervals(target.lm.model.residuals, 
+                                           n = 5,
+                                           style = "fixed",
+                                           fixedBreaks = c(-50,-25,-5,5,25,50),
+                                           rtimes = 1)
+
+cols.lm <- findColours(target.lm.model.class_fx, pal)
+
+plot(target, col = cols.lm, main = "OLS Model", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.lm, "palette"), bty = "n",
+       legend = names(attr(cols.lm, "table")), title = "Residuals from OLS Model",
+       ncol = 5)
+
+moran.test(target.lm.model.residuals, listw = lw, zero.policy = T)
+
+```
+
+## Implementando o modelo espacial auto-regressivo (SAR) 
+
+Um dos modelos mais comumente utilizados para modelagem de correlação espacial é  o  modelo  autorregressivo  espacial  (do inglês *spatial  autorregressive  model*),  ou  simplesmente modelo  SAR.  A  ideia  dos  modelos  SAR  é  utilizar  a  mesma  ideia  dos  modelos  AR (autorregressivos)  em  séries  temporais,  por  meio  da  incorporação  de  um  termo  de lagentre  os  regressores  da  equação.  
+
+Na  sua  forma  mais simples,  o  modelo  SAR  tem expressão: 
+
+$$\gamma = \rho W \gamma + \epsilon$$
+Onde $\gamma$ é  um  vetor  coluna,  contendo *n* observações  na  amostra  para  a  variável  resposta $\gamma i$,  o  coeficiente  escalar $\rho$ corresponde  ao  parâmetro  autorregressivo,  esse  parâmetro possui  como  interpretação  o  efeito  médio  da  variável  dependente  relativo  à  vizinhança espacial  na  região  em  questão,  já  o  termo $\epsilon$ corresponde  a  um  vetor  coluna  contendo  os resíduos $\epsilon i$ da equação. Por enquanto, assume-se que os resíduos $\epsilon i$ são independentes e identicamente   distribuídos,   com   distribuição   normal,   com   média   zero   e   variância homogênea $\theta ^{2}$. Um  dos  componentes  presentes  em  uma  grande  quantidade  de  modelos espaciais  é  a  matriz $W$.  Esta  matriz  é  conhecida  como  matriz  de  vizinhança,  e  pode  ser definida  de  diversas  formas,  o  que  traz  críticas  aos  modelos  espaciais  utilizando $W$. Uma  das  formas  mais  comumente  empregadas  de  definição  da  matriz $W$ se  dá  por meio  da  identificação  de  vizinhos  de  primeira  ordem.  
+
+```{r sar_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+
+
+```
