@@ -1,66 +1,145 @@
 ---
 title: "Aplicando os modelos SAR e GWR"
 date: "Junho de 2020"
+
+output:
+  html_document: 
+    number_sections: no
+    toc: yes
+    code_folding: hide
 ---
+
 
 ```{r setup_exploration, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")
 
-# loading required libraries
-library(rmarkdown)
+# libraries for data prep
 library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
 library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
+
+# libraries for spatial data manipulation
+library(spatialreg)
+library(maps)
+library(maptools)    
+library(rgdal)     
+library(sp)  
+library(spdep)
+library(bamlss)
+library(gstat)
+library(splancs)
+library(spatstat)
+library(pgirmess)
+library(classInt)
+library(spgwr)
+
+# libraries for plots and visualization
+library(RColorBrewer)
+library(tmap)
+library(ggplot2)
+library(ggExtra)
+
+# libraries for markdown
 library(knitr)
-library(leaflet)
-library(geojsonio)
+library(DT)
+
+# libraries for modeling
+library(MASS)
 ```
 
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
+# Carregamento do shapefile, preparação e análises iniciais
+
+O primeiro passo é o carregamento do shapefile, previamente preparado nas etapas anteriores, para iniciarmos uma análise iniciai quanto as variáveis.
+
+```{r load_shapefile, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+dataProcessedDirectory <- "./data/processed/"
+shapefile_to_read <- paste(dataProcessedDirectory, 
+                           "gas_prices_hist", 
+                           sep = "")
+target <- readOGR(shapefile_to_read, encoding="UTF-8")
+
+datatable(data = target@data[,c("CodIBGE", "Regiao", "Estado", "Cidade", "NmPostPesq", "PcMedRev")], 
+          style = 'bootstrap', 
+          options = list(pageLength = 10,autoWidth = TRUE))
+
 ```
 
-# Exploration 1
+## Variáveis presentes no dataset
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+Abaixo, vemos uma lista das variáveis presente no dataset do shapefile analisado.
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
+```{r read_mnemonics, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+variables_list <- xlsx::read.xlsx("./data/processed/mnemonico.xlsx", sheetName = "gas_prices_hist", encoding="UTF-8")
+
+datatable(data = variables_list, 
+          style = 'bootstrap', 
+          options = list(pageLength = 10,autoWidth = TRUE))
+
 ```
 
-# Exploration 2
+## Calculando os centróides e a matrix de vizinhança
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
+Em seguida, obtém-se os centróides do shapefile para gerar a matrix de vizinhança dos polígonos espaciais e polígonos adjacentes através da biblioteca **spdep** usando a primeira ordem. A biblioteca **bamlss** será usada para gerar a matrix de vizinhança. O plot mostra o resultado desta configuração inicial.
 
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
+```{r getting_nb, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+xy <- coordinates(target) 
+
+ap <- poly2nb(target, queen = T, row.names = target$Index)
+lw <- nb2listw(ap, style = "W", zero.policy = TRUE)
+nm <- neighbormatrix(target, type = "boundary")
+
+plotneighbors(target, type = "delaunay")
+
 ```
 
+## Testando autocorrelação com I de Moran
 
-# Exploration 3
+O Índice de Moran Global (I) avalia a relação de interdependência espacial entre todos os polígonos da área de estudo e a expressa por meio de um valor único para toda a região. O Índice de Moran Local (Ii) identifica a relação existente entre um determinado polígono e a sua vizinhança, a partir de uma distância predefinida, por intermédio da covariância existente entre eles, permitindo o exame da homogeneidade/diversidade dos dados. Para este projeto, analisaremos o Índice de Moran Global.
 
-Describe your exploration 3 here, including some plots, tables or any resource used.
+```{r autocorrelation_i_moran, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
+moran.test.NmPostPesq     <- moran.test(target$NmPostPesq, listw = lw, zero.policy = T) 
+moran.test.PIB_2016 <- moran.test(target$PIB_2016, listw = lw, zero.policy = T)
+moran.test.PIB_2017 <- moran.test(target$PIB_2017, listw = lw, zero.policy = T)
+moran.test.PIBCap2016  <- moran.test(target$PIBCap2016, listw = lw, zero.policy = T)
+moran.test.PIBCap2017   <- moran.test(target$PIBCap2017, listw = lw, zero.policy = T)
+moran.test.PopEst  <- moran.test(target$PopEst, listw = lw, zero.policy = T)
+
+moran.test.all <- rbind(t(data.frame("NmPostPesq" = moran.test.NmPostPesq$estimate)),
+                        t(data.frame("PIB_2016" = moran.test.PIB_2016$estimate)),
+                        t(data.frame("PIB_2017" = moran.test.PIB_2017$estimate)),
+                        t(data.frame("PIBCap2016" = moran.test.PIBCap2016$estimate)),
+                        t(data.frame("PIBCap2017" = moran.test.PIBCap2017$estimate)),
+                        t(data.frame("PopEst" = moran.test.PopEst$estimate)))
+
+moran.test.all <- as_tibble(moran.test.all, rownames = "Variables")
+moran.test.all %>% arrange(desc(`Moran I statistic`))
+
+datatable(data = moran.test.all, 
+          style = 'bootstrap', 
+          options = list(pageLength = 10,autoWidth = TRUE))
+
 ```
 
-# Exploration n
+Focaremos nossa análise na variável **PIBCap2016**.
 
-Describe your exploration n here, including some plots, tables or any resource used.
+```{r i_moran_scatterplot, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
+par(mar = c(4,4,1.5,0.5))
+moran.plot(target$PIBCap2016, 
+           listw = lw, 
+           zero.policy = T,
+           pch = 16, 
+           col = "black",
+           cex = .5, 
+           quiet = F,
+           labels = as.character(target$Cidade),
+           xlab = "Percent for PIBCap2016",
+           ylab = "Percent for PIBCap2016 (Spatial Lag)", 
+           main = "Moran Scatterplot")
+
 ```
