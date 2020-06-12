@@ -145,7 +145,7 @@ plot(target, col = colors[np])
 mtext("Local Moran's I - PIBCap2016", cex = 1.5, side = 3, line = 1)
 legend("topleft", legend = labels, fill = colors, bty = "n")
 
-# implementing SAR ------------------------------------------------------------
+## # implementing SAR ------------------------------------------------------------
 # Implementando o modelo espacial auto-regressivo (SAR) da variável y
 # a partir de apenas uma variável independente (não pode ser Codmuni, 
 # ID, X_coord nem Y_coord). Apresentando o resultado da regressão linear 
