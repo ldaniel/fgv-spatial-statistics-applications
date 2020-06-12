@@ -321,7 +321,7 @@ moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 # Depois, “promovendo-a” a um modelo SAR. Apresentando os resultados 
 # comparados (equação, R2).
 
-# initial exploration in PIBCap2016 x AREA
+# initial exploration in PcMedRev x NmPostPesq
 pcmedrev_by_pibcap2016l_plot <- ggplot(data = target@data, 
                                        aes(x = target$PcMedRev,
                                            y = target$PIBCap2016,
@@ -329,7 +329,7 @@ pcmedrev_by_pibcap2016l_plot <- ggplot(data = target@data,
   geom_point() +
   theme(legend.position = "none") +
   xlab("PIBCap2016") +
-  ylab("AREA")
+  ylab("NmPostPesq")
 
 ggMarginal(pcmedrev_by_pibcap2016l_plot, type = "histogram")
 
