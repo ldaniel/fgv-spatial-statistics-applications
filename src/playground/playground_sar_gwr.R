@@ -142,7 +142,7 @@ np <- findInterval(target$quad_sig, breaks)
 colors <- c("red", "blue", "lightpink", "skyblue2", "white")
 par(mar = c(4,0,4,1))
 plot(target, col = colors[np])
-mtext("Local Moran's I - INDICE94", cex = 1.5, side = 3, line = 1)
+mtext("Local Moran's I - PIBCap2016", cex = 1.5, side = 3, line = 1)
 legend("topleft", legend = labels, fill = colors, bty = "n")
 
 # implementing SAR ------------------------------------------------------------
@@ -159,7 +159,7 @@ pal <- res.palette(5)
 par(mar = c(2, 0, 4, 0))
 
 # linear regresion model
-target.lm.model <- lm(INDICE95 ~ URBLEVEL, data = target)
+target.lm.model <- lm(PcMedRev ~ PIBCap2016, data = target)
 summary(target.lm.model)
 
 target.lm.model.residuals <- target.lm.model$residuals
@@ -180,7 +180,7 @@ legend(x = "bottom", cex = 1, fill = attr(cols.lm, "palette"), bty = "n",
 moran.test(target.lm.model.residuals, listw = lw, zero.policy = T)
 
 # SAR model (Spatial Auto-Regressive)
-target.sar.model <- lagsarlm(INDICE95 ~ URBLEVEL, 
+target.sar.model <- lagsarlm(PcMedRev ~ PIBCap2016, 
                              data = target, 
                              listw = lw,
                              zero.policy = T, 
@@ -208,7 +208,7 @@ moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
 # implementing GWR ------------------------------------------------------------
 # Implementando a regressão espacial GWR da variável y a partir de apenas 
-# uma variável independente (não pode ser Codmuni, ID, X_coord nem Y_coord). 
+# uma variável independente (não pode ser Index, X_coord nem Y_coord). 
 # Apresentando o resultado da regressão linear simples e da regressão linear 
 # espacial por GWR. Apresentando medidas da distribuição dos coeficientes 
 # (min, Q1, Q2, Q3, máx), e da distribuição do R2 (min, Q1, Q2, Q3, máx) e 
@@ -223,7 +223,7 @@ par(mar = c(2, 0, 4, 0))
 coords <- cbind(target$X_COORD, target$Y_COORD)
 
 # GWR model (Geographically Weighted Regression)
-target.gwr.sel <- gwr.sel(INDICE95 ~ URBLEVEL, 
+target.gwr.sel <- gwr.sel(PcMedRev ~ PIBCap2016, 
                           data = target, 
                           coords = coords, 
                           adapt = TRUE, 
@@ -231,7 +231,7 @@ target.gwr.sel <- gwr.sel(INDICE95 ~ URBLEVEL,
                           gweight = gwr.Gauss,
                           verbose = TRUE)
 
-target.gwr.model <- gwr(INDICE95 ~ URBLEVEL, 
+target.gwr.model <- gwr(PcMedRev ~ PIBCap2016, 
                         data = target, 
                         coords = coords, 
                         bandwidth = target.gwr.sel,
@@ -241,7 +241,7 @@ target.gwr.model <- gwr(INDICE95 ~ URBLEVEL,
 View(target.gwr.model)
 
 # calculate global residual SST (SQT)
-SST <- sum((target$INDICE95 - mean(target$INDICE95)) ^ 2)
+SST <- sum((target$PIBCap2016 - mean(target$PIBCap2016)) ^ 2)
 GWR_SSE <- target.gwr.model$results$rss
 r2_GWR <- 1 - (GWR_SSE / SST)
 r2_GWR
@@ -301,7 +301,7 @@ moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
 
 
 # coefficients
-target.gwr.coefficients <- target.gwr.model$SDF$URBLEVEL
+target.gwr.coefficients <- target.gwr.model$SDF$PIBCap2016
 
 target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style = "fixed", 
                                                      fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
@@ -311,7 +311,7 @@ cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
 plot(target, col = cols.gwr.coefficients, main = "GWR Model (coefficients)", border = "grey")
 legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty = "n",
        legend = names(attr(cols.gwr.coefficients, "table")),
-       title = "Local Coefficient Estimates (URBLEVEL)", ncol = 3)
+       title = "Local Coefficient Estimates (PIBCap2016)", ncol = 3)
 
 moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 
@@ -321,31 +321,26 @@ moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 # Depois, “promovendo-a” a um modelo SAR. Apresentando os resultados 
 # comparados (equação, R2).
 
-# initial exploration in INDICE95 x AREA
-indice95_by_urblevel_plot <- ggplot(data = target@data, 
-                                    aes(x = target$INDICE95, 
-                                        y = target$URBLEVEL, 
-                                        color = target$URBLEVEL)) +
+# initial exploration in PIBCap2016 x AREA
+pcmedrev_by_pibcap2016l_plot <- ggplot(data = target@data, 
+                                       aes(x = target$PcMedRev,
+                                           y = target$PIBCap2016,
+                                           color = target$PIBCap2016)) +
   geom_point() +
   theme(legend.position = "none") +
-  xlab("INDICE95") +
+  xlab("PIBCap2016") +
   ylab("AREA")
 
-ggMarginal(indice95_by_urblevel_plot, type = "histogram")
+ggMarginal(pcmedrev_by_pibcap2016l_plot, type = "histogram")
 
 # runing the linear model multivaluated and looking at the residuals
-target.ols.model <- lm(INDICE95 ~ 
-                         AREA + 
-                         INDICE94 + 
-                         GINI_91 +
-                         POP_94 +
-                         POP_RUR +
-                         POP_URB +
-                         POP_FEM +
-                         POP_MAS +
-                         POP_TOT +
-                         URBLEVEL +
-                         PIB_PC, 
+target.ols.model <- lm(PcMedRev ~ 
+                         NmPostPesq + 
+                         PIB_2016 + 
+                         PIB_2017 +
+                         PIBCap2016 +
+                         PIBCap2017 +
+                         PopEst, 
                        data = target)
 
 summary(target.ols.model)
@@ -354,18 +349,13 @@ target$resid <- residuals(target.ols.model)
 spplot(target, "resid", main = "Residuals")
 
 # runing the lm multivaluated model
-target.lm.multivaluated.model <- lm(formula =INDICE95 ~ 
-                                      AREA + 
-                                      INDICE94 + 
-                                      GINI_91 +
-                                      POP_94 +
-                                      POP_RUR +
-                                      POP_URB +
-                                      POP_FEM +
-                                      POP_MAS +
-                                      POP_TOT +
-                                      URBLEVEL +
-                                      PIB_PC, 
+target.lm.multivaluated.model <- lm(formula = PcMedRev ~ 
+                                      NmPostPesq + 
+                                      PIB_2016 + 
+                                      PIB_2017 +
+                                      PIBCap2016 +
+                                      PIBCap2017 +
+                                      PopEst, 
                                     data = target)
 
 summary(target.lm.multivaluated.model)
@@ -378,25 +368,20 @@ target.sar.model.stepwise <- step(target.lm.multivaluated.model,
 summary(target.sar.model.stepwise)
 
 # runing the SAR model
-target.lagsarlm.model <- lagsarlm(formula =INDICE95 ~ 
-                                    AREA + 
-                                    INDICE94 + 
-                                    GINI_91 +
-                                    POP_94 +
-                                    POP_RUR +
-                                    POP_URB +
-                                    POP_FEM +
-                                    POP_MAS +
-                                    POP_TOT +
-                                    URBLEVEL +
-                                    PIB_PC, 
+target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
+                                    NmPostPesq + 
+                                    PIB_2016 + 
+                                    PIB_2017 +
+                                    PIBCap2016 +
+                                    PIBCap2017 +
+                                    PopEst, 
                                   data = target,
                                   listw = lw, 
                                   quiet = T)
 summary(target.lagsarlm.model)
 
 # calculate global residual SST (SQT)
-SST <- sum((target$INDICE95 - mean(target$INDICE95)) ^ 2)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
 GWR_SSE <- target.lagsarlm.model$SSE
 r2_GWR <- 1 - (GWR_SSE / SST)
 r2_GWR
