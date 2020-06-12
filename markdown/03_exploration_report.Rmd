@@ -89,11 +89,11 @@ Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisa
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_refin.svg)
 
-Abaixo os **`458`** municípios com seus respectivos preços médios de revenda de Gasolina Comum e as distâncias até as **`10`** Distribuidoras mais próximas e Refinarias.
+Abaixo os **`458`** municípios com seus respectivos preços médios de revenda de Gasolina Comum e as distâncias em KMs até as **`10`** Distribuidoras mais próximas e Refinarias.
 
 ```{r exploration_target_3, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
 filter(gas_prices_hist, !is.na(Index)) %>% 
-  select(Munip, Estado, PcMedRev, DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin) %>% 
+  select(Cidade, Estado, PcMedRev, DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin) %>% 
   mutate(across(c(DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin), round)) %>% 
   datatable()
 ```

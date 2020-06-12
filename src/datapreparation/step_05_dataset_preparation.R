@@ -60,8 +60,8 @@ PIB_change <- select(pib, CodIBGE, Ano, PIBCorr, PIBPerCapCorr) %>%
 
 PIB_change <-
   left_join(shp_gas_prices_hist@data, PIB_change, by = 'CodIBGE') %>%
-  left_join(pop, by = 'CodIBGE') %>% 
-  select(c(CodIBGE, PIBCorr_2016, PIBCorr_2017, PIBPerCapCorr_2016, PIBPerCapCorr_2017, ChgPIB, ChgPIBCap, PopEstimada)) %>% as_tibble()
+  left_join(pop, by = 'CodIBGE') %>%
+  select(c(CodIBGE, PIBCorr_2016, PIBCorr_2017, PIBPerCapCorr_2016, PIBPerCapCorr_2017, ChgPIB.x, ChgPIBCap.x, PopEstimada)) %>% as_tibble()
 
 names(PIB_change) <- c("CodIBGE", "PIB_2016", "PIB_2017", "PIBCap2016", "PIBCap2017", "ChgPIB", "ChgPIBCap", "PopEst")
 

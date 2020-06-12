@@ -58,12 +58,12 @@ gas_prices_hist$codigo.ibge <- if_else(gas_prices_hist$codigo.ibge == 'RIO GRAND
 
 # adding geocoding using ggmap library ----
 
-gas_prices_station$place <- paste(gas_prices_station$endereço, 
+gas_prices_station$place <- paste(gas_prices_station$endereço,
                                   gas_prices_station$bairro,
                                   gas_prices_station$cidade,
                                   gas_prices_station$estado,
                                   'BRAZIL', sep = ', ')
-  
+
 gas_prices_station <- mutate_geocode(gas_prices_station, place)
 
 gas_prices_station <- filter(gas_prices_station, !(lon < -78))

@@ -29,7 +29,7 @@ getwd()
 # setting up google maps API key for ggmaps -----------------------------------
 
 # before you recalculate the dataset, make sure you have set up you google maps API below
-register_google(key = "you_api_key_goes_here")
+register_google(key = "your-key-goes-here")
 
 # to check current API key in use run:
 # google_key()

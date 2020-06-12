@@ -21,10 +21,12 @@ writeOGR(obj = shp_gas_prices_hist,
          dsn = 'data/processed/gas_prices_hist', 
          layer = 'gas_prices_hist', 
          driver = "ESRI Shapefile", 
-         overwrite_layer = TRUE)
+         overwrite_layer = TRUE, 
+         encoding = 'UTF-8')
 
 writeOGR(obj = shp_gas_prices_station, 
          dsn = 'data/processed/gas_prices_station',
          layer = 'gas_prices_station', 
          driver = "ESRI Shapefile", 
-         overwrite_layer = TRUE)
+         overwrite_layer = TRUE,
+         encoding = 'UTF-8')
