@@ -148,7 +148,6 @@ moran.plot(target$PIBCap2016,
 
 Nas etapas a seguir, serão aplicados vários modelos a fim de entendermos se existe relacionamento espacial entre as variáveis do shapefile.
 
-
 ```{r model_initial_setup, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
 
 # initial setup
@@ -203,6 +202,31 @@ Onde $\gamma$ é  um  vetor  coluna,  contendo *n* observações  na  amostra  p
 
 ```{r sar_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
+target.sar.model <- lagsarlm(PcMedRev ~ PIBCap2016, 
+                             data = target, 
+                             listw = lw,
+                             zero.policy = T, 
+                             tol.solve = 1e-12)
+summary(target.sar.model)
+target.sar.model$rest.se
+target.sar.model$residuals
 
+target.sar.model.residuals <- target.sar.model$residuals
+
+target.sar.model.class_fx <- classIntervals(target.sar.model.residuals, 
+                                            n = 5, 
+                                            style = "fixed",
+                                            fixedBreaks = c(-50,-25,-5,5,25,50),
+                                            rtimes = 1)
+
+cols.sar <- findColours(target.sar.model.class_fx, pal)
+
+plot(target, col = cols.sar, main = "SAR Model", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.sar, "palette"), bty = "n",
+       legend = names(attr(cols.sar, "table")), title = "Residuals from SAR Model",
+       ncol = 5)
+
+moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
 ```
+
