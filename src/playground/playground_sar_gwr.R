@@ -48,9 +48,9 @@ names(target)
 # "Cidade"     "Produto"    "NmPostPesq" "UnidMedida" "PcMedRev"   "PcDevRev"  
 # "PcMinRev"   "PcMaxRev"   "MgMedRev"   "CfVarRev"   "PcMedDist"  "PcDevDist"
 # "PcMinDist"  "PcMaxDist"  "MgMedDist"  "CfVarDist"  "Periodo"    "Combust"
-# "TipoRelat"  "DistMean"   "DistDev"    "DistMin"   "DistMax"    "RefinMean" 
+# "TipoRelat"  "DistMean"   "DistDev"    "DistMin"    "DistMax"    "RefinMean" 
 # "RefinDev"   "RefinMin"   "RefinMax"   "PIB_2016"   "PIB_2017"   "PIBCap2016" 
-# "PIBCap2017" "ChgPIB"     "ChgPIBCap"  "PopEst"  
+# "PIBCap2017" "ChgPIB"     "ChgPIBCap"  "PopEst"     "X_COORD"    "Y_COORD"
 
 # variables analysis ----------------------------------------------------------
 # Avaliando quais variáveis quantitativas apresentadas no shapefile apresenta 
