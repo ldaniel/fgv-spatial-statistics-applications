@@ -31,11 +31,13 @@ Utilize o menu acima para navegar pelo site e visualizar o relatório final.
 
 ## Alunos / ID (matrícula)
 
-- <a href="https://github.com/DanielFCampos"><img src="https://avatars2.githubusercontent.com/u/31582602?s=460&v=4" title="DanielFCampos" width="40" height="40"></a> [Daniel Campos](mailto:daniel.ferraz.campos@gmail.com) / A57635769
-- <a href="https://github.com/ldaniel"><img src="https://avatars2.githubusercontent.com/u/205534?s=460&v=4" title="ldaniel" width="40" height="40"></a>  [Leandro Daniel](mailto:contato@leandrodaniel.com) / A57622988
-- <a href="https://github.com/ricardobreis"><img src="https://avatars2.githubusercontent.com/u/4885152?s=64&v=4" title="RodriGonca" width="40" height="40"></a> [Ricardo Reis](mailto:ricardo.l.b.reis@gmail.com) / A57590919
-- <a href="https://github.com/RodriGonca"><img src="https://avatars2.githubusercontent.com/u/50252438?s=460&v=4" title="RodriGonca" width="40" height="40"></a> [Rodrigo Goncalves](mailto:rodrigo.goncalves@me.com) / A57566093
-- <a href="https://github.com/ygorlima1"><img src="https://avatars2.githubusercontent.com/u/52429828?s=460&v=4" title="ygorlima1" width="40" height="40"></a>  [Ygor Lima](mailto:ygor_redesocial@hotmail.com) / A57549661
+|Github|Kaggle|Nome|Matricula|E-mail|
+|---|---|---|---|---|
+|<a href="https://github.com/DanielFCampos"><img src="https://avatars2.githubusercontent.com/u/31582602?s=460&v=4" title="DanielFCampos" width="40" height="40"></a>|<a href="https://www.kaggle.com/danielferrazcampos"><img src="https://storage.googleapis.com/kaggle-avatars/images/3508055-kg.png" title="DanielFCampos" width="40" height="40"></a>|Daniel Campos|A57635769|[daniel.ferraz.campos@gmail.com](daniel.ferraz.campos@gmail.com)|
+|<a href="https://github.com/ldaniel"><img src="https://avatars2.githubusercontent.com/u/205534?s=460&v=4" title="ldaniel" width="40" height="40"></a>|<a href="https://www.kaggle.com/leandrodaniel"><img src="https://storage.googleapis.com/kaggle-avatars/images/3415144-gr.jpg" title="ldaniel" width="40" height="40"></a>|Leandro Daniel|A57622988|[contato@leandrodaniel.com](contato@leandrodaniel.com)|
+|<a href="https://github.com/ricardobreis"><img src="https://avatars2.githubusercontent.com/u/4885152?s=460&u=470b0bcc829715fd3944d921fec99ad0ea2d6263&v=4" title="ricardobreis" width="40" height="40"></a>|<a href="https://www.kaggle.com/ricardobreis"><img src="https://storage.googleapis.com/kaggle-avatars/images/3201976-kg.jpg" title="ricardobreis" width="40" height="40"></a>|Ricardo Reis|A57590919|[ricardo.l.b.reis@gmail.com](ricardo.l.b.reis@gmail.com)|
+|<a href="https://github.com/RodriGonca"><img src="https://avatars2.githubusercontent.com/u/50252438?s=460&v=4" title="RodriGonca" width="40" height="40"></a>|<a href="https://www.kaggle.com/rodrigonca"><img src="https://storage.googleapis.com/kaggle-avatars/images/3511253-kg.png" title="RodriGonca" width="40" height="40"></a>|Rodrigo Gonçalves|A57566093|[rodrigo.goncalves@me.com](rodrigo.goncalves@me.com)|
+|<a href="https://github.com/ygorlima1"><img src="https://avatars2.githubusercontent.com/u/52429828?s=460&v=4" title="ygorlima1" width="40" height="40"></a>|<a href="https://www.kaggle.com/ygorlima1"><img src="https://storage.googleapis.com/kaggle-avatars/images/3427786-kg.jpg" title="ygorlima1" width="40" height="40"></a>|Ygor Lima|A57549661|[ygor_redesocial@hotmail.com](ygor_redesocial@hotmail.com)|
 
 ## Onde encontrar o código-fonte deste projeto?
 Este projeto pode ser baixado do GitHub: https://github.com/ldaniel/Spatial-Statistics-Applications
