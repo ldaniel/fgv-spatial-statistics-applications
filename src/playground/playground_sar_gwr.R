@@ -34,7 +34,7 @@ source("./src/util/auxiliary_functions.R")
 # performing data (processed) loading -----------------------------------------
 dataProcessedDirectory <- "./data/processed/"
 shapefile_to_read <- paste(dataProcessedDirectory, 
-                           "distancias_municipios_distribuidoras", 
+                           "gas_prices_hist", 
                            sep = "")
 target <- readOGR(shapefile_to_read, encoding="UTF-8")
 
@@ -44,12 +44,13 @@ plot(target)
 names(target)
 
 # the variables ---------------------------------------------------------------
-# NAME
-# GEOCODIGO_
-# NOME_MUNIC
-# UF 
-# HubName
-# HubDist 
+# "CodIBGE"    "Index"      "DtInicial"  "DtFinal"    "Regiao"     "Estado"    
+# "Cidade"     "Produto"    "NmPostPesq" "UnidMedida" "PcMedRev"   "PcDevRev"  
+# "PcMinRev"   "PcMaxRev"   "MgMedRev"   "CfVarRev"   "PcMedDist"  "PcDevDist"
+# "PcMinDist"  "PcMaxDist"  "MgMedDist"  "CfVarDist"  "Periodo"    "Combust"
+# "TipoRelat"  "DistMean"   "DistDev"    "DistMin"   "DistMax"    "RefinMean" 
+# "RefinDev"   "RefinMin"   "RefinMax"   "PIB_2016"   "PIB_2017"   "PIBCap2016" 
+# "PIBCap2017" "ChgPIB"     "ChgPIBCap"  "PopEst"  
 
 # variables analysis ----------------------------------------------------------
 # Avaliando quais variáveis quantitativas apresentadas no shapefile apresenta 
@@ -64,7 +65,7 @@ xy <- coordinates(target)
 # neighborhood matrix from spatial polygons / adjacent polygons
 
 # using the spdep library to generate first order
-ap <- poly2nb(target, queen = T, row.names = target$ID)
+ap <- poly2nb(target, queen = T, row.names = target$Index)
 lw <- nb2listw(ap, style = "W", zero.policy = TRUE)
 
 class(ap)
