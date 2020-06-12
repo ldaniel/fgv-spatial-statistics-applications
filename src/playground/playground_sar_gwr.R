@@ -370,14 +370,14 @@ summary(target.sar.model.stepwise)
 # runing the SAR model
 target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
                                     NmPostPesq + 
-                                    PIB_2016 + 
-                                    PIB_2017 +
                                     PIBCap2016 +
-                                    PIBCap2017 +
-                                    PopEst, 
+                                    PIBCap2017, 
                                   data = target,
                                   listw = lw, 
-                                  quiet = T)
+                                  quiet = T,
+                                  zero.policy = T, 
+                                  tol.solve = 1e-12)
+
 summary(target.lagsarlm.model)
 
 # calculate global residual SST (SQT)
@@ -408,10 +408,10 @@ pal <- res.palette(5)
 par(mar = c(2, 0, 4, 0))
 
 # GWR model (Geographically Weighted Regression)
-target.gwr.multivaluated.sel <- gwr.sel(INDICE95 ~ 
-                                          INDICE94 +
-                                          GINI_91 + 
-                                          URBLEVEL, 
+target.gwr.multivaluated.sel <- gwr.sel(PcMedRev ~ 
+                                          NmPostPesq + 
+                                          PIBCap2016 +
+                                          PIBCap2017, 
                                         data = target, 
                                         coords = coords, 
                                         adapt = TRUE, 
@@ -419,10 +419,10 @@ target.gwr.multivaluated.sel <- gwr.sel(INDICE95 ~
                                         gweight = gwr.Gauss,
                                         verbose = TRUE)
 
-target.gwr.multivaluated.model <- gwr(INDICE95 ~ 
-                                        INDICE94 +
-                                        GINI_91 + 
-                                        URBLEVEL, 
+target.gwr.multivaluated.model <- gwr(PcMedRev ~ 
+                                        NmPostPesq + 
+                                        PIBCap2016 +
+                                        PIBCap2017, 
                                       data = target, 
                                       coords = coords, 
                                       bandwidth = target.gwr.multivaluated.sel,
@@ -431,7 +431,7 @@ target.gwr.multivaluated.model <- gwr(INDICE95 ~
                                       hatmatrix = TRUE)
 
 # calculate global residual SST (SQT)
-SST <- sum((target$INDICE95 - mean(target$INDICE95)) ^ 2)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
 GWR_SSE <- target.gwr.multivaluated.model$results$rss
 r2_GWR <- 1 - (GWR_SSE / SST)
 r2_GWR
@@ -459,7 +459,7 @@ legend(x = "bottom", cex = 1, fill = attr(cols.gwr.residuals,"palette"), bty = "
 moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
 
 # coefficients
-target.gwr.coefficients <- target.gwr.model$SDF$URBLEVEL
+target.gwr.coefficients <- target.gwr.model$SDF$PIBCap2016
 
 target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style="fixed", 
                                                      fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
