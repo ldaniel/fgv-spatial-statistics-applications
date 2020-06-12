@@ -83,55 +83,43 @@ plotneighbors(target, type = "delaunay")
 plotneighbors(target, type = "dist", d1 = 0, d2 = 0.15)
 
 # global autocorrelation tests: Moran's I
-moran.test.AREA     <- moran.test(target$AREA, listw = lw, zero.policy = T) 
-moran.test.INDICE94 <- moran.test(target$INDICE94, listw = lw, zero.policy = T)
-moran.test.INDICE95 <- moran.test(target$INDICE95, listw = lw, zero.policy = T)
-moran.test.GINI_91  <- moran.test(target$GINI_91, listw = lw, zero.policy = T)
-moran.test.POP_94   <- moran.test(target$POP_94, listw = lw, zero.policy = T)
-moran.test.POP_RUR  <- moran.test(target$POP_RUR, listw = lw, zero.policy = T)
-moran.test.POP_URB  <- moran.test(target$POP_URB, listw = lw, zero.policy = T)
-moran.test.POP_FEM  <- moran.test(target$POP_FEM, listw = lw, zero.policy = T)
-moran.test.POP_MAS  <- moran.test(target$POP_MAS, listw = lw, zero.policy = T)
-moran.test.POP_TOT  <- moran.test(target$POP_TOT, listw = lw, zero.policy = T)
-moran.test.URBLEVEL <- moran.test(target$URBLEVEL, listw = lw, zero.policy = T)
-moran.test.PIB_PC   <- moran.test(target$PIB_PC, listw = lw, zero.policy = T)
+moran.test.NmPostPesq     <- moran.test(target$NmPostPesq, listw = lw, zero.policy = T) 
+moran.test.PIB_2016 <- moran.test(target$PIB_2016, listw = lw, zero.policy = T)
+moran.test.PIB_2017 <- moran.test(target$PIB_2017, listw = lw, zero.policy = T)
+moran.test.PIBCap2016  <- moran.test(target$PIBCap2016, listw = lw, zero.policy = T)
+moran.test.PIBCap2017   <- moran.test(target$PIBCap2017, listw = lw, zero.policy = T)
+moran.test.PopEst  <- moran.test(target$PopEst, listw = lw, zero.policy = T)
 
-moran.test.all <- rbind(t(data.frame("AREA" = moran.test.AREA$estimate)),
-                        t(data.frame("INDICE94" = moran.test.INDICE94$estimate)),
-                        t(data.frame("INDICE95" = moran.test.INDICE95$estimate)),
-                        t(data.frame("GINI_91" = moran.test.GINI_91$estimate)),
-                        t(data.frame("POP_94" = moran.test.POP_94$estimate)),
-                        t(data.frame("POP_RUR" = moran.test.POP_RUR$estimate)),
-                        t(data.frame("POP_URB" = moran.test.POP_URB$estimate)),
-                        t(data.frame("POP_FEM" = moran.test.POP_FEM$estimate)),
-                        t(data.frame("POP_MAS" = moran.test.POP_MAS$estimate)),
-                        t(data.frame("POP_TOT" = moran.test.POP_TOT$estimate)),
-                        t(data.frame("URBLEVEL" = moran.test.URBLEVEL$estimate)),
-                        t(data.frame("PIB_PC" = moran.test.PIB_PC$estimate)))
+moran.test.all <- rbind(t(data.frame("NmPostPesq" = moran.test.NmPostPesq$estimate)),
+                        t(data.frame("PIB_2016" = moran.test.PIB_2016$estimate)),
+                        t(data.frame("PIB_2017" = moran.test.PIB_2017$estimate)),
+                        t(data.frame("PIBCap2016" = moran.test.PIBCap2016$estimate)),
+                        t(data.frame("PIBCap2017" = moran.test.PIBCap2017$estimate)),
+                        t(data.frame("PopEst" = moran.test.PopEst$estimate)))
 
 moran.test.all <- as_tibble(moran.test.all, rownames = "Variables")
 moran.test.all %>% arrange(desc(`Moran I statistic`))
 
 print(moran.test.all)
 
-# Moran scatterplot for INDICE94
+# Moran scatterplot for PIBCap2016
 par(mar = c(4,4,1.5,0.5))
-moran.plot(target$INDICE94, 
+moran.plot(target$PIBCap2016, 
            listw = lw, 
            zero.policy = T,
            pch = 16, 
            col = "black",
            cex = .5, 
            quiet = F,
-           labels = as.character(target$MUNIC),
-           xlab = "Percent for INDICE94",
-           ylab = "Percent for INDICE94 (Spatial Lag)", 
+           labels = as.character(target$Cidade),
+           xlab = "Percent for PIBCap2016",
+           ylab = "Percent for PIBCap2016 (Spatial Lag)", 
            main = "Moran Scatterplot")
 
-# LISA map for INDICE94 
-locm <- localmoran(target$INDICE94,lw)
+# LISA map for PIBCap2016 
+locm <- localmoran(target$PIBCap2016,lw)
 
-target$sPPOV <- scale(target$INDICE94)
+target$sPPOV <- scale(target$PIBCap2016)
 target$lag_sPPOV <- lag.listw(lw, target$sPPOV)
 
 plot(x = target$sPPOV, y = target$lag_sPPOV, main = "Moran Scatterplot PPOV")
@@ -139,7 +127,7 @@ abline(h = 0, v = 0)
 abline(lm(target$lag_sPPOV ~ target$sPPOV), lty = 3, lwd = 4, col = "red")
 
 # check out the outliers click on one or two and then hit escape or click finish
-identify(target$sPPOV, target$lag_sPPOV, target$INDICE94, cex = 0.8)
+identify(target$sPPOV, target$lag_sPPOV, target$PIBCap2016, cex = 0.8)
 
 target$quad_sig <- NA
 target@data[(target$sPPOV >= 0 & target$lag_sPPOV >= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 1
@@ -156,70 +144,6 @@ par(mar = c(4,0,4,1))
 plot(target, col = colors[np])
 mtext("Local Moran's I - INDICE94", cex = 1.5, side = 3, line = 1)
 legend("topleft", legend = labels, fill = colors, bty = "n")
-
-# LISA map for INDICE95 
-locm <- localmoran(target$INDICE95,lw)
-
-target$sPPOV <- scale(target$INDICE95)
-target$lag_sPPOV <- lag.listw(lw, target$sPPOV)
-target$quad_sig <- NA
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV >= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 1
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 2
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 3
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 4
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV >= 0) & (locm[, 5] > 0.05), "quad_sig"] <- 5 
-
-breaks <- seq(1, 5, 1)
-labels <- c("High-High", "Low-Low", "High-Low", "Low-High", "Not Signif.")
-np <- findInterval(target$quad_sig, breaks)
-colors <- c("red", "blue", "lightpink", "skyblue2", "white")
-par(mar = c(4,0,4,1))
-plot(target, col = colors[np])
-mtext("Local Moran's I - INDICE95", cex = 1.5, side = 3, line = 1)
-legend("topleft", legend = labels, fill = colors, bty = "n")
-
-# LISA map for URBLEVEL 
-locm <- localmoran(target$URBLEVEL,lw)
-
-target$sPPOV <- scale(target$URBLEVEL)
-target$lag_sPPOV <- lag.listw(lw, target$sPPOV)
-target$quad_sig <- NA
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV >= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 1
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 2
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 3
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 4
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV >= 0) & (locm[, 5] > 0.05), "quad_sig"] <- 5 
-
-breaks <- seq(1, 5, 1)
-labels <- c("High-High", "Low-Low", "High-Low", "Low-High", "Not Signif.")
-np <- findInterval(target$quad_sig, breaks)
-colors <- c("red", "blue", "lightpink", "skyblue2", "white")
-par(mar = c(4,0,4,1))
-plot(target, col = colors[np])
-mtext("Local Moran's I - URBLEVEL", cex = 1.5, side = 3, line = 1)
-legend("topleft", legend = labels, fill = colors, bty = "n")
-
-# LISA map for POPRUR 
-locm <- localmoran(target$POP_RUR,lw)
-
-target$sPPOV <- scale(target$POP_RUR)
-target$lag_sPPOV <- lag.listw(lw, target$sPPOV)
-target$quad_sig <- NA
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV >= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 1
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 2
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 3
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 4
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV >= 0) & (locm[, 5] > 0.05), "quad_sig"] <- 5 
-
-breaks <- seq(1, 5, 1)
-labels <- c("High-High", "Low-Low", "High-Low", "Low-High", "Not Signif.")
-np <- findInterval(target$quad_sig, breaks)
-colors <- c("red", "blue", "lightpink", "skyblue2", "white")
-par(mar = c(4,0,4,1))
-plot(target, col = colors[np])
-mtext("Local Moran's I - POPRUR", cex = 1.5, side = 3, line = 1)
-legend("topleft", legend = labels, fill = colors, bty = "n")
-
 
 # implementing SAR ------------------------------------------------------------
 # Implementando o modelo espacial auto-regressivo (SAR) da variável y
