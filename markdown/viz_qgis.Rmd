@@ -7,60 +7,16 @@ date: "Junho de 2020"
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")
-
-# loading required libraries
-library(rmarkdown)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
-library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
-library(knitr)
-library(leaflet)
-library(geojsonio)
 ```
 
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-```
+# O que é o QGIS?
 
-# Exploration 1
+O Quantum GIS É um programa de Sistema de Informação Geográfica com código aberto e licenciado sob a Licença Pública Geral GNU. O QGIS, como também é chamado, é um projeto oficial da Open Source Geospatial Foundation (OSGeo). Pode ser utilizado em Linux, Unix, Mac OSX, Windows e Android. Pode ser utilizado tanto para dados vetoriais quanto formatos matriciais e apresenta diversas funcionalidades.
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+Fornece um número crescente de recursos fornecidos por funções básicas e “plugins”. 
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
-```
+# Visualização via QGIS Cloud
 
-# Exploration 2
+O QGIS Cloud é uma plataforma Web-GIS para publicação de mapas, dados e serviços na Internet. Abaixo, foi disponibilizado a visuação do mapa principal deste projeto, contendo os relacionamentos geoespaciais entre os postos de gasolina, distribuidoras e refinarias.
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
-
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
-
-
-# Exploration 3
-
-Describe your exploration 3 here, including some plots, tables or any resource used.
-
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
-
-# Exploration n
-
-Describe your exploration n here, including some plots, tables or any resource used.
-
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+<iframe src="https://qgiscloud.com/RodriGonca/qgis_project/?bl=&l=Refinarias%2CDistribuidoras%2CDistancias%20Sedes%20para%20Distribuidoras%2CDistancias%20Sedes%20para%20Refinarias%2CPostos%2CSedes%20de%20Municipios%2CCidades%20Pesquisadas%2CUFs%2CGoogle%20Maps&t=qgis_project&e=-98.16312%2C-50.59903%2C23.66504%2C10.07711" width="100%" height="800" scrolling= "yes"></iframe>
