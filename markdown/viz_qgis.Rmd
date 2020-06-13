@@ -17,6 +17,8 @@ Fornece um número crescente de recursos fornecidos por funções básicas e “
 
 # Visualização via QGIS Cloud
 
-O QGIS Cloud é uma plataforma Web-GIS para publicação de mapas, dados e serviços na Internet. Abaixo, foi disponibilizado a visuação do mapa principal deste projeto, contendo os relacionamentos geoespaciais entre os postos de gasolina, distribuidoras e refinarias.
+O QGIS Cloud é uma plataforma Web-GIS para publicação de mapas, dados e serviços na Internet. Abaixo, foi disponibilizado a visualização do mapa principal deste projeto, contendo os relacionamentos geoespaciais entre os postos de gasolina, distribuidoras e refinarias.
+
+Para acessar diretamente o website do QGIS Cloud com a visualização abaixo, [clique aqui](https://qgiscloud.com/RodriGonca/qgis_project/?bl=&l=Refinarias%2CDistribuidoras%2CDistancias%20Sedes%20para%20Distribuidoras%2CDistancias%20Sedes%20para%20Refinarias%2CPostos%2CSedes%20de%20Municipios%2CCidades%20Pesquisadas%2CUFs%2CGoogle%20Maps&t=qgis_project&e=-98.16312%2C-50.59903%2C23.66504%2C10.07711).
 
 <iframe src="https://qgiscloud.com/RodriGonca/qgis_project/?bl=&l=Refinarias%2CDistribuidoras%2CDistancias%20Sedes%20para%20Distribuidoras%2CDistancias%20Sedes%20para%20Refinarias%2CPostos%2CSedes%20de%20Municipios%2CCidades%20Pesquisadas%2CUFs%2CGoogle%20Maps&t=qgis_project&e=-98.16312%2C-50.59903%2C23.66504%2C10.07711" width="100%" height="800" scrolling= "yes"></iframe>
