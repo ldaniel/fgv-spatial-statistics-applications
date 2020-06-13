@@ -11,9 +11,7 @@ knitr::opts_knit$set(root.dir = "../")
 
 # O que é o QGIS?
 
-O Quantum GIS É um programa de Sistema de Informação Geográfica com código aberto e licenciado sob a Licença Pública Geral GNU. O QGIS, como também é chamado, é um projeto oficial da Open Source Geospatial Foundation (OSGeo). Pode ser utilizado em Linux, Unix, Mac OSX, Windows e Android. Pode ser utilizado tanto para dados vetoriais quanto formatos matriciais e apresenta diversas funcionalidades.
-
-Fornece um número crescente de recursos fornecidos por funções básicas e “plugins”. 
+O Quantum GIS É um programa de Sistema de Informação Geográfica com código aberto e licenciado sob a Licença Pública Geral GNU. O QGIS, como também é chamado, é um projeto oficial da Open Source Geospatial Foundation (OSGeo). Pode ser utilizado em Linux, Unix, Mac OSX, Windows e Android. Pode ser utilizado tanto para dados vetoriais quanto formatos matriciais e apresenta diversas funcionalidades e fornece um número crescente de recursos fornecidos por funções básicas e “plugins”. 
 
 # Visualização via QGIS Cloud
 
