@@ -82,7 +82,7 @@ datatable(data = variables_list,
 
 ## Calculando os centróides e a matrix de vizinhança
 
-Em seguida, obtém-se os centróides do shapefile para gerar a matrix de vizinhança dos polígonos espaciais e polígonos adjacentes através da biblioteca **spdep** usando a primeira ordem. A biblioteca **bamlss** será usada para gerar a matrix de vizinhança. O plot mostra o resultado desta configuração inicial.
+Em seguida, obtém-se os centróides do shapefile para gerar a matrix de vizinhança dos polígonos espaciais e polígonos adjacentes através da biblioteca **spdep** usando a primeira ordem. A biblioteca **bamlss** será usada para gerar a matrix de vizinhança, baseada em um **k = 3** . O plot mostra o resultado desta configuração inicial.
 
 ```{r getting_nb, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
@@ -90,57 +90,9 @@ xy <- coordinates(target)
 
 ap <- poly2nb(target, queen = T, row.names = target$Index)
 lw <- nb2listw(ap, style = "W", zero.policy = TRUE)
-nm <- neighbormatrix(target, type = "boundary")
+nm <- neighbormatrix(target, type = "boundary", k = 3)
 
 plotneighbors(target, type = "delaunay")
-
-```
-
-## Testando autocorrelação com I de Moran
-
-O Índice de Moran Global (I) avalia a relação de interdependência espacial entre todos os polígonos da área de estudo e a expressa por meio de um valor único para toda a região. O Índice de Moran Local (Ii) identifica a relação existente entre um determinado polígono e a sua vizinhança, a partir de uma distância predefinida, por intermédio da covariância existente entre eles, permitindo o exame da homogeneidade/diversidade dos dados. Para este projeto, analisaremos o Índice de Moran Global.
-
-```{r autocorrelation_i_moran, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
-
-moran.test.NmPostPesq     <- moran.test(target$NmPostPesq, listw = lw, zero.policy = T) 
-moran.test.PIB_2016 <- moran.test(target$PIB_2016, listw = lw, zero.policy = T)
-moran.test.PIB_2017 <- moran.test(target$PIB_2017, listw = lw, zero.policy = T)
-moran.test.PIBCap2016  <- moran.test(target$PIBCap2016, listw = lw, zero.policy = T)
-moran.test.PIBCap2017   <- moran.test(target$PIBCap2017, listw = lw, zero.policy = T)
-moran.test.PopEst  <- moran.test(target$PopEst, listw = lw, zero.policy = T)
-
-moran.test.all <- rbind(t(data.frame("NmPostPesq" = moran.test.NmPostPesq$estimate)),
-                        t(data.frame("PIB_2016" = moran.test.PIB_2016$estimate)),
-                        t(data.frame("PIB_2017" = moran.test.PIB_2017$estimate)),
-                        t(data.frame("PIBCap2016" = moran.test.PIBCap2016$estimate)),
-                        t(data.frame("PIBCap2017" = moran.test.PIBCap2017$estimate)),
-                        t(data.frame("PopEst" = moran.test.PopEst$estimate)))
-
-moran.test.all <- as_tibble(moran.test.all, rownames = "Variables")
-moran.test.all %>% arrange(desc(`Moran I statistic`))
-
-datatable(data = moran.test.all, 
-          style = 'bootstrap', 
-          options = list(pageLength = 10,autoWidth = TRUE))
-
-```
-
-Focaremos nossa análise na variável **PIBCap2016**.
-
-```{r i_moran_scatterplot, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
-
-par(mar = c(4,4,1.5,0.5))
-moran.plot(target$PIBCap2016, 
-           listw = lw, 
-           zero.policy = T,
-           pch = 16, 
-           col = "black",
-           cex = .5, 
-           quiet = F,
-           labels = as.character(target$Cidade),
-           xlab = "Percent for PIBCap2016",
-           ylab = "Percent for PIBCap2016 (Spatial Lag)", 
-           main = "Moran Scatterplot")
 
 ```
 
@@ -158,39 +110,6 @@ par(mar = c(2, 0, 4, 0))
 
 ```
 
-## Implementando o modelo regressivo linear
-
-Os modelos lineares de regressão são utilizados para modelar a relação entre variáveis quantitativas:
-
-* **Variável Resposta (y):** variável quantitativa (também chamada de variável dependente).
-* **Variáveis Preditoras (x):** variáveis quantitativas (também chamadas de variáveis independentes).
-
-A função utilizada para construir modelos lineares de regressão é a função **lm**. 
-
-```{r linear_regression_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
-
-target.lm.model <- lm(PcMedRev ~ PIBCap2016, data = target)
-summary(target.lm.model)
-
-target.lm.model.residuals <- target.lm.model$residuals
-
-target.lm.model.class_fx <- classIntervals(target.lm.model.residuals, 
-                                           n = 5,
-                                           style = "fixed",
-                                           fixedBreaks = c(-50,-25,-5,5,25,50),
-                                           rtimes = 1)
-
-cols.lm <- findColours(target.lm.model.class_fx, pal)
-
-plot(target, col = cols.lm, main = "OLS Model", border = "grey")
-legend(x = "bottom", cex = 1, fill = attr(cols.lm, "palette"), bty = "n",
-       legend = names(attr(cols.lm, "table")), title = "Residuals from OLS Model",
-       ncol = 5)
-
-moran.test(target.lm.model.residuals, listw = lw, zero.policy = T)
-
-```
-
 ## Implementando o modelo espacial auto-regressivo (SAR) 
 
 Um dos modelos mais comumente utilizados para modelagem de correlação espacial é  o  modelo  autorregressivo  espacial  (do inglês *spatial  autorregressive  model*),  ou  simplesmente modelo  SAR.  A  ideia  dos  modelos  SAR  é  utilizar  a  mesma  ideia  dos  modelos  AR (autorregressivos)  em  séries  temporais,  por  meio  da  incorporação  de  um  termo  de lagentre  os  regressores  da  equação.  
@@ -202,7 +121,16 @@ Onde $\gamma$ é  um  vetor  coluna,  contendo *n* observações  na  amostra  p
 
 ```{r sar_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
-target.sar.model <- lagsarlm(PcMedRev ~ PIBCap2016, 
+target.sar.model <- lagsarlm(PcMedRev ~ 
+                               DistMean +
+                               DistDev +
+                               DistMin +
+                               RefinMean +
+                               RefinDev +
+                               RefinMin +
+                               RefinMax +
+                               ChgPIB +
+                               ChgPIBCap, 
                              data = target, 
                              listw = lw,
                              zero.policy = T, 
@@ -230,3 +158,261 @@ moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
 ```
 
+## Implementando o modelo de regressão geograficamente ponderada (GWR) 
+
+```{r gwr_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+coords <- cbind(target$X_COORD, target$Y_COORD)
+
+# GWR model (Geographically Weighted Regression)
+target.gwr.sel <- gwr.sel(PcMedRev ~ 
+                            DistMean +
+                            DistDev +
+                            DistMin +
+                            RefinMean +
+                            RefinDev +
+                            RefinMin +
+                            RefinMax +
+                            ChgPIB +
+                            ChgPIBCap, 
+                          data = target, 
+                          coords = coords, 
+                          adapt = TRUE, 
+                          method = "aic",
+                          gweight = gwr.Gauss,
+                          verbose = TRUE)
+
+target.gwr.model <- gwr(PcMedRev ~ 
+                          DistMean +
+                          DistDev +
+                          DistMin +
+                          RefinMean +
+                          RefinDev +
+                          RefinMin +
+                          RefinMax +
+                          ChgPIB +
+                          ChgPIBCap, 
+                        data = target, 
+                        coords = coords, 
+                        bandwidth = target.gwr.sel,
+                        gweight = gwr.Gauss,
+                        adapt = target.gwr.sel,
+                        hatmatrix = TRUE)
+View(target.gwr.model)
+
+# calculate global residual SST (SQT)
+SST <- sum((target$DistMean - mean(target$DistMean)) ^ 2)
+GWR_SSE <- target.gwr.model$results$rss
+r2_GWR <- 1 - (GWR_SSE / SST)
+r2_GWR
+
+# residuals
+target.gwr.residuals <- target.gwr.model$SDF$gwr.e
+
+target.gwr.residuals.classes_fx <- classIntervals(target.gwr.residuals, n = 5, style = "fixed", 
+                                                  fixedBreaks = c(-50,-25,-5,5,25,50), 
+                                                  rtimes = 1)
+cols.gwr.residuals <- findColours(target.gwr.residuals.classes_fx, pal)
+
+plot(target, col = cols.gwr.residuals, main = "GWR Model (residuals)", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.gwr.residuals,"palette"), bty = "n",
+       legend = names(attr(cols.gwr.residuals, "table")), 
+       title = "Residuals from GWR Model", ncol = 5)
+
+moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
+
+
+# coefficients
+target.gwr.coefficients <- target.gwr.model$SDF$DistMean
+
+target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style = "fixed", 
+                                                     fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
+                                                     rtimes = 1)
+cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
+
+plot(target, col = cols.gwr.coefficients, main = "GWR Model (coefficients)", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty = "n",
+       legend = names(attr(cols.gwr.coefficients, "table")),
+       title = "Local Coefficient Estimates (PIBCap2016)", ncol = 3)
+
+moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
+
+```
+
+## Implementando o modelo de regressão linear multivariado stepwise
+
+```{r stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+# initial exploration in PcMedRev x DistMean
+pcmedrev_by_DistMean_plot <- ggplot(data = target@data, 
+                                    aes(x = target$DistMean,
+                                        y = target$PcMedRev,
+                                        color = target$DistMean)) +
+  geom_point() +
+  theme(legend.position = "none") +
+  xlab("DistMean") +
+  ylab("PcMedRev")
+
+ggMarginal(pcmedrev_by_DistMean_plot, type = "histogram")
+
+# runing the linear model multivaluated and looking at the residuals
+target.ols.model <- lm(PcMedRev ~ 
+                         DistMean +
+                         DistDev +
+                         DistMin +
+                         RefinMean +
+                         RefinDev +
+                         RefinMin +
+                         RefinMax +
+                         ChgPIB +
+                         ChgPIBCap, 
+                       data = target)
+
+summary(target.ols.model)
+
+target$resid <- residuals(target.ols.model)
+spplot(target, "resid", main = "Residuals")
+
+# runing the lm multivaluated model
+target.lm.multivaluated.model <- lm(PcMedRev ~ 
+                                      DistMean +
+                                      DistDev +
+                                      DistMin +
+                                      RefinMean +
+                                      RefinDev +
+                                      RefinMin +
+                                      RefinMax +
+                                      ChgPIB +
+                                      ChgPIBCap, 
+                                    data = target)
+
+summary(target.lm.multivaluated.model)
+
+# performing the stepwise selection
+target.sar.model.stepwise <- step(target.lm.multivaluated.model, 
+                                  direction = "both", 
+                                  test = "F")
+
+summary(target.sar.model.stepwise)
+
+# runing the SAR model
+target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
+                                    DistMean +
+                                    DistDev +
+                                    DistMin +
+                                    RefinMean +
+                                    RefinDev +
+                                    RefinMin +
+                                    RefinMax +
+                                    ChgPIB +
+                                    ChgPIBCap, 
+                                  data = target,
+                                  listw = lw, 
+                                  quiet = T,
+                                  zero.policy = T, 
+                                  tol.solve = 1e-12)
+
+summary(target.lagsarlm.model)
+
+# calculate global residual SST (SQT)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
+GWR_SSE <- target.lagsarlm.model$SSE
+r2_GWR <- 1 - (GWR_SSE / SST)
+r2_GWR
+
+# maps
+target$fitted_sem <- target.lagsarlm.model$fitted.values
+spplot(target, "fitted_sem", main = "Fitted values")
+
+target$actual_sem <- target.lagsarlm.model$y
+spplot(target, "fitted_sem", main = "Actual values")
+
+names(target.sar.model.stepwise$coefficients) <- 
+  stringr::str_sub(names(target.sar.model.stepwise$coefficients), 1, 25)
+summary(target.sar.model.stepwise)
+
+```
+
+## Implementando o modelo GWR com stepwise
+
+```{r gwr_stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+# GWR model (Geographically Weighted Regression)
+target.gwr.multivaluated.sel <- gwr.sel(PcMedRev ~ 
+                                          DistMean +
+                                          DistDev +
+                                          DistMin +
+                                          RefinMean +
+                                          RefinDev +
+                                          RefinMin +
+                                          RefinMax +
+                                          ChgPIB +
+                                          ChgPIBCap, 
+                                        data = target, 
+                                        coords = coords, 
+                                        adapt = TRUE, 
+                                        method = "aic",
+                                        gweight = gwr.Gauss,
+                                        verbose = TRUE)
+
+target.gwr.multivaluated.model <- gwr(PcMedRev ~ 
+                                        DistMean +
+                                        DistDev +
+                                        DistMin +
+                                        RefinMean +
+                                        RefinDev +
+                                        RefinMin +
+                                        RefinMax +
+                                        ChgPIB +
+                                        ChgPIBCap, 
+                                      data = target, 
+                                      coords = coords, 
+                                      bandwidth = target.gwr.multivaluated.sel,
+                                      gweight = gwr.Gauss,
+                                      adapt = target.gwr.multivaluated.sel,
+                                      hatmatrix = TRUE)
+
+# calculate global residual SST (SQT)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
+GWR_SSE <- target.gwr.multivaluated.model$results$rss
+r2_GWR <- 1 - (GWR_SSE / SST)
+r2_GWR
+
+# maps
+target$fitted_sem <- target.gwr.multivaluated.model$lm$fitted.values
+spplot(target, "fitted_sem", main = "Fitted values")
+
+target$actual_sem <- target.gwr.multivaluated.model$lm$y
+spplot(target, "fitted_sem", main = "Actual values")
+
+# residuals
+target.gwr.residuals <- target.gwr.model$SDF$gwr.e
+
+target.gwr.residuals.classes_fx <- classIntervals(target.gwr.residuals, n = 5, style = "fixed", 
+                                                  fixedBreaks = c(-50,-25,-5,5,25,50), 
+                                                  rtimes = 1)
+cols.gwr.residuals <- findColours(target.gwr.residuals.classes_fx, pal)
+
+plot(target, col = cols.gwr.residuals, main = "GWR Model (residuals)", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.gwr.residuals,"palette"), bty = "n",
+       legend = names(attr(cols.gwr.residuals, "table")), 
+       title = "Residuals from GWR Model", ncol = 5)
+
+moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
+
+# coefficients
+target.gwr.coefficients <- target.gwr.model$SDF$DistMean
+
+target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style="fixed", 
+                                                     fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
+                                                     rtimes = 1)
+cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
+
+plot(target, col = cols.gwr.coefficients, main = "GWR Model (coefficients)", border = "grey")
+legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty = "n",
+       legend = names(attr(cols.gwr.coefficients, "table")),
+       title = "Local Coefficient Estimates (urblevel)", ncol = 3)
+
+moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
+
+```
