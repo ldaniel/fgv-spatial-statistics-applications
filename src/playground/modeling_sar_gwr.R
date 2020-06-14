@@ -115,147 +115,6 @@ plot(ap, xy, col = 'red', lwd = 2, add = TRUE)
 # using the bamlss library
 nm <- neighbormatrix(target, type = "boundary", k = 3)
 
-print(nm)
-View(nm)
-plotneighbors(target)
-plotneighbors(target, type = "delaunay")
-plotneighbors(target, type = "dist", d1 = 0, d2 = 0.15)
-
-# global autocorrelation tests: Moran's I
-moran.test.PcMedRev <- moran.test(target$PcMedRev, listw = lw, zero.policy = T) 
-moran.test.DistMean <- moran.test(target$DistMean, listw = lw, zero.policy = T) 
-moran.test.DistDev <- moran.test(target$DistDev, listw = lw, zero.policy = T) 
-moran.test.DistMin <- moran.test(target$DistMin, listw = lw, zero.policy = T) 
-moran.test.DistMax <- moran.test(target$DistMax, listw = lw, zero.policy = T) 
-moran.test.RefinMean <- moran.test(target$RefinMean, listw = lw, zero.policy = T) 
-moran.test.RefinDev <- moran.test(target$RefinDev, listw = lw, zero.policy = T) 
-moran.test.RefinMin <- moran.test(target$RefinMin, listw = lw, zero.policy = T) 
-moran.test.RefinMax <- moran.test(target$RefinMax, listw = lw, zero.policy = T) 
-moran.test.ChgPIB <- moran.test(target$ChgPIB, listw = lw, zero.policy = T) 
-moran.test.ChgPIBCap <- moran.test(target$ChgPIBCap, listw = lw, zero.policy = T) 
-moran.test.PopEst <- moran.test(target$PopEst, listw = lw, zero.policy = T) 
-
-moran.test.all <- rbind(t(data.frame("PcMedRev" = moran.test.PcMedRev$estimate)),
-                        t(data.frame("DistMean" = moran.test.DistMean$estimate)),
-                        t(data.frame("DistDev" = moran.test.DistDev$estimate)),
-                        t(data.frame("DistMin" = moran.test.DistMin$estimate)),
-                        t(data.frame("DistMax" = moran.test.DistMax$estimate)),
-                        t(data.frame("RefinMean" = moran.test.RefinMean$estimate)),
-                        t(data.frame("RefinDev" = moran.test.RefinDev$estimate)),
-                        t(data.frame("RefinMin" = moran.test.RefinMin$estimate)),
-                        t(data.frame("RefinMax" = moran.test.RefinMax$estimate)),
-                        t(data.frame("ChgPIB" = moran.test.ChgPIB$estimate)),
-                        t(data.frame("ChgPIBCap" = moran.test.ChgPIBCap$estimate)),
-                        t(data.frame("PopEst" = moran.test.PopEst$estimate)))
-
-moran.test.all <- as_tibble(moran.test.all, rownames = "Variables")
-moran.test.all %>% arrange(desc(`Moran I statistic`))
-
-print(moran.test.all)
-
-# Moran scatterplot for PcMedRev
-par(mar = c(4,4,1.5,0.5))
-moran.plot(target$PcMedRev, 
-           listw = lw, 
-           zero.policy = T,
-           pch = 16, 
-           col = "black",
-           cex = .5, 
-           quiet = F,
-           labels = as.character(target$Cidade),
-           xlab = "Percent for PcMedRev",
-           ylab = "Percent for PcMedRev (Spatial Lag)", 
-           main = "Moran Scatterplot")
-
-# LISA map for PcMedRev 
-locm <- localmoran(target$PcMedRev,lw)
-
-target$sPPOV <- scale(target$PcMedRev)
-target$lag_sPPOV <- lag.listw(lw, target$sPPOV)
-
-plot(x = target$sPPOV, y = target$lag_sPPOV, main = "Moran Scatterplot PPOV")
-abline(h = 0, v = 0)
-abline(lm(target$lag_sPPOV ~ target$sPPOV), lty = 3, lwd = 4, col = "red")
-
-# check out the outliers click on one or two and then hit escape or click finish
-identify(target$sPPOV, target$lag_sPPOV, target$PIBCap2016, cex = 0.8)
-
-target$quad_sig <- NA
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV >= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 1
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 2
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 3
-target@data[(target$sPPOV >= 0 & target$lag_sPPOV <= 0) & (locm[, 5] <= 0.05), "quad_sig"] <- 4
-target@data[(target$sPPOV <= 0 & target$lag_sPPOV >= 0) & (locm[, 5] > 0.05), "quad_sig"] <- 5 
-
-breaks <- seq(1, 5, 1)
-labels <- c("High-High", "Low-Low", "High-Low", "Low-High", "Not Signif.")
-np <- findInterval(target$quad_sig, breaks)
-colors <- c("red", "blue", "lightpink", "skyblue2", "white")
-par(mar = c(4,0,4,1))
-plot(target, col = colors[np])
-mtext("Local Moran's I - PIBCap2016", cex = 1.5, side = 3, line = 1)
-legend("topleft", legend = labels, fill = colors, bty = "n")
-
-## # implementing SAR ------------------------------------------------------------
-# Implementando o modelo espacial auto-regressivo (SAR) da variável y
-# a partir de apenas uma variável independente (não pode ser Codmuni, 
-# ID, X_coord nem Y_coord). Apresentando o resultado da regressão linear 
-# simples e da regressão linear espacial. Apresentando as equações e 
-# interpretando seus coeficientes.
-
-# initial setup
-res.palette <- colorRampPalette(c("red","orange","white","lightgreen","green"), 
-                                space = "rgb")
-pal <- res.palette(5)
-par(mar = c(2, 0, 4, 0))
-
-# linear regresion model
-target.lm.model <- lm(PcMedRev ~ PIBCap2016, data = target)
-summary(target.lm.model)
-
-target.lm.model.residuals <- target.lm.model$residuals
-
-target.lm.model.class_fx <- classIntervals(target.lm.model.residuals, 
-                                           n = 5,
-                                           style = "fixed",
-                                           fixedBreaks = c(-50,-25,-5,5,25,50),
-                                           rtimes = 1)
-
-cols.lm <- findColours(target.lm.model.class_fx, pal)
-
-plot(target, col = cols.lm, main = "OLS Model", border = "grey")
-legend(x = "bottom", cex = 1, fill = attr(cols.lm, "palette"), bty = "n",
-       legend = names(attr(cols.lm, "table")), title = "Residuals from OLS Model",
-       ncol = 5)
-
-moran.test(target.lm.model.residuals, listw = lw, zero.policy = T)
-
-# SAR model (Spatial Auto-Regressive)
-target.sar.model <- lagsarlm(PcMedRev ~ PIBCap2016, 
-                             data = target, 
-                             listw = lw,
-                             zero.policy = T, 
-                             tol.solve = 1e-12)
-summary(target.sar.model)
-target.sar.model$rest.se
-target.sar.model$residuals
-
-target.sar.model.residuals <- target.sar.model$residuals
-
-target.sar.model.class_fx <- classIntervals(target.sar.model.residuals, 
-                                            n = 5, 
-                                            style = "fixed",
-                                            fixedBreaks = c(-50,-25,-5,5,25,50),
-                                            rtimes = 1)
-
-cols.sar <- findColours(target.sar.model.class_fx, pal)
-
-plot(target, col = cols.sar, main = "SAR Model", border = "grey")
-legend(x = "bottom", cex = 1, fill = attr(cols.sar, "palette"), bty = "n",
-       legend = names(attr(cols.sar, "table")), title = "Residuals from SAR Model",
-       ncol = 5)
-
-moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
 # implementing GWR ------------------------------------------------------------
 # Implementando a regressão espacial GWR da variável y a partir de apenas 
@@ -315,44 +174,6 @@ GWR_SSE <- target.gwr.model$results$rss
 r2_GWR <- 1 - (GWR_SSE / SST)
 r2_GWR
 
-# # calculate local R-Squared 
-# kGauss <- round(target.gwr.sel * length(target[,1]))
-# myknn <- knearneigh(coords, k = kGauss, longlat = FALSE, RANN = FALSE)
-# mynb <- knn2nb(myknn, sym = TRUE)
-# ap <- target@data
-# 
-# for (i in 1:length(target[,1]))
-# {
-#   # seleciona e ordena os índices dos polígonos vizinhos de i
-#   vizinhos_i <- sort(c(i, mynb[[i]]))
-#   
-#   # seleciona o slot "polygons" (lista de pol?gonos) dos vizinhos de i
-#   listapoly_vizinhos_i <- slot(target, "polygons")
-#   poligonos_i <- subset(listapoly_vizinhos_i, ap[,1] %in% vizinhos_i)
-#   
-#   # converte apenas i e seus vizinhos para o objeto SpatialPolygons
-#   sp_i <- SpatialPolygons(poligonos_i)
-#   
-#   # cria os objetos nb e listwi apenas para i e seus vizinhos
-#   mynb_i <- poly2nb(sp_i)
-#   mylistw_i <- nb2listw(mynb_i, style="W", zero.policy=TRUE)
-#   
-#   ap_i <- ap[vizinhos_i,]
-#   
-#   # calculate global residual SS of local sample
-#   sum_square_glo_i <- sum((ap_i$INDICE95 - mean(ap_i$INDICE95)) ^ 2)
-#   
-#   lm.ap_i <- lm(INDICE95 ~ URBLEVEL, data = ap_i)
-#   
-#   residuos[i] <- lm.ap_i$residuals[ap_i$ID==i]
-#   previstos[i] <- lm.ap_i$fitted.values[ap_i$ID==i]
-#   ParW[i] <- lm.ap_i$rho
-#   ParIntercepto[i] <- lm.ap_i$coefficients[1]
-#   ParEnergia[i] <- lm.ap_i$coefficients[2]
-#   r2_local[i] <- 1 - (lm.ap_i$SSE/sum_square_glo_i)
-#   print(i)
-# }
-
 # residuals
 target.gwr.residuals <- target.gwr.model$SDF$gwr.e
 
@@ -392,9 +213,9 @@ moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 
 # initial exploration in PcMedRev x DistMean
 pcmedrev_by_DistMean_plot <- ggplot(data = target@data, 
-                                       aes(x = target$DistMean,
-                                           y = target$PcMedRev,
-                                           color = target$DistMean)) +
+                                    aes(x = target$DistMean,
+                                        y = target$PcMedRev,
+                                        color = target$DistMean)) +
   geom_point() +
   theme(legend.position = "none") +
   xlab("DistMean") +
