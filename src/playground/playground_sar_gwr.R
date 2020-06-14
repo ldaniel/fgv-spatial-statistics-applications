@@ -83,18 +83,22 @@ plotneighbors(target, type = "delaunay")
 plotneighbors(target, type = "dist", d1 = 0, d2 = 0.15)
 
 # global autocorrelation tests: Moran's I
-moran.test.NmPostPesq     <- moran.test(target$NmPostPesq, listw = lw, zero.policy = T) 
-moran.test.PIB_2016 <- moran.test(target$PIB_2016, listw = lw, zero.policy = T)
-moran.test.PIB_2017 <- moran.test(target$PIB_2017, listw = lw, zero.policy = T)
-moran.test.PIBCap2016  <- moran.test(target$PIBCap2016, listw = lw, zero.policy = T)
-moran.test.PIBCap2017   <- moran.test(target$PIBCap2017, listw = lw, zero.policy = T)
-moran.test.PopEst  <- moran.test(target$PopEst, listw = lw, zero.policy = T)
+moran.test.NmPostPesq <- moran.test(target$NmPostPesq, listw = lw, zero.policy = T) 
+moran.test.PIB_2016   <- moran.test(target$PIB_2016, listw = lw, zero.policy = T)
+moran.test.PIB_2017   <- moran.test(target$PIB_2017, listw = lw, zero.policy = T)
+moran.test.PIBCap2016 <- moran.test(target$PIBCap2016, listw = lw, zero.policy = T)
+moran.test.PIBCap2017 <- moran.test(target$PIBCap2017, listw = lw, zero.policy = T)
+moran.test.ChgPIB     <- moran.test(target$ChgPIB, listw = lw, zero.policy = T)
+moran.test.ChgPIBCap  <- moran.test(target$ChgPIBCap, listw = lw, zero.policy = T)
+moran.test.PopEst     <- moran.test(target$PopEst, listw = lw, zero.policy = T)
 
 moran.test.all <- rbind(t(data.frame("NmPostPesq" = moran.test.NmPostPesq$estimate)),
                         t(data.frame("PIB_2016" = moran.test.PIB_2016$estimate)),
                         t(data.frame("PIB_2017" = moran.test.PIB_2017$estimate)),
                         t(data.frame("PIBCap2016" = moran.test.PIBCap2016$estimate)),
                         t(data.frame("PIBCap2017" = moran.test.PIBCap2017$estimate)),
+                        t(data.frame("ChgPIB" = moran.test.ChgPIB$estimate)),
+                        t(data.frame("ChgPIBCap" = moran.test.ChgPIBCap$estimate)),
                         t(data.frame("PopEst" = moran.test.PopEst$estimate)))
 
 moran.test.all <- as_tibble(moran.test.all, rownames = "Variables")
