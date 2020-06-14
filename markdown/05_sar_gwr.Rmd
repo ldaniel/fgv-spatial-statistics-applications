@@ -198,7 +198,6 @@ target.gwr.model <- gwr(PcMedRev ~
                         gweight = gwr.Gauss,
                         adapt = target.gwr.sel,
                         hatmatrix = TRUE)
-View(target.gwr.model)
 
 # calculate global residual SST (SQT)
 SST <- sum((target$DistMean - mean(target$DistMean)) ^ 2)
