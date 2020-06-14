@@ -233,7 +233,7 @@ cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
 plot(target, col = cols.gwr.coefficients, main = "GWR Model (coefficients)", border = "grey")
 legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty = "n",
        legend = names(attr(cols.gwr.coefficients, "table")),
-       title = "Local Coefficient Estimates (PIBCap2016)", ncol = 3)
+       title = "Local Coefficient Estimates (DistMean)", ncol = 3)
 
 moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 
