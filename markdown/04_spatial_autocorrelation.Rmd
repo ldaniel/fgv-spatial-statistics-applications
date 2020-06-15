@@ -37,7 +37,45 @@ source("./src/util/auxiliary_functions.R")
 A autocorrelação espacial é uma técnica da análise exploratória espacial que caracteriza a dependência de atributos no espaço, ou seja, o quanto um atributo de uma região está relacionado ao mesmo atributo de regiões vizinhas. Para a análise a seguir será utilizado o índice de autocorrelação espacial *Moran's I*.
 
 O índice Moran's I é o indicador mais utilizado atualmente e funciona de forma similar a *Correlação de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).
+
+# Abordagem
+
+Para a análise de autocorrelação espacial utilizando o índice *Moran's I*, utilizou-se a amostra da semana **26-Abr-2020 a 02-Mai-2020** dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.  
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png)
  
+A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distancia, dado que existem muitos polígonos sem contiguidade com outros. Nas imagens abaixo observam-se os *connectivity graphs* de cada uma delas. 
+
+### Matriz de Vizinhança 1
+Para essa matriz utilizou-se uma largura de banda de 5.7 e distancia euclidiana.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png)
+
+### Matriz de Vizinhança 2
+Para essa matriz utilizou-se kernel variável com largura de banda de 5.7 e função de decaimento gaussiano.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/spatial-weights-matrix.png)
+
+### Matriz de Vizinhança 3
+Para essa matriz utilizou-se um KNN com 3 vizinhos.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png)
+
+### Matriz de Vizinhança 4
+Para essa matriz utilizou-se um KNN com 4 vizinhos.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png)
+
+### Matriz de Vizinhança 5
+Para essa matriz utilizou-se um KNN com 6 vizinhos.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png)
+
+### Matriz de Vizinhança 6
+Para essa matriz utilizou-se um KNN com 8 vizinhos.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png)
+
 # Exploration 1
 
 Describe your exploration 1 here, including some plots, tables or any resource used.
