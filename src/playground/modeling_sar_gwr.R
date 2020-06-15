@@ -21,7 +21,6 @@ library(spgwr)
 
 # libraries for plots and visualization
 library(RColorBrewer)
-library(tmap)
 library(ggplot2)
 library(ggExtra)
 
