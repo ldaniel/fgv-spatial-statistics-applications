@@ -32,6 +32,12 @@ library(geojsonio)
 source("./src/util/auxiliary_functions.R")
 ```
 
+# Introdução
+
+A autocorrelação espacial é uma técnica da análise exploratória espacial que caracteriza a dependência de atributos no espaço, ou seja, o quanto um atributo de uma região está relacionado ao mesmo atributo de regiões vizinhas. Para a análise a seguir será utilizado o índice de autocorrelação espacial *Moran's I*.
+
+O índice Moran's I é o indicador mais utilizado atualmente e funciona de forma similar a *Correlação de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).
+ 
 # Exploration 1
 
 Describe your exploration 1 here, including some plots, tables or any resource used.
