@@ -40,71 +40,83 @@ O índice Moran's I é o indicador mais utilizado atualmente e funciona de forma s
 
 # Abordagem
 
-Para a análise de autocorrelação espacial utilizando o índice *Moran's I*, utilizou-se a amostra da semana **26-Abr-2020 a 02-Mai-2020** dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.  
+Para a análise de autocorrelação espacial com o índice *Moran's I*, utilizou-se o atributo *PcMedRev (Preço Médio de Revenda)* da amostra da semana **26-Abr-2020 a 02-Mai-2020** dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png)
  
-A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distancia, dado que existem muitos polígonos sem contiguidade com outros. Nas imagens abaixo observam-se os *connectivity graphs* de cada uma delas. 
+A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distância, dado que existem muitos polígonos sem contiguidade com outros. Na seção seguinte observam-se os *connectivity graphs* de cada uma delas e análises desenvolvidas. 
 
-### Matriz de Vizinhança 1
-Para essa matriz utilizou-se uma largura de banda de 5.7 e distancia euclidiana.
+# Análises
+
+## Primeira Análise
+
+### Matriz de Vizinhança
+
+Para esta primeira análise desenvolveu-se uma matriz de vizinhança por distância, com largura de banda de 5.7 e distância euclidiana. Nota-se que a matriz ficou bastante densa onde há concentração maior de polígonos, isso se deve ao fato de existirem municípios com centenas de vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png)
 
-### Matriz de Vizinhança 2
+### Autocorrelação Espacial
+
+Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorrelação espacial, ou seja, significa dizer que 15.2% a variação do preço médio de revenda é explicado pela geografia. Apesar de mais da metade dos municípios terem um p-valor significante, a autocorrelação alcançou um valor baixo, o que pode estar relacionado à sua matriz de vizinhança devido ao grande número de vizinhos como comentado anteriormente.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/morans-i.png)
+
+## Segunda Análise
+
+### Matriz de Vizinhança
 Para essa matriz utilizou-se kernel variável com largura de banda de 5.7 e função de decaimento gaussiano.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/spatial-weights-matrix.png)
 
-### Matriz de Vizinhança 3
+### Autocorrelação Espacial
+
+Descrever autocorrelação espacial aqui.
+
+## Terceira Análise
+
+### Matriz de Vizinhança
 Para essa matriz utilizou-se um KNN com 3 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png)
 
-### Matriz de Vizinhança 4
+### Autocorrelação Espacial
+
+Descrever autocorrelação espacial aqui.
+
+## Quarta Análise
+
+### Matriz de Vizinhança 
 Para essa matriz utilizou-se um KNN com 4 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png)
+
+### Autocorrelação Espacial
+
+Descrever autocorrelação espacial aqui.
+
+## Quinta Análise
 
 ### Matriz de Vizinhança 5
 Para essa matriz utilizou-se um KNN com 6 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png)
 
-### Matriz de Vizinhança 6
+### Autocorrelação Espacial
+
+Descrever autocorrelação espacial aqui.
+
+## Sexta Análise
+
+### Matriz de Vizinhança
 Para essa matriz utilizou-se um KNN com 8 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png)
 
-# Exploration 1
+### Autocorrelação Espacial
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
-
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
-```
-
-# Exploration 2
-
-Describe your exploration 2 here, including some plots, tables or any resource used.
-
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
-
-
-# Exploration 3
-
-Describe your exploration 3 here, including some plots, tables or any resource used.
-
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
-
-# Exploration n
-
-Describe your exploration n here, including some plots, tables or any resource used.
-
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+Descrever autocorrelação espacial aqui. 
