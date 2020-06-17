@@ -36,7 +36,7 @@ source("./src/util/auxiliary_functions.R")
 
 A autocorrelação espacial é uma técnica da análise exploratória espacial que caracteriza a dependência de atributos no espaço, ou seja, o quanto um atributo de uma região está relacionado ao mesmo atributo de regiões vizinhas. Para a análise a seguir será utilizado o índice de autocorrelação espacial *Moran's I*.
 
-O índice Moran's I é o indicador mais utilizado atualmente e funciona de forma similar a *Correlação de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).
+O índice *Moran's I* é o indicador mais utilizado atualmente e funciona de forma similar a *Correlação de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).
 
 # Abordagem
 
@@ -69,7 +69,7 @@ Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorre
 ## Segunda Análise
 
 ### Matriz de Vizinhança
-Na segunda análise desenvolveu-se uma matriz de vizinhança utilizando kernel adaptativo com 8 vizinhos e função de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da análise anterior, um equilíbrio maior no número de ligações. 
+Na segunda análise desenvolveu-se uma matriz de vizinhança utilizando kernel adaptativo com 8 vizinhos e função de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da análise anterior, existe um equilíbrio maior no número de ligações. 
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/spatial-weights-matrix.png)
 
@@ -126,7 +126,7 @@ Para esta quinta análise desenvolveu-se uma matriz de vizinhança utilizando KNN 
 
 ### Autocorrelação Espacial
 
-É possível observar no gráfico de dispersão do *Moran's I* um valor de .55 para autocorrelação espacial, ou seja, significa dizer que 55% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 201 municípios tem p-valor significante, ou seja, em comparação com os KNNs anteriores, ao se aumentar o número de vizinhos o número de municípios significantes também aumenta, em contrapartida o *Moran's I* diminui.
+É possível observar no gráfico de dispersão do *Moran's I* um valor de .55 para autocorrelação espacial, ou seja, significa dizer que 55% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 201 municípios tem p-valor significante, ou seja, em comparação com os KNNs anteriores, ao se aumentar o número de vizinhos, o número de municípios significantes também aumenta, em contrapartida o *Moran's I* diminui.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-significance-map.png)
 
@@ -152,3 +152,5 @@ Para esta sexta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/morans-i.png)
 
 # Conclusão
+
+A análise de autocorrelação espacial do preço médio de revenda da gasolina desenvolvida neste trabalho mostrou que existe uma dependência espacial significativa na amostra de municípios usada, variando no intervalo de 52% à 60% do *Moran's I* para matrizes de vizinhança entre 3 e 8 vizinhos, com e sem kernel adaptativo. Utilizando uma matriz baseada em largura de banda, o índice de autocorrelação diminui de forma acentuada, dado que para o software usado (*GeoDa*), com o menor valor posível de largura de banda (5.7) foi gerado uma matriz com ligações excessivas, alguns municípios chegando na casa das centenas de vizinhos. Portanto acredita-se que esse fato tenha impactado no índice de autocorrelação. Matrizes de vizinhança por contiguidade não foram analisadas já que muitos municípios não teriam vizinhos, tornando essa opção ineficaz para esta análise.
