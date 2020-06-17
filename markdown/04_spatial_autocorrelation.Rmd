@@ -71,17 +71,17 @@ Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorre
 ### Matriz de Vizinhança
 Na segunda análise desenvolveu-se uma matriz de vizinhança utilizando kernel adaptativo com 8 vizinhos e função de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da análise anterior, um equilíbrio maior no número de ligações. 
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/spatial-weights-matrix.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
 Observa-se no gráfico de dispersão do *Moran's I* um valor de .57 para autocorrelação espacial, ou seja, significa dizer que 57.6% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 242 municípios tem p-valor significante, e no *Lisa Cluster Map* padrões alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do país, indicando, em conjunto com o *Moran's I*, uma dependência espacial forte do atributo preço médio de revenda.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/lisa-significance-map.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-significance-map.png)
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/lisa-cluster-map.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-cluster-map.png)
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/morans-i.png)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/morans-i.png)
 
 ## Terceira Análise
 
@@ -92,18 +92,30 @@ Para esta terceira análise desenvolveu-se uma matriz de vizinhança utilizando KN
 
 ### Autocorrelação Espacial
 
-Descrever autocorrelação espacial aqui.
+Observa-se no gráfico de dispersão do *Moran's I* um valor de .60 para autocorrelação espacial, ou seja, significa dizer que 60.3% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 123 municípios tem p-valor significante, e no *Lisa Cluster Map* padrões alto-alto, baixo-baixo nas mesmas áreas das análises anteriores, indicando, em conjunto com o *Moran's I*, uma dependência espacial forte do atributo preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/morans-i.png)
 
 ## Quarta Análise
 
 ### Matriz de Vizinhança 
-Para essa matriz utilizou-se um KNN com 4 vizinhos.
+Para esta quarta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (*k-nearest neighbors*) com 4 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
-Descrever autocorrelação espacial aqui.
+Observa-se no gráfico de dispersão do *Moran's I* um valor de .58 para autocorrelação espacial, ou seja, significa dizer que 58.8% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 156 municípios tem p-valor significante, e no *Lisa Cluster Map* padrões similares das análises anteriores, indicando, em conjunto com o *Moran's I*, uma dependência espacial ainda forte do atributo preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/morans-i.png)
 
 ## Quinta Análise
 
