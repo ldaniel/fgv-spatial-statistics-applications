@@ -120,21 +120,35 @@ Observa-se no gráfico de dispersão do *Moran's I* um valor de .58 para autocorre
 ## Quinta Análise
 
 ### Matriz de Vizinhança 5
-Para essa matriz utilizou-se um KNN com 6 vizinhos.
+Para esta quinta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (*k-nearest neighbors*) com 6 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
-Descrever autocorrelação espacial aqui.
+É possível observar no gráfico de dispersão do *Moran's I* um valor de .55 para autocorrelação espacial, ou seja, significa dizer que 55% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 201 municípios tem p-valor significante, ou seja, em comparação com os KNNs anteriores, ao se aumentar o número de vizinhos o número de municípios significantes também aumenta, em contrapartida o *Moran's I* diminui.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/morans-i.png)
 
 ## Sexta Análise
 
 ### Matriz de Vizinhança
-Para essa matriz utilizou-se um KNN com 8 vizinhos.
+Para esta sexta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (*k-nearest neighbors*) com 8 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
-Descrever autocorrelação espacial aqui. 
+É possível observar no gráfico de dispersão do *Moran's I* um valor de .52 para autocorrelação espacial, ou seja, significa dizer que 52.2% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 232 municípios tem p-valor significante, corroborando o que foi dito anteriormente sobre o aumento do número de vizinhos. Apesar disso, o *Moran's I* ainda alcançou um valor interessante para este estudo.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/morans-i.png)
+
+# Conclusão
