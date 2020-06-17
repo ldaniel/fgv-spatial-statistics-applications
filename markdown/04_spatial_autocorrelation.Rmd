@@ -52,13 +52,13 @@ A partir dessa amostra, composta por 458 munícipios como é possível observar na 
 
 ### Matriz de Vizinhança
 
-Para esta primeira análise desenvolveu-se uma matriz de vizinhança por distância, com largura de banda de 5.7 e distância euclidiana. Nota-se que a matriz ficou bastante densa onde há concentração maior de polígonos, isso se deve ao fato de existirem municípios com centenas de vizinhos.
+Para esta primeira análise desenvolveu-se uma matriz de vizinhança por distância, com largura de banda de 5.7 e distância euclidiana. Nota-se pelo seu *connectivity graph* que a matriz ficou bastante densa onde há concentração maior de polígonos, isso se deve ao fato de existirem municípios com centenas de vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
-Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorrelação espacial, ou seja, significa dizer que 15.2% a variação do preço médio de revenda é explicado pela geografia. Apesar de mais da metade dos municípios terem um p-valor significante, a autocorrelação alcançou um valor baixo, o que pode estar relacionado à sua matriz de vizinhança devido ao grande número de vizinhos como comentado anteriormente.
+Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorrelação espacial, ou seja, significa dizer que 15.2% da variação do preço médio de revenda é explicado pela geografia. Apesar de mais da metade dos municípios terem um p-valor significante, a autocorrelação alcançou um valor baixo, o que pode estar relacionado à sua matriz de vizinhança devido ao grande número de vizinhos como comentado anteriormente.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-significance-map.png)
 
@@ -69,18 +69,24 @@ Observa-se no gráfico de dispersão do *Moran's I* um valor de .15 para autocorre
 ## Segunda Análise
 
 ### Matriz de Vizinhança
-Para essa matriz utilizou-se kernel variável com largura de banda de 5.7 e função de decaimento gaussiano.
+Na segunda análise desenvolveu-se uma matriz de vizinhança utilizando kernel adaptativo com 8 vizinhos e função de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da análise anterior, um equilíbrio maior no número de ligações. 
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/spatial-weights-matrix.png)
 
 ### Autocorrelação Espacial
 
-Descrever autocorrelação espacial aqui.
+Observa-se no gráfico de dispersão do *Moran's I* um valor de .57 para autocorrelação espacial, ou seja, significa dizer que 57.6% da variação do preço médio de revenda é explicado pela geografia. Observa-se no *Lisa Significance Map* que 242 municípios tem p-valor significante, e no *Lisa Cluster Map* padrões alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do país, indicando, em conjunto com o *Moran's I*, uma dependência espacial forte do atributo preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/lisa-significance-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/lisa-cluster-map.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian5bw/morans-i.png)
 
 ## Terceira Análise
 
 ### Matriz de Vizinhança
-Para essa matriz utilizou-se um KNN com 3 vizinhos.
+Para esta terceira análise desenvolveu-se uma matriz de vizinhança utilizando KNN (*k-nearest neighbors*) com 3 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png)
 
