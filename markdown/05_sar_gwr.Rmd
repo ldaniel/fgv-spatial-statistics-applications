@@ -4,7 +4,7 @@ date: "Junho de 2020"
 
 output:
   html_document: 
-    number_sections: no
+    number_sections: yes
     toc: yes
     code_folding: hide
 ---
@@ -159,6 +159,15 @@ moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
 ## Implementando o modelo de regressão geograficamente ponderada (GWR) 
 
+O modelo GWR é um desenvolvimento de (1) para permitir aestimação dos coeficientes locais. No modelo GRW, assume-se que as informações mais próximas do ponto de regressão têm maior probabilidade de influenciá-lo.
+
+$$\gamma_i = \beta_0(u_i, v_i) + \sum_\kappa\beta_k (u_i, v_i) \chi_i\kappa + \varepsilon_i $$
+Na equação, $(u_i, v_i)$ são coordenadas do ponto $i$ no espaço (podem sercoordenadas polares, como latitudes e longitudes, por exemplo), $\beta_0(u_i, v_i)$ é o coeficiente local estimado para o ponto $i$.
+
+Tal ponderação é feita pela função Kernel espacial, que é uma função real, contínua e simétrica, cujaintegral soma um, semelhante a uma função de densidade de probabilidade. O Kernel espacial permite fazer a calibragem do modelo para $n$ subamostras em torno do ponto de regressão $i$, formando “janelas móveis”.
+
+O modelo GWR assume que os coeficientes variem no espaço, sem uma explicação teórica fundamental. Essa variação pressupõe um determinismo geográfico que pode esconder a verdadeira causa da eventual instabilidade dos coeficientes locais. Esta observação pontua a necessidade de um olhar geral, considerando todas as demais análises realizadas duranto o desenvolvimento deste projeto, para dar uma dimensão mais ampla sobre as obervações que estarão presentes no relatório final (conclusão).
+
 ```{r gwr_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
 coords <- cbind(target$X_COORD, target$Y_COORD)
@@ -238,6 +247,16 @@ moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 ```
 
 ## Implementando o modelo de regressão linear multivariado stepwise
+
+Chamamos de *stepwise* uma modificação da seleção *forward* em que cada passo todas as variáveis do modelo são previamente verificadas pelas suas estatísticas $F$ parciais. Uma variável adicionada no modelo no passo anterior pode ser redundante para o modelo por causa do seu relacionamento com as outras variáveis e se sua estatística $F$ parcial for menor que $F_{out}$, ela é removida do modelo.
+
+Procedimento:
+
+* Iniciamos com uma variável: aquela que tiver maior correlação com a variável resposta;
+* A cada passo do forward, depois de incluir uma variável, aplica-se o backward para ver se será descartada alguma variável;
+* Continuamos o processo até não incluir ou excluir nenhuma variável.
+
+Assim, a regressão Stepwise requer dois valores de corte: $ F_{in} $ e $ F_{out} $. Alguns autores preferem escolher $ F_{in}=F_{out} $ mas isso não é necessário. Se $ F_{in}\textless F_{out} $: mais difícil remover que adicionar; se $ F_{in}\textgreater F_{out} $: mais difícil adicionar que remover. 
 
 ```{r stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
@@ -332,6 +351,8 @@ summary(target.sar.model.stepwise)
 ```
 
 ## Implementando o modelo GWR com stepwise
+
+Para esta análise, será implementado o modelo GWR com *stepwise*.
 
 ```{r gwr_stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 

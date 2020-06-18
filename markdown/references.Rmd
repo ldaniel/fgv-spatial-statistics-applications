@@ -3,31 +3,26 @@ title: "References"
 date: "Junho de 2020"
 ---
 
-# References used in this class assigment.
+# Referências utilizadas para a elaboração e desenvolvimento deste trabalho
 
 ******************************************************
 
-## Theory
+## Livros e artigos
 
-### Books and articles
-
-- [**Title of the article 1**](http://www.url.com) --Author 1 name
-- [**Title of the article 2**](http://www.url.com) --Author 2 name
-- [**Title of the article n**](http://www.url.com) --Author n name
-
-### Wikipedia
-
-- [**Wikepedia article 1**](https://en.wikipedia.org/wiki/article) --Author 1 name
-- [**Wikepedia article 2**](https://en.wikipedia.org/wiki/article) --Author 2 name
-- [**Wikepedia article n**](https://en.wikipedia.org/wiki/article) --Author n name
-
+- [**Regressões geograficamente ponderadas**](https://edisciplinas.usp.br/pluginfile.php/4302556/mod_resource/content/0/Aula%209.pdf) --André Luis Squarize Chagas
+- [**Seleção Stepwise**](http://www.portalaction.com.br/analise-de-regressao/2723-selecao-stepwise) --Portal Action
+- [**Tipos de visuais no Power BI**](https://docs.microsoft.com/pt-br/power-bi/consumer/end-user-visual-type) --Microsoft
+- [**Autocorrelação espacial**](https://edisciplinas.usp.br/pluginfile.php/4129212/mod_resource/content/1/Depend%C3%AAncia%20espacial.pdf) --Owsvaldo Santos Baquero
+- [**How to embed http websites in your R presentation?**](https://medium.com/@slowpenscience/how-to-embed-http-websites-in-your-r-presentation-f2b2bcb7a277) --Brice Beffara
+- [**Indicadores de autocorrelação local (exemplo do município de São Paulo**](http://www.dpi.inpe.br/cursos/ser301/trabalhos/fred_lisa.pdf) --DPI (Divisão de Processamento de Imagens do INPE)
+- [**Markdown cheat sheet**](https://paperhive.org/help/markdown) --Paper Hive
+- [**Power BI: O que é e para que serve**](https://www.voitto.com.br/blog/artigo/o-que-e-power-bi) --Maytê Pereira
 
 ******************************************************
 
-## Awesome functions from the community
+## Funções e bibliotecas da comunidade de R
 
-Some awesome functions we found in ***The Internet*** and adapted for this class assignment.
+Algumas referências deste trabalho são baseadas no excelente material produzido pela comunidade de R ao redor do mundo. Exemplos de implementações foram adaptadas para as necessidades deste trabalho.
 
-- [**Title of the functions 1**](http://www.url.com) --Author 1 name
-- [**Title of the functions 2**](http://www.url.com) --Author 2 name
-- [**Title of the functions n**](http://www.url.com) --Author n name
+- [**FGVR**](https://github.com/ldaniel/fgvr) --Leandro Daniel, Rodrigo Gonçalves e Daniel Campos
+- [**Spatial-Statistics**](https://github.com/ldaniel/Spatial-Statistics) --Leandro Daniel, Rodrigo Gonçalves, Daniel Campos e Ygor Lima
