@@ -256,7 +256,7 @@ Procedimento:
 * A cada passo do forward, depois de incluir uma variável, aplica-se o backward para ver se será descartada alguma variável;
 * Continuamos o processo até não incluir ou excluir nenhuma variável.
 
-Assim, a regressão Stepwise requer dois valores de corte: $ F_{in} $ e $ F_{out} $. Alguns autores preferem escolher $ F_{in}=F_{out} $ mas isso não é necessário. Se $ F_{in}\textless F_{out} $: mais difícil remover que adicionar; se $ F_{in}\textgreater F_{out} $: mais difícil adicionar que remover. 
+Assim, a regressão Stepwise requer dois valores de corte: $F_{in}$ e $F_{out}$. Alguns autores preferem escolher $F_{in}=F_{out}$ mas isso não é necessário. Se $F_{in} < F_{out}$: mais difícil remover que adicionar; se $F_{in} > F_{out}$: mais difícil adicionar que remover. 
 
 ```{r stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
 
