@@ -17,6 +17,8 @@ date: "Junho de 2020"
 - [**Indicadores de autocorrelação local (exemplo do município de São Paulo**](http://www.dpi.inpe.br/cursos/ser301/trabalhos/fred_lisa.pdf) --DPI (Divisão de Processamento de Imagens do INPE)
 - [**Markdown cheat sheet**](https://paperhive.org/help/markdown) --Paper Hive
 - [**Power BI: O que é e para que serve**](https://www.voitto.com.br/blog/artigo/o-que-e-power-bi) --Maytê Pereira
+- [**Análise Espacial de Dados Geográficos**](http://www.dpi.inpe.br/gilberto/livro/analise/cap5-areas.pdf) --Marília Sá Carvalho, Gilberto Câmara, Oswaldo Gonçalves Cruz, Virgínia Correa
+- [**GeoDa Documentation**](https://geodacenter.github.io/documentation.html) --Luc Anselin
 
 ******************************************************
 
