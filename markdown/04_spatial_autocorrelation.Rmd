@@ -3,62 +3,33 @@ title: "Avaliando a Autocorrela√ß√£o Espacial"
 date: "Junho de 2020"
 ---
 
-```{r setup_exploration, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.pos =  "h")
-knitr::opts_knit$set(root.dir = "../")
+# Introdu√ß√£o
 
-# loading required libraries
-library(rmarkdown)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
-library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
-library(knitr)
-library(leaflet)
-library(geojsonio)
-```
+A autocorrela√ß√£o espacial √© uma t√©cnica da an√°lise explorat√≥ria espacial que caracteriza a depend√™ncia de atributos no espa√ßo, ou seja, o quanto um atributo de uma regi√£o est√° relacionado ao mesmo atributo de regi√µes vizinhas. Para a an√°lise a seguir ser√° utilizado o √≠ndice de autocorrela√ß√£o espacial *Moran's I*.
 
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-```
-
-# IntroduÁ„o
-
-A autocorrelaÁ„o espacial È uma tÈcnica da an·lise exploratÛria espacial que caracteriza a dependÍncia de atributos no espaÁo, ou seja, o quanto um atributo de uma regi„o est· relacionado ao mesmo atributo de regiıes vizinhas. Para a an·lise a seguir ser· utilizado o Ìndice de autocorrelaÁ„o espacial *Moran's I*.
-
-O Ìndice *Moran's I* È o indicador mais utilizado atualmente e funciona de forma similar a *CorrelaÁ„o de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados prÛximos a esses valores existem alta autocorrelaÁ„o espacial (TendÍncia a clusterizaÁ„o), e para resultados prÛximos a 0 n„o existem autocorrelaÁ„o espacial (Padrıes aleatÛrios).
+O √≠ndice *Moran's I* √© o indicador mais utilizado atualmente e funciona de forma similar a *Correla√ß√£o de Pearson*, onde o valor varia entre -1 e 1, significando que para resultados pr√≥ximos a esses valores existem alta autocorrela√ß√£o espacial (Tend√™ncia a clusteriza√ß√£o), e para resultados pr√≥ximos a 0 n√£o existem autocorrela√ß√£o espacial (Padr√µes aleat√≥rios).
 
 # Abordagem
 
-Para a an·lise de autocorrelaÁ„o espacial com o Ìndice *Moran's I*, utilizou-se o atributo *PcMedRev (PreÁo MÈdio de Revenda)* da amostra da semana **26-Abr-2020 a 02-Mai-2020** dos dados do Levantamento de PreÁos e de Margens de ComercializaÁ„o de CombustÌveis realizado pela ANP.
+Para a an√°lise de autocorrela√ß√£o espacial com o √≠ndice *Moran's I*, utilizou-se o atributo *PcMedRev (Pre√ßo M√©dio de Revenda)* da amostra da semana **26-Abr-2020 a 02-Mai-2020** dos dados do Levantamento de Pre√ßos e de Margens de Comercializa√ß√£o de Combust√≠veis realizado pela ANP.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png)
  
-A partir dessa amostra, composta por 458 munÌcipios como È possÌvel observar na imagem acima, contruiu-se 6 matrizes de vizinhanÁa com intuito de avaliar o resultado para diferentes configuraÁıes. Todas as matrizes foram construidas ponderadas pela dist‚ncia, dado que existem muitos polÌgonos sem contiguidade com outros. Na seÁ„o seguinte observam-se os *connectivity graphs* de cada uma delas e an·lises desenvolvidas. 
+A partir dessa amostra, composta por 458 mun√≠cipios como √© poss√≠vel observar na imagem acima, contruiu-se 6 matrizes de vizinhan√ßa com intuito de avaliar o resultado para diferentes configura√ß√µes. Todas as matrizes foram construidas ponderadas pela dist√¢ncia, dado que existem muitos pol√≠gonos sem contiguidade com outros. Na se√ß√£o seguinte observam-se os *connectivity graphs* de cada uma delas e an√°lises desenvolvidas. 
 
-# An·lises
+# An√°lises
 
-## Primeira An·lise
+## Primeira An√°lise
 
-### Matriz de VizinhanÁa
+### Matriz de Vizinhan√ßa
 
-Para esta primeira an·lise desenvolveu-se uma matriz de vizinhanÁa por dist‚ncia, com largura de banda de 5.7 e dist‚ncia euclidiana. Nota-se pelo seu *connectivity graph* que a matriz ficou bastante densa onde h· concentraÁ„o maior de polÌgonos, isso se deve ao fato de existirem municÌpios com centenas de vizinhos.
+Para esta primeira an√°lise desenvolveu-se uma matriz de vizinhan√ßa por dist√¢ncia, com largura de banda de 5.7 e dist√¢ncia euclidiana. Nota-se pelo seu *connectivity graph* que a matriz ficou bastante densa onde h√° concentra√ß√£o maior de pol√≠gonos, isso se deve ao fato de existirem munic√≠pios com centenas de vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .15 para autocorrelaÁ„o espacial, ou seja, significa dizer que 15.2% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Apesar de mais da metade dos municÌpios terem um p-valor significante, a autocorrelaÁ„o alcanÁou um valor baixo, o que pode estar relacionado ‡ sua matriz de vizinhanÁa devido ao grande n˙mero de vizinhos como comentado anteriormente.
+Observa-se no gr√°fico de dispers√£o do *Moran's I* um valor de .15 para autocorrela√ß√£o espacial, ou seja, significa dizer que 15.2% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Apesar de mais da metade dos munic√≠pios terem um p-valor significante, a autocorrela√ß√£o alcan√ßou um valor baixo, o que pode estar relacionado √† sua matriz de vizinhan√ßa devido ao grande n√∫mero de vizinhos como comentado anteriormente.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-significance-map.png)
 
@@ -66,16 +37,16 @@ Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .15 para autocorre
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/morans-i.png)
 
-## Segunda An·lise
+## Segunda An√°lise
 
-### Matriz de VizinhanÁa
-Na segunda an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando kernel adaptativo com 8 vizinhos e funÁ„o de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da an·lise anterior, existe um equilÌbrio maior no n˙mero de ligaÁıes. 
+### Matriz de Vizinhan√ßa
+Na segunda an√°lise desenvolveu-se uma matriz de vizinhan√ßa utilizando kernel adaptativo com 8 vizinhos e fun√ß√£o de decaimento gaussiano. Nota-se pelo seu *connectivity graph* que, comparado com a matriz da an√°lise anterior, existe um equil√≠brio maior no n√∫mero de liga√ß√µes. 
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .57 para autocorrelaÁ„o espacial, ou seja, significa dizer que 57.6% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Observa-se no *Lisa Significance Map* que 242 municÌpios tem p-valor significante, e no *Lisa Cluster Map* padrıes alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do paÌs, indicando, em conjunto com o *Moran's I*, uma dependÍncia espacial forte do atributo preÁo mÈdio de revenda.
+Observa-se no gr√°fico de dispers√£o do *Moran's I* um valor de .57 para autocorrela√ß√£o espacial, ou seja, significa dizer que 57.6% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Observa-se no *Lisa Significance Map* que 242 munic√≠pios tem p-valor significante, e no *Lisa Cluster Map* padr√µes alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do pa√≠s, indicando, em conjunto com o *Moran's I*, uma depend√™ncia espacial forte do atributo pre√ßo m√©dio de revenda.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-significance-map.png)
 
@@ -83,16 +54,16 @@ Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .57 para autocorre
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/morans-i.png)
 
-## Terceira An·lise
+## Terceira An√°lise
 
-### Matriz de VizinhanÁa
-Para esta terceira an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN (*k-nearest neighbors*) com 3 vizinhos.
+### Matriz de Vizinhan√ßa
+Para esta terceira an√°lise desenvolveu-se uma matriz de vizinhan√ßa utilizando KNN (*k-nearest neighbors*) com 3 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .60 para autocorrelaÁ„o espacial, ou seja, significa dizer que 60.3% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Observa-se no *Lisa Significance Map* que 123 municÌpios tem p-valor significante, e no *Lisa Cluster Map* padrıes alto-alto, baixo-baixo nas mesmas ·reas das an·lises anteriores, indicando, em conjunto com o *Moran's I*, uma dependÍncia espacial forte do atributo preÁo mÈdio de revenda.
+Observa-se no gr√°fico de dispers√£o do *Moran's I* um valor de .60 para autocorrela√ß√£o espacial, ou seja, significa dizer que 60.3% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Observa-se no *Lisa Significance Map* que 123 munic√≠pios tem p-valor significante, e no *Lisa Cluster Map* padr√µes alto-alto, baixo-baixo nas mesmas √°reas das an√°lises anteriores, indicando, em conjunto com o *Moran's I*, uma depend√™ncia espacial forte do atributo pre√ßo m√©dio de revenda.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-significance-map.png)
 
@@ -100,16 +71,16 @@ Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .60 para autocorre
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/morans-i.png)
 
-## Quarta An·lise
+## Quarta An√°lise
 
-### Matriz de VizinhanÁa 
-Para esta quarta an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN (*k-nearest neighbors*) com 4 vizinhos.
+### Matriz de Vizinhan√ßa 
+Para esta quarta an√°lise desenvolveu-se uma matriz de vizinhan√ßa utilizando KNN (*k-nearest neighbors*) com 4 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .58 para autocorrelaÁ„o espacial, ou seja, significa dizer que 58.8% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Observa-se no *Lisa Significance Map* que 156 municÌpios tem p-valor significante, e no *Lisa Cluster Map* padrıes similares das an·lises anteriores, indicando, em conjunto com o *Moran's I*, uma dependÍncia espacial ainda forte do atributo preÁo mÈdio de revenda.
+Observa-se no gr√°fico de dispers√£o do *Moran's I* um valor de .58 para autocorrela√ß√£o espacial, ou seja, significa dizer que 58.8% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Observa-se no *Lisa Significance Map* que 156 munic√≠pios tem p-valor significante, e no *Lisa Cluster Map* padr√µes similares das an√°lises anteriores, indicando, em conjunto com o *Moran's I*, uma depend√™ncia espacial ainda forte do atributo pre√ßo m√©dio de revenda.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-significance-map.png)
 
@@ -117,16 +88,16 @@ Observa-se no gr·fico de dispers„o do *Moran's I* um valor de .58 para autocorre
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/morans-i.png)
 
-## Quinta An·lise
+## Quinta An√°lise
 
-### Matriz de VizinhanÁa 5
-Para esta quinta an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN (*k-nearest neighbors*) com 6 vizinhos.
+### Matriz de Vizinhan√ßa 5
+Para esta quinta an√°lise desenvolveu-se uma matriz de vizinhan√ßa utilizando KNN (*k-nearest neighbors*) com 6 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-… possÌvel observar no gr·fico de dispers„o do *Moran's I* um valor de .55 para autocorrelaÁ„o espacial, ou seja, significa dizer que 55% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Observa-se no *Lisa Significance Map* que 201 municÌpios tem p-valor significante, ou seja, em comparaÁ„o com os KNNs anteriores, ao se aumentar o n˙mero de vizinhos, o n˙mero de municÌpios significantes tambÈm aumenta, em contrapartida o *Moran's I* diminui.
+√â poss√≠vel observar no gr√°fico de dispers√£o do *Moran's I* um valor de .55 para autocorrela√ß√£o espacial, ou seja, significa dizer que 55% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Observa-se no *Lisa Significance Map* que 201 munic√≠pios tem p-valor significante, ou seja, em compara√ß√£o com os KNNs anteriores, ao se aumentar o n√∫mero de vizinhos, o n√∫mero de munic√≠pios significantes tamb√©m aumenta, em contrapartida o *Moran's I* diminui.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-significance-map.png)
 
@@ -134,16 +105,16 @@ Para esta quinta an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN 
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/morans-i.png)
 
-## Sexta An·lise
+## Sexta An√°lise
 
-### Matriz de VizinhanÁa
-Para esta sexta an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN (*k-nearest neighbors*) com 8 vizinhos.
+### Matriz de Vizinhan√ßa
+Para esta sexta an√°lise desenvolveu-se uma matriz de vizinhan√ßa utilizando KNN (*k-nearest neighbors*) com 8 vizinhos.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png)
 
-### AutocorrelaÁ„o Espacial
+### Autocorrela√ß√£o Espacial
 
-… possÌvel observar no gr·fico de dispers„o do *Moran's I* um valor de .52 para autocorrelaÁ„o espacial, ou seja, significa dizer que 52.2% da variaÁ„o do preÁo mÈdio de revenda È explicado pela geografia. Observa-se no *Lisa Significance Map* que 232 municÌpios tem p-valor significante, corroborando o que foi dito anteriormente sobre o aumento do n˙mero de vizinhos. Apesar disso, o *Moran's I* ainda alcanÁou um valor interessante para este estudo.
+√â poss√≠vel observar no gr√°fico de dispers√£o do *Moran's I* um valor de .52 para autocorrela√ß√£o espacial, ou seja, significa dizer que 52.2% da varia√ß√£o do pre√ßo m√©dio de revenda √© explicado pela geografia. Observa-se no *Lisa Significance Map* que 232 munic√≠pios tem p-valor significante, corroborando o que foi dito anteriormente sobre o aumento do n√∫mero de vizinhos. Apesar disso, o *Moran's I* ainda alcan√ßou um valor interessante para este estudo.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-significance-map.png)
 
@@ -151,6 +122,10 @@ Para esta sexta an·lise desenvolveu-se uma matriz de vizinhanÁa utilizando KNN (
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/morans-i.png)
 
-# Conclus„o
+# Observa√ß√µes acerca das an√°lises realizadas
 
-A an·lise de autocorrelaÁ„o espacial do preÁo mÈdio de revenda da gasolina desenvolvida neste trabalho mostrou que existe uma dependÍncia espacial significativa na amostra de municÌpios usada, variando no intervalo de 52% ‡ 60% do *Moran's I* para matrizes de vizinhanÁa entre 3 e 8 vizinhos, com e sem kernel adaptativo. Utilizando uma matriz baseada em largura de banda, o Ìndice de autocorrelaÁ„o diminui de forma acentuada, dado que para o software usado (*GeoDa*), com o menor valor posÌvel de largura de banda (5.7) foi gerado uma matriz com ligaÁıes excessivas, alguns municÌpios chegando na casa das centenas de vizinhos. Portanto acredita-se que esse fato tenha impactado no Ìndice de autocorrelaÁ„o. Matrizes de vizinhanÁa por contiguidade n„o foram analisadas j· que muitos municÌpios n„o teriam vizinhos, tornando essa opÁ„o ineficaz para esta an·lise.
+A an√°lise de autocorrela√ß√£o espacial do pre√ßo m√©dio de revenda da gasolina desenvolvida neste trabalho mostrou que existe uma depend√™ncia espacial significativa na amostra de munic√≠pios usada, variando no intervalo de 52% √† 60% do *Moran's I* para matrizes de vizinhan√ßa entre 3 e 8 vizinhos, com e sem kernel adaptativo. 
+
+Utilizando uma matriz baseada em largura de banda, o √≠ndice de autocorrela√ß√£o diminui de forma acentuada, dado que para o software usado (*GeoDa*), com o menor valor pos√≠vel de largura de banda (5.7) foi gerado uma matriz com liga√ß√µes excessivas, alguns munic√≠pios chegando na casa das centenas de vizinhos. 
+
+Portanto acredita-se que esse fato tenha impactado no √≠ndice de autocorrela√ß√£o. Matrizes de vizinhan√ßa por contiguidade n√£o foram analisadas j√° que muitos munic√≠pios n√£o teriam vizinhos, tornando essa op√ß√£o ineficaz para esta an√°lise.
