@@ -32,35 +32,87 @@ library(geojsonio)
 source("./src/util/auxiliary_functions.R")
 ```
 
-# Exploration 1
+# O que é o GeoDa ?
 
-Describe your exploration 1 here, including some plots, tables or any resource used.
+O GeoDa é uma ferramenta para exploração de dados espaciais desenvolvida pelo Dr. Luc Anselin e sua equipe no *Center for Spatial Data Science (CSDS)* da *University of Chicago*. O software oferece uma interface intuitiva e diversas funcionalidades para exploração de dados, tais como: mapas temáticos, análise de cluster, join espacial, modelagem espacial, autocorrelação espacial e outros. O GeoDa é um projeto *Open Source* e está disponível para Windows, Linux e Mac. 
 
-```{r exploration_target_1, echo=TRUE, out.width = '100%'}
-# your code with the exploration 1 goes here
-```
+Na seção 2 serão apresentados alguns mapas temáticos gerados para este estudo.
 
-# Exploration 2
+# Visualizações
 
-Describe your exploration 2 here, including some plots, tables or any resource used.
+## *Unique value map*
 
-```{r exploration_target_2, echo=TRUE, out.width = '100%'}
-# your code with the exploration 2 goes here
-```
+O *Unique value map* é uma opção para visualização de variáveis categóricas no mapa. Para este caso é possível observar na imagem abaixo como ficaram distribuídos a amostra de municípios utilizando a variável *região*.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/unique-value-map-regiao.png)
+
+## *Box map*
+
+O *box map*  foi concebido à partir da ideia do gráfico boxplot, ou seja, separando-se as observações por quartil. Além dos 4 quartis, é possível caracterizar mais duas separações, o *lower outlier* e o *upper outlier*, que servem para identificar *outliers* no mapa. Para este estudo, produziram-se os 3 mapas abaixo para preço médio de revenda, PIB de 2016 e de 2017.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pcmedrev-hinge1.5.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2016-hinge1.5.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2017-hinge1.5.png)
+
+## *Percentile map* 
+
+Como o *box map*, o *percentile map* foi concebido para identificar observações extremas no mapa (*outliers*), separando os dados nos percentis: < 1%, 1% - 10%, 10% - 50%, 50% - 90%, 90% - 99%, > 99%. Para este estudo, produziram-se os mapas para margem média de revenda e população.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-mgmedrev.png)
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-popest.png)
+
+## *Cartogram*
+
+O *cartogram* é um mapa que utiliza uma forma geométrica (círculo para o caso do GeoDa) para representar um polígono, sendo o tamanho e cor relativos à atributos daquele polígono. É importante observar que os posicionamentos dos círculos são gerados por um algoritmo de otimização não linear que tenta alocar o centro do círculo o mais próximo possível do centróide do polígono correspondente. Para este estudo gerou-se um *cartogram* onde:
+
+- Tamanho do círculo: população;
+- Cor: preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/cartogram-size-popest-color-pcmedrev.png)
+
+## *Conditional map*
+
+Também conhecido como *conditioned choropleth map* e *micromap matrix*, o *conditional map* proporciona visualizações baseadas condicionalmente em 2 variáveis, e uma terceira variável como tema do mapa, ou seja, os eixos x e y representam as variáveis condicionais e o mapa é um box map da tarceira variável. Para este estudo produziram-se os seguintes mapas:
+
+- Mapa 1 
 
 
-# Exploration 3
+&nbsp;
+Condicionais: preço médio de revenda, número de postos pesquisados;
 
-Describe your exploration 3 here, including some plots, tables or any resource used.
 
-```{r exploration_target_3, echo=TRUE, out.width = '100%'}
-# your code with the exploration 3 goes here
-```
+&nbsp;
+Tema: margem média de revenda.
 
-# Exploration n
 
-Describe your exploration n here, including some plots, tables or any resource used.
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-pcmedrev-nmpostpesq-mgmedrev.png)
 
-```{r exploration_target_n, echo=TRUE, out.width = '100%'}
-# your code with the exploration n goes here
-```
+- Mapa 2 
+
+
+&nbsp;
+Condicionais: PIB e PIB per capita de 2017;
+
+
+&nbsp;
+Tema: preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-pib2017-pibcap2017-pcmedrev.png)
+
+- Mapa 3 
+
+
+&nbsp;
+Condicionais: distância média da refinaria, distância média do distribuidor;
+
+
+&nbsp;
+Tema: preço médio de revenda.
+
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-refinmean-distmean-pcmedrev.png)
+
+
+
