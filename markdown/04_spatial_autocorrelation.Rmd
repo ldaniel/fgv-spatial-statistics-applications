@@ -15,7 +15,11 @@ Para a análise de autocorrelação espacial com o índice *Moran's I*, utilizou
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png)
  
-A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distância, dado que existem muitos polígonos sem contiguidade com outros. Na seção seguinte observam-se os *connectivity graphs* de cada uma delas e análises desenvolvidas. 
+A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distância, dado que existem muitos polígonos sem contiguidade com outros. Na seção seguinte observam-se os *connectivity graphs* de cada uma delas e análises desenvolvidas.
+
+## Arquivos com as matrizes de vizinha
+
+As análises de autocorrelação foram realizadas na ferramenta [GeoDa](https://ldaniel.github.io/Spatial-Statistics-Applications/viz_geoda.html), utilizando o **shapefile** [gas_prices_hist](https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/data/processed/gas_prices_hist) e com as matrizes de vizinhança disponíveis no  [GitHub](https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/visualizations/spatialautocorrelation).
 
 # Análises
 

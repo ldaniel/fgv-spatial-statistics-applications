@@ -109,6 +109,110 @@ par(mar = c(2, 0, 4, 0))
 
 ```
 
+## Implementando o modelo de regressão linear multivariado stepwise
+
+Chamamos de *stepwise* uma modificação da seleção *forward* em que cada passo todas as variáveis do modelo são previamente verificadas pelas suas estatísticas $F$ parciais. Uma variável adicionada no modelo no passo anterior pode ser redundante para o modelo por causa do seu relacionamento com as outras variáveis e se sua estatística $F$ parcial for menor que $F_{out}$, ela é removida do modelo.
+
+Procedimento:
+
+* Iniciamos com uma variável: aquela que tiver maior correlação com a variável resposta;
+* A cada passo do forward, depois de incluir uma variável, aplica-se o backward para ver se será descartada alguma variável;
+* Continuamos o processo até não incluir ou excluir nenhuma variável.
+
+Assim, a regressão Stepwise requer dois valores de corte: $F_{in}$ e $F_{out}$. Alguns autores preferem escolher $F_{in}=F_{out}$ mas isso não é necessário. Se $F_{in} < F_{out}$: mais difícil remover que adicionar; se $F_{in} > F_{out}$: mais difícil adicionar que remover. 
+
+```{r stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+
+# initial exploration in PcMedRev x DistMean
+pcmedrev_by_DistMean_plot <- ggplot(data = target@data, 
+                                    aes(x = target$DistMean,
+                                        y = target$PcMedRev,
+                                        color = target$DistMean)) +
+  geom_point() +
+  theme(legend.position = "none") +
+  xlab("DistMean") +
+  ylab("PcMedRev")
+
+ggMarginal(pcmedrev_by_DistMean_plot, type = "histogram")
+
+# runing the linear model multivaluated and looking at the residuals
+target.ols.model <- lm(PcMedRev ~ 
+                         DistMean +
+                         DistDev +
+                         DistMin +
+                         RefinMean +
+                         RefinDev +
+                         RefinMin +
+                         RefinMax +
+                         ChgPIB +
+                         ChgPIBCap, 
+                       data = target)
+
+summary(target.ols.model)
+
+target$resid <- residuals(target.ols.model)
+spplot(target, "resid", main = "Residuals")
+
+# runing the lm multivaluated model
+target.lm.multivaluated.model <- lm(PcMedRev ~ 
+                                      DistMean +
+                                      DistDev +
+                                      DistMin +
+                                      RefinMean +
+                                      RefinDev +
+                                      RefinMin +
+                                      RefinMax +
+                                      ChgPIB +
+                                      ChgPIBCap, 
+                                    data = target)
+
+summary(target.lm.multivaluated.model)
+
+# performing the stepwise selection
+target.sar.model.stepwise <- step(target.lm.multivaluated.model, 
+                                  direction = "both", 
+                                  test = "F")
+
+summary(target.sar.model.stepwise)
+
+# runing the SAR model
+target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
+                                    DistMean +
+                                    DistDev +
+                                    DistMin +
+                                    RefinMean +
+                                    RefinDev +
+                                    RefinMin +
+                                    RefinMax +
+                                    ChgPIB +
+                                    ChgPIBCap, 
+                                  data = target,
+                                  listw = lw, 
+                                  quiet = T,
+                                  zero.policy = T, 
+                                  tol.solve = 1e-12)
+
+summary(target.lagsarlm.model)
+
+# calculate global residual SST (SQT)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
+GWR_SSE <- target.lagsarlm.model$SSE
+r2_GWR <- 1 - (GWR_SSE / SST)
+r2_GWR
+
+# maps
+target$fitted_sem <- target.lagsarlm.model$fitted.values
+spplot(target, "fitted_sem", main = "Fitted values")
+
+target$actual_sem <- target.lagsarlm.model$y
+spplot(target, "fitted_sem", main = "Actual values")
+
+names(target.sar.model.stepwise$coefficients) <- 
+  stringr::str_sub(names(target.sar.model.stepwise$coefficients), 1, 25)
+summary(target.sar.model.stepwise)
+
+```
+
 ## Implementando o modelo espacial auto-regressivo (SAR) 
 
 Um dos modelos mais comumente utilizados para modelagem de correlação espacial é  o  modelo  autorregressivo  espacial  (do inglês *spatial  autorregressive  model*),  ou  simplesmente modelo  SAR.  A  ideia  dos  modelos  SAR  é  utilizar  a  mesma  ideia  dos  modelos  AR (autorregressivos)  em  séries  temporais,  por  meio  da  incorporação  de  um  termo  de lagentre  os  regressores  da  equação.  
@@ -243,110 +347,6 @@ legend(x = "bottom", cex = 1, fill = attr(cols.gwr.coefficients,"palette"), bty 
        title = "Local Coefficient Estimates (DistMean)", ncol = 3)
 
 moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
-
-```
-
-## Implementando o modelo de regressão linear multivariado stepwise
-
-Chamamos de *stepwise* uma modificação da seleção *forward* em que cada passo todas as variáveis do modelo são previamente verificadas pelas suas estatísticas $F$ parciais. Uma variável adicionada no modelo no passo anterior pode ser redundante para o modelo por causa do seu relacionamento com as outras variáveis e se sua estatística $F$ parcial for menor que $F_{out}$, ela é removida do modelo.
-
-Procedimento:
-
-* Iniciamos com uma variável: aquela que tiver maior correlação com a variável resposta;
-* A cada passo do forward, depois de incluir uma variável, aplica-se o backward para ver se será descartada alguma variável;
-* Continuamos o processo até não incluir ou excluir nenhuma variável.
-
-Assim, a regressão Stepwise requer dois valores de corte: $F_{in}$ e $F_{out}$. Alguns autores preferem escolher $F_{in}=F_{out}$ mas isso não é necessário. Se $F_{in} < F_{out}$: mais difícil remover que adicionar; se $F_{in} > F_{out}$: mais difícil adicionar que remover. 
-
-```{r stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
-
-# initial exploration in PcMedRev x DistMean
-pcmedrev_by_DistMean_plot <- ggplot(data = target@data, 
-                                    aes(x = target$DistMean,
-                                        y = target$PcMedRev,
-                                        color = target$DistMean)) +
-  geom_point() +
-  theme(legend.position = "none") +
-  xlab("DistMean") +
-  ylab("PcMedRev")
-
-ggMarginal(pcmedrev_by_DistMean_plot, type = "histogram")
-
-# runing the linear model multivaluated and looking at the residuals
-target.ols.model <- lm(PcMedRev ~ 
-                         DistMean +
-                         DistDev +
-                         DistMin +
-                         RefinMean +
-                         RefinDev +
-                         RefinMin +
-                         RefinMax +
-                         ChgPIB +
-                         ChgPIBCap, 
-                       data = target)
-
-summary(target.ols.model)
-
-target$resid <- residuals(target.ols.model)
-spplot(target, "resid", main = "Residuals")
-
-# runing the lm multivaluated model
-target.lm.multivaluated.model <- lm(PcMedRev ~ 
-                                      DistMean +
-                                      DistDev +
-                                      DistMin +
-                                      RefinMean +
-                                      RefinDev +
-                                      RefinMin +
-                                      RefinMax +
-                                      ChgPIB +
-                                      ChgPIBCap, 
-                                    data = target)
-
-summary(target.lm.multivaluated.model)
-
-# performing the stepwise selection
-target.sar.model.stepwise <- step(target.lm.multivaluated.model, 
-                                  direction = "both", 
-                                  test = "F")
-
-summary(target.sar.model.stepwise)
-
-# runing the SAR model
-target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
-                                    DistMean +
-                                    DistDev +
-                                    DistMin +
-                                    RefinMean +
-                                    RefinDev +
-                                    RefinMin +
-                                    RefinMax +
-                                    ChgPIB +
-                                    ChgPIBCap, 
-                                  data = target,
-                                  listw = lw, 
-                                  quiet = T,
-                                  zero.policy = T, 
-                                  tol.solve = 1e-12)
-
-summary(target.lagsarlm.model)
-
-# calculate global residual SST (SQT)
-SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
-GWR_SSE <- target.lagsarlm.model$SSE
-r2_GWR <- 1 - (GWR_SSE / SST)
-r2_GWR
-
-# maps
-target$fitted_sem <- target.lagsarlm.model$fitted.values
-spplot(target, "fitted_sem", main = "Fitted values")
-
-target$actual_sem <- target.lagsarlm.model$y
-spplot(target, "fitted_sem", main = "Actual values")
-
-names(target.sar.model.stepwise$coefficients) <- 
-  stringr::str_sub(names(target.sar.model.stepwise$coefficients), 1, 25)
-summary(target.sar.model.stepwise)
 
 ```
 

@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -374,17 +373,15 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#objetivos-e-resumo-dos-procedimentos">Objetivos e Resumo dos Procedimentos</a></li>
-<li><a href="#avaliação-da-presença-de-autocorrelação-espacial">Avaliação da Presença de Autocorrelação Espacial</a></li>
-<li><a href="#modelo-de-regressão-linear-multipla">Modelo de Regressão Linear Multipla</a></li>
-<li><a href="#modelo-espacial-autoregressivo-sar">Modelo Espacial Autoregressivo SAR</a></li>
-<li><a href="#modelo-de-regressão-geográficamente-ponderada">Modelo de Regressão Geográficamente Ponderada</a></li>
-<li><a href="#considerações-finais">Considerações Finais</a></li>
+<li><a href="#objetivos-e-resumo-dos-procedimentos"><span class="toc-section-number">1</span> Objetivos e Resumo dos Procedimentos</a></li>
+<li><a href="#avaliação-da-presença-de-autocorrelação-espacial"><span class="toc-section-number">2</span> Avaliação da Presença de Autocorrelação Espacial</a></li>
+<li><a href="#análise-através-de-modelos"><span class="toc-section-number">3</span> Análise Através de Modelos</a></li>
+<li><a href="#considerações-finais"><span class="toc-section-number">4</span> Considerações Finais</a></li>
 </ul>
 </div>
 
 <div id="objetivos-e-resumo-dos-procedimentos" class="section level1">
-<h1>Objetivos e Resumo dos Procedimentos</h1>
+<h1><span class="header-section-number">1</span> Objetivos e Resumo dos Procedimentos</h1>
 <p>O Objetivo inicial deste projeto é entender de que forma o preço médio de revenda de gasolina comum se comporta em território nacional em função das distâncias dos postos de combustíveis dos pontos de distribuição e refinarias.</p>
 <p>Para tal utilizamos dados públicos do Levantamento de Preços e de Margens de Comercialização de Combustíveis publicado semanalmente pela Agência Nacional de Petróleo e dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética filiada ao Ministério de Minas e Energia. Adicionalmente obtivemos dados de PIP, PIP per capita e população estimada do site do IBGE a fim de enriquecer os dados e aumentar o poder de explicação do modelo.</p>
 <p>Do Levantamento de Preços e de Margens de Comercialização de Combustíveis extraímos dois datasets:</p>
@@ -450,20 +447,23 @@ $(document).ready(function () {
 </table>
 </div>
 <div id="avaliação-da-presença-de-autocorrelação-espacial" class="section level1">
-<h1>Avaliação da Presença de Autocorrelação Espacial</h1>
+<h1><span class="header-section-number">2</span> Avaliação da Presença de Autocorrelação Espacial</h1>
 <p>Para a avaliação da presença de autocorrelação espacial utilizamos a estatística conhecida como I de Moran que funciona de forma similar a Correlação de Pearson, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a cauterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios)</p>
 </div>
-<div id="modelo-de-regressão-linear-multipla" class="section level1">
-<h1>Modelo de Regressão Linear Multipla</h1>
-</div>
-<div id="modelo-espacial-autoregressivo-sar" class="section level1">
-<h1>Modelo Espacial Autoregressivo SAR</h1>
-</div>
-<div id="modelo-de-regressão-geográficamente-ponderada" class="section level1">
-<h1>Modelo de Regressão Geográficamente Ponderada</h1>
+<div id="análise-através-de-modelos" class="section level1">
+<h1><span class="header-section-number">3</span> Análise Através de Modelos</h1>
+<p>Foram aplicados vários modelos, disponíveis no relatório de aplicação dos <a href="https://ldaniel.github.io/Spatial-Statistics-Applications/05_sar_gwr.html">modelos SAR e GWR</a> a fim de averiguar a existência de relacionamento espacial entre as variáveis do <strong>shapefile</strong> <a href="https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/data/processed/gas_prices_hist">gas_prices_hist</a>:</p>
+<ul>
+<li>Modelo de regressão linear multivariado stepwise;</li>
+<li>Modelo espacial auto-regressivo (SAR);</li>
+<li>Modelo de regressão geograficamente ponderada (GWR);</li>
+<li>Modelo GWR com stepwise.</li>
+</ul>
+<p>Partindo do modelo mais simples, de regressão linear, notamos um R2 de <span class="math inline">\(0.3277\)</span> e ao aplicar o modelo SAR podemos ver que ele leva em conta o preço dos vizinhos. Ao aplicar o modelo GWR conseguimos notar a formação de <strong>clusters</strong>, contudo, para o Rio de Janeiro fica evidente um comportamento anômalo.</p>
+<p>Embora a regra geral observada na análise por GWR mostre que quanto maior a distância, maior o preço, para o Rio de Janeiro esta afirmação não é mantida. Isso sugere que outros fatores influenciam na formação do preço do combustível no Rio de Janeiro.</p>
 </div>
 <div id="considerações-finais" class="section level1">
-<h1>Considerações Finais</h1>
+<h1><span class="header-section-number">4</span> Considerações Finais</h1>
 <p>O resultado final deste estudo não obteve, e nem mesmo fazia parte do objetivo, um modelo capaz de explicar com precisão os fatores que influenciam no preço final de comercialização de combustíveis, este é um assunto bastante complexo que sofre influência direta de variáveis com preço internacional de petróleo, flutuação cambial, aspectos tributários, aspectos concorrenciais como concentração de mercado em bandeiras de postos, possíveis práticas de carteis, combustíveis alternativos como GNV, Diesel, Etanol e Biocombustíveis, adulteração de combustíveis, verticalização dos processos de exploração, produção, distribuição e comercialização, aspectos socioeconômicos e ambientais, dentre outros.</p>
 <p>A distância dos postos de combustíveis dos pontos de distribuição e refinarias é apenas um dos fatores que podem influenciar este mercado, nosso modelo porém, foi capaz de demonstrar que com significância estatística é possível sim verificar que o fator distância individualmente é capaz de explicar cerca de 30% da variação do preço de comercialização da gasolina comum no território nacional.</p>
 <p>No entanto vale ressaltar que temos disponíveis dados de apenas 458 municípios dos mais de 5 mil municípios brasileiros, e que inspecionando a distribuição dos mesmos em relação aos pontos de distribuição, percebe-se que existe um viés amostral, onde a ANP pesquisa municípios que em geral não estão muito distantes dos pontos de distribuição, ou seja temos pouca representatividade de municípios mais isolados que poderiam fornecer mais informações e aumentar a robustez dos modelos desenvolvidos.</p>

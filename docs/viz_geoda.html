@@ -20,7 +20,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -364,11 +363,11 @@ $(document).ready(function () {
 <ul>
 <li><a href="#o-que-é-o-geoda"><span class="toc-section-number">1</span> O que é o GeoDa ?</a></li>
 <li><a href="#visualizações"><span class="toc-section-number">2</span> Visualizações</a><ul>
-<li><a href="#unique-value-map"><span class="toc-section-number">2.1</span> <em>Unique value map</em></a></li>
-<li><a href="#box-map"><span class="toc-section-number">2.2</span> <em>Box map</em></a></li>
-<li><a href="#percentile-map"><span class="toc-section-number">2.3</span> <em>Percentile map</em></a></li>
-<li><a href="#cartogram"><span class="toc-section-number">2.4</span> <em>Cartogram</em></a></li>
-<li><a href="#conditional-map"><span class="toc-section-number">2.5</span> <em>Conditional map</em></a></li>
+<li><a href="#unique-value-map"><span class="toc-section-number">2.1</span> Unique value map</a></li>
+<li><a href="#box-map"><span class="toc-section-number">2.2</span> Box map</a></li>
+<li><a href="#percentile-map"><span class="toc-section-number">2.3</span> Percentile map</a></li>
+<li><a href="#cartogram"><span class="toc-section-number">2.4</span> Cartogram</a></li>
+<li><a href="#conditional-map"><span class="toc-section-number">2.5</span> Conditional map</a></li>
 </ul></li>
 </ul>
 </div>
@@ -381,25 +380,25 @@ $(document).ready(function () {
 <div id="visualizações" class="section level1">
 <h1><span class="header-section-number">2</span> Visualizações</h1>
 <div id="unique-value-map" class="section level2">
-<h2><span class="header-section-number">2.1</span> <em>Unique value map</em></h2>
+<h2><span class="header-section-number">2.1</span> Unique value map</h2>
 <p>O <em>Unique value map</em> é uma opção para visualização de variáveis categóricas no mapa. Para este caso é possível observar na imagem abaixo como ficaram distribuídos a amostra de municípios utilizando a variável <em>região</em>.</p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/unique-value-map-regiao.png" /></p>
 </div>
 <div id="box-map" class="section level2">
-<h2><span class="header-section-number">2.2</span> <em>Box map</em></h2>
+<h2><span class="header-section-number">2.2</span> Box map</h2>
 <p>O <em>box map</em> foi concebido à partir da ideia do gráfico boxplot, ou seja, separando-se as observações por quartil. Além dos 4 quartis, é possível caracterizar mais duas separações, o <em>lower outlier</em> e o <em>upper outlier</em>, que servem para identificar <em>outliers</em> no mapa. Para este estudo, produziram-se os 3 mapas abaixo para preço médio de revenda, PIB de 2016 e de 2017.</p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pcmedrev-hinge1.5.png" /></p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2016-hinge1.5.png" /></p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2017-hinge1.5.png" /></p>
 </div>
 <div id="percentile-map" class="section level2">
-<h2><span class="header-section-number">2.3</span> <em>Percentile map</em></h2>
+<h2><span class="header-section-number">2.3</span> Percentile map</h2>
 <p>Como o <em>box map</em>, o <em>percentile map</em> foi concebido para identificar observações extremas no mapa (<em>outliers</em>), separando os dados nos percentis: &lt; 1%, 1% - 10%, 10% - 50%, 50% - 90%, 90% - 99%, &gt; 99%. Para este estudo, produziram-se os mapas para margem média de revenda e população.</p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-mgmedrev.png" /></p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-popest.png" /></p>
 </div>
 <div id="cartogram" class="section level2">
-<h2><span class="header-section-number">2.4</span> <em>Cartogram</em></h2>
+<h2><span class="header-section-number">2.4</span> Cartogram</h2>
 <p>O <em>cartogram</em> é um mapa que utiliza uma forma geométrica (círculo para o caso do GeoDa) para representar um polígono, sendo o tamanho e cor relativos à atributos daquele polígono. É importante observar que os posicionamentos dos círculos são gerados por um algoritmo de otimização não linear que tenta alocar o centro do círculo o mais próximo possível do centróide do polígono correspondente. Para este estudo gerou-se um <em>cartogram</em> onde:</p>
 <ul>
 <li>Tamanho do círculo: população;</li>
@@ -408,7 +407,7 @@ $(document).ready(function () {
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/cartogram-size-popest-color-pcmedrev.png" /></p>
 </div>
 <div id="conditional-map" class="section level2">
-<h2><span class="header-section-number">2.5</span> <em>Conditional map</em></h2>
+<h2><span class="header-section-number">2.5</span> Conditional map</h2>
 <p>Também conhecido como <em>conditioned choropleth map</em> e <em>micromap matrix</em>, o <em>conditional map</em> proporciona visualizações baseadas condicionalmente em 2 variáveis, e uma terceira variável como tema do mapa, ou seja, os eixos x e y representam as variáveis condicionais e o mapa é um box map da tarceira variável. Para este estudo produziram-se os seguintes mapas:</p>
 <ul>
 <li>Mapa 1</li>

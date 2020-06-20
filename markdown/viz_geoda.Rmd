@@ -3,35 +3,6 @@ title: "Visualização no GeoDa"
 date: "Junho de 2020"
 ---
 
-```{r setup_exploration, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.pos =  "h")
-knitr::opts_knit$set(root.dir = "../")
-
-# loading required libraries
-library(rmarkdown)
-library(dplyr)
-library(ggplot2)
-library(ggthemes)
-library(ggpubr)
-library(ggalluvial)
-library(tidyr)
-library(lubridate)
-library(stringr)
-library(VIM)
-library(psych)
-library(feather)
-library(tinytex)
-library(knitr)
-library(leaflet)
-library(geojsonio)
-```
-
-```{r scripts_exploration, include=FALSE}
-# loading required steps before performing the analysis
-source("./src/util/auxiliary_functions.R")
-```
-
 # O que é o GeoDa ?
 
 O GeoDa é uma ferramenta para exploração de dados espaciais desenvolvida pelo Dr. Luc Anselin e sua equipe no *Center for Spatial Data Science (CSDS)* da *University of Chicago*. O software oferece uma interface intuitiva e diversas funcionalidades para exploração de dados, tais como: mapas temáticos, análise de cluster, join espacial, modelagem espacial, autocorrelação espacial e outros. O GeoDa é um projeto *Open Source* e está disponível para Windows, Linux e Mac. 
@@ -40,13 +11,13 @@ Na seção 2 serão apresentados alguns mapas temáticos gerados para este estud
 
 # Visualizações
 
-## *Unique value map*
+## Unique value map
 
 O *Unique value map* é uma opção para visualização de variáveis categóricas no mapa. Para este caso é possível observar na imagem abaixo como ficaram distribuídos a amostra de municípios utilizando a variável *região*.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/unique-value-map-regiao.png)
 
-## *Box map*
+## Box map
 
 O *box map*  foi concebido à partir da ideia do gráfico boxplot, ou seja, separando-se as observações por quartil. Além dos 4 quartis, é possível caracterizar mais duas separações, o *lower outlier* e o *upper outlier*, que servem para identificar *outliers* no mapa. Para este estudo, produziram-se os 3 mapas abaixo para preço médio de revenda, PIB de 2016 e de 2017.
 
@@ -56,7 +27,7 @@ O *box map*  foi concebido à partir da ideia do gráfico boxplot, ou seja, sepa
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2017-hinge1.5.png)
 
-## *Percentile map* 
+## Percentile map
 
 Como o *box map*, o *percentile map* foi concebido para identificar observações extremas no mapa (*outliers*), separando os dados nos percentis: < 1%, 1% - 10%, 10% - 50%, 50% - 90%, 90% - 99%, > 99%. Para este estudo, produziram-se os mapas para margem média de revenda e população.
 
@@ -64,7 +35,7 @@ Como o *box map*, o *percentile map* foi concebido para identificar observaçõe
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-popest.png)
 
-## *Cartogram*
+## Cartogram
 
 O *cartogram* é um mapa que utiliza uma forma geométrica (círculo para o caso do GeoDa) para representar um polígono, sendo o tamanho e cor relativos à atributos daquele polígono. É importante observar que os posicionamentos dos círculos são gerados por um algoritmo de otimização não linear que tenta alocar o centro do círculo o mais próximo possível do centróide do polígono correspondente. Para este estudo gerou-se um *cartogram* onde:
 
@@ -73,7 +44,7 @@ O *cartogram* é um mapa que utiliza uma forma geométrica (círculo para o caso
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/cartogram-size-popest-color-pcmedrev.png)
 
-## *Conditional map*
+## Conditional map
 
 Também conhecido como *conditioned choropleth map* e *micromap matrix*, o *conditional map* proporciona visualizações baseadas condicionalmente em 2 variáveis, e uma terceira variável como tema do mapa, ou seja, os eixos x e y representam as variáveis condicionais e o mapa é um box map da tarceira variável. Para este estudo produziram-se os seguintes mapas:
 
@@ -113,6 +84,3 @@ Condicionais: distância média da refinaria, distância média do distribuidor;
 Tema: preço médio de revenda.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-refinmean-distmean-pcmedrev.png)
-
-
-

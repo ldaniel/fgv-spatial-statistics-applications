@@ -4,7 +4,7 @@ date: "Junho de 2020"
 
 output:
   html_document: 
-    number_sections: no
+    number_sections: yes
     toc: yes
     code_folding: hide
 ---
@@ -54,14 +54,18 @@ filter(variables_list,
 
 Para a avaliação da presença de autocorrelação espacial utilizamos a estatística conhecida como I de Moran que funciona de forma similar a Correlação de Pearson, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a cauterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios)
 
+# Análise Através de Modelos
 
-# Modelo de Regressão Linear Multipla
+Foram aplicados vários modelos, disponíveis no relatório de aplicação dos [modelos SAR e GWR](https://ldaniel.github.io/Spatial-Statistics-Applications/05_sar_gwr.html) a fim de averiguar a existência de relacionamento espacial entre as variáveis do **shapefile** [gas_prices_hist](https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/data/processed/gas_prices_hist):
 
+* Modelo de regressão linear multivariado stepwise;
+* Modelo espacial auto-regressivo (SAR);
+* Modelo de regressão geograficamente ponderada (GWR);
+* Modelo GWR com stepwise.
 
-# Modelo Espacial Autoregressivo SAR
+Partindo do modelo mais simples, de regressão linear, notamos um R2 de $0.3277$ e ao aplicar o modelo SAR podemos ver que ele leva em conta o preço dos vizinhos. Ao aplicar o modelo GWR conseguimos notar a formação de **clusters**, contudo, para o Rio de Janeiro fica evidente um comportamento anômalo. 
 
-
-# Modelo de Regressão Geográficamente Ponderada
+Embora a regra geral observada na análise por GWR mostre que quanto maior a distância, maior o preço, para o Rio de Janeiro esta afirmação não é mantida. Isso sugere que outros fatores influenciam na formação do preço do combustível no Rio de Janeiro.
 
 
 # Considerações Finais

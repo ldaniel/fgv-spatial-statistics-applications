@@ -362,7 +362,9 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#introdução"><span class="toc-section-number">1</span> Introdução</a></li>
-<li><a href="#abordagem"><span class="toc-section-number">2</span> Abordagem</a></li>
+<li><a href="#abordagem"><span class="toc-section-number">2</span> Abordagem</a><ul>
+<li><a href="#arquivos-com-as-matrizes-de-vizinha"><span class="toc-section-number">2.1</span> Arquivos com as matrizes de vizinha</a></li>
+</ul></li>
 <li><a href="#análises"><span class="toc-section-number">3</span> Análises</a><ul>
 <li><a href="#primeira-análise"><span class="toc-section-number">3.1</span> Primeira Análise</a><ul>
 <li><a href="#matriz-de-vizinhança"><span class="toc-section-number">3.1.1</span> Matriz de Vizinhança</a></li>
@@ -403,6 +405,10 @@ $(document).ready(function () {
 <p>Para a análise de autocorrelação espacial com o índice <em>Moran’s I</em>, utilizou-se o atributo <em>PcMedRev (Preço Médio de Revenda)</em> da amostra da semana <strong>26-Abr-2020 a 02-Mai-2020</strong> dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.</p>
 <p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png" /></p>
 <p>A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distância, dado que existem muitos polígonos sem contiguidade com outros. Na seção seguinte observam-se os <em>connectivity graphs</em> de cada uma delas e análises desenvolvidas.</p>
+<div id="arquivos-com-as-matrizes-de-vizinha" class="section level2">
+<h2><span class="header-section-number">2.1</span> Arquivos com as matrizes de vizinha</h2>
+<p>As análises de autocorrelação foram realizadas na ferramenta <a href="https://ldaniel.github.io/Spatial-Statistics-Applications/viz_geoda.html">GeoDa</a>, utilizando o <strong>shapefile</strong> <a href="https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/data/processed/gas_prices_hist">gas_prices_hist</a> e com as matrizes de vizinhança disponíveis no <a href="https://github.com/ldaniel/Spatial-Statistics-Applications/tree/master/visualizations/spatialautocorrelation">GitHub</a>.</p>
+</div>
 </div>
 <div id="análises" class="section level1">
 <h1><span class="header-section-number">3</span> Análises</h1>
