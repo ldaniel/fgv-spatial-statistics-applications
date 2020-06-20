@@ -16,15 +16,8 @@ knitr::opts_knit$set(root.dir = "./")
 
 # loading required libraries
 library(dplyr)
-library(lubridate)
 library(knitr)
-library(stringr)
-library(zoo)
-library(forecast)
-library(ggplot2)
-library(ggpubr)
 library(readxl)
-library(DT)
 ```
 
 ```{r scripts_evaluation, include=FALSE}
