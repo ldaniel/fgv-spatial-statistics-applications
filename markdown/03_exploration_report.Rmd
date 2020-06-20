@@ -54,7 +54,7 @@ ggplot(data = gas_prices_station) +
 
 # Localização de Refinarias e Distribuidoras de Combustíveis no Território nacional
 
-Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país (**`338`**) assim como a localização de todas as refinarias de combustíveis (**`16`**)em território nacionnal.
+Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país (**`338`**) assim como a localização de todas as refinarias de combustíveis (**`16`**)em território nacional.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_dist_combust.svg)
 
@@ -73,19 +73,19 @@ kable(select(as_tibble(refin@data), `Sigla`, `Nome`, `Municipio`, `Estado`, `In�
 
 ```
 
-Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana dos dia **26-Abr-2020 a 02-Mai-2020** podemos verificar a distribuição dos **`458`** municipios pesquisados que serão objeto de estudo neste projeto de pesauisa.
+Com base nos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP na semana do dia **26-Abr-2020 a 02-Mai-2020** podemos verificar a distribuição dos **`458`** municípios pesquisados que serão objeto de estudo neste projeto de pesquisa.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_cidade_combust.svg)
 
 # Distâncias das sedes dos munícipios pesquisados para as distribuídoras.
 
-Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Padrão de cada sede de municipio pesquisado para as **`10`** distribuidoras mais próximas, assim como as distâncias Mínima, Máxima, Média e Desvio Padrão para todas as **`16`** refinarias de combustível presentes em nosso dataset.
+Para este estudo calculamos as distâncias Mínima, Máxima, Média e Desvio Padrão de cada sede de município pesquisado para as **`10`** distribuidoras mais próximas, assim como as distâncias Mínima, Máxima, Média e Desvio Padrão para todas as **`16`** refinarias de combustível presentes em nosso dataset.
 
-Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
+Abaixo visualizamos um recorte das distâncias das sedes dos municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_dist.png)
+[![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_dist.png)](https://ldaniel.github.io/Spatial-Statistics-Applications/viz_qgis.html)
 
-Abaixo visualizamos um recorte das distâncias das sedes do municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
+Abaixo visualizamos um recorte das distâncias das sedes dos municípios pesquisados para a distribuidora mais próxima da região de São Paulo.
 
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/dist_sedes_refin.svg)
 
