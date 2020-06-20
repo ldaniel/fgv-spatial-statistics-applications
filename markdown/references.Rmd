@@ -28,3 +28,18 @@ Algumas referências deste trabalho são baseadas no excelente material produzid
 
 - [**FGVR**](https://github.com/ldaniel/fgvr) --Leandro Daniel, Rodrigo Gonçalves e Daniel Campos
 - [**Spatial-Statistics**](https://github.com/ldaniel/Spatial-Statistics) --Leandro Daniel, Rodrigo Gonçalves, Daniel Campos e Ygor Lima
+
+
+## Fonte de Dados
+
+Abaixo todas as fontes de dados utilizadas no desenvolvimento deste estudo.
+
+- [**Levantamento de Preços e de Margens de Comercialização de Combustíveis**](http://www.anp.gov.br/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos) --ANP
+
+- [**Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019**](http://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/zoneamento-nacional-de-recursos-de-oleo-e-gas-2017-2019) --EPE
+
+- [**Malha Territorial de 2018**](ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_municipais/municipio_2015/Brasil/BR/) --IBGE
+
+- [**Estimativa de População 2019**](ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2019/estimativa_TCU_2019_20200427.xls) --IBGE
+
+- [**PIB dos Municípios de 2010 a 2017**](ftp://ftp.ibge.gov.br/Pib_Municipios/2017/base/) --IBGE
