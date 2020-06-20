@@ -93,8 +93,12 @@ Abaixo os **`458`** municípios com seus respectivos preços médios de revenda 
 
 ```{r exploration_target_3, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
 filter(gas_prices_hist, !is.na(Index)) %>% 
-  select(Cidade, Estado, PcMedRev, DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin) %>% 
-  mutate(across(c(DistMean, DistDev, DistMin, DistMax, RefinMean, RefinDev, RefinMin), round)) %>% 
+  select(Cidade, Estado, PcMedRev, 
+         DistMean, DistDev, DistMin, DistMax, 
+         RefinMean, RefinDev, RefinMin, RefinMax) %>% 
+  mutate(across(c(DistMean, DistDev, DistMin, DistMax, 
+                  RefinMean, RefinDev, RefinMin, RefinMax), 
+                round)) %>% 
   datatable(
     style = 'bootstrap',
     options = list(pageLength = 10,autoWidth = TRUE)
