@@ -20,102 +20,11 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  background-color: #f8f8f8; }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -453,32 +362,73 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#exploration-1"><span class="toc-section-number">1</span> Exploration 1</a></li>
-<li><a href="#exploration-2"><span class="toc-section-number">2</span> Exploration 2</a></li>
-<li><a href="#exploration-3"><span class="toc-section-number">3</span> Exploration 3</a></li>
-<li><a href="#exploration-n"><span class="toc-section-number">4</span> Exploration n</a></li>
+<li><a href="#o-que-é-o-geoda"><span class="toc-section-number">1</span> O que é o GeoDa ?</a></li>
+<li><a href="#visualizações"><span class="toc-section-number">2</span> Visualizações</a><ul>
+<li><a href="#unique-value-map"><span class="toc-section-number">2.1</span> <em>Unique value map</em></a></li>
+<li><a href="#box-map"><span class="toc-section-number">2.2</span> <em>Box map</em></a></li>
+<li><a href="#percentile-map"><span class="toc-section-number">2.3</span> <em>Percentile map</em></a></li>
+<li><a href="#cartogram"><span class="toc-section-number">2.4</span> <em>Cartogram</em></a></li>
+<li><a href="#conditional-map"><span class="toc-section-number">2.5</span> <em>Conditional map</em></a></li>
+</ul></li>
 </ul>
 </div>
 
-<div id="exploration-1" class="section level1">
-<h1><span class="header-section-number">1</span> Exploration 1</h1>
-<p>Describe your exploration 1 here, including some plots, tables or any resource used.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># your code with the exploration 1 goes here</span></span></code></pre></div>
+<div id="o-que-é-o-geoda" class="section level1">
+<h1><span class="header-section-number">1</span> O que é o GeoDa ?</h1>
+<p>O GeoDa é uma ferramenta para exploração de dados espaciais desenvolvida pelo Dr. Luc Anselin e sua equipe no <em>Center for Spatial Data Science (CSDS)</em> da <em>University of Chicago</em>. O software oferece uma interface intuitiva e diversas funcionalidades para exploração de dados, tais como: mapas temáticos, análise de cluster, join espacial, modelagem espacial, autocorrelação espacial e outros. O GeoDa é um projeto <em>Open Source</em> e está disponível para Windows, Linux e Mac.</p>
+<p>Na seção 2 serão apresentados alguns mapas temáticos gerados para este estudo.</p>
 </div>
-<div id="exploration-2" class="section level1">
-<h1><span class="header-section-number">2</span> Exploration 2</h1>
-<p>Describe your exploration 2 here, including some plots, tables or any resource used.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># your code with the exploration 2 goes here</span></span></code></pre></div>
+<div id="visualizações" class="section level1">
+<h1><span class="header-section-number">2</span> Visualizações</h1>
+<div id="unique-value-map" class="section level2">
+<h2><span class="header-section-number">2.1</span> <em>Unique value map</em></h2>
+<p>O <em>Unique value map</em> é uma opção para visualização de variáveis categóricas no mapa. Para este caso é possível observar na imagem abaixo como ficaram distribuídos a amostra de municípios utilizando a variável <em>região</em>.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/unique-value-map-regiao.png" /></p>
 </div>
-<div id="exploration-3" class="section level1">
-<h1><span class="header-section-number">3</span> Exploration 3</h1>
-<p>Describe your exploration 3 here, including some plots, tables or any resource used.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># your code with the exploration 3 goes here</span></span></code></pre></div>
+<div id="box-map" class="section level2">
+<h2><span class="header-section-number">2.2</span> <em>Box map</em></h2>
+<p>O <em>box map</em> foi concebido à partir da ideia do gráfico boxplot, ou seja, separando-se as observações por quartil. Além dos 4 quartis, é possível caracterizar mais duas separações, o <em>lower outlier</em> e o <em>upper outlier</em>, que servem para identificar <em>outliers</em> no mapa. Para este estudo, produziram-se os 3 mapas abaixo para preço médio de revenda, PIB de 2016 e de 2017.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pcmedrev-hinge1.5.png" /></p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2016-hinge1.5.png" /></p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/box-map-pib-2017-hinge1.5.png" /></p>
 </div>
-<div id="exploration-n" class="section level1">
-<h1><span class="header-section-number">4</span> Exploration n</h1>
-<p>Describe your exploration n here, including some plots, tables or any resource used.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># your code with the exploration n goes here</span></span></code></pre></div>
+<div id="percentile-map" class="section level2">
+<h2><span class="header-section-number">2.3</span> <em>Percentile map</em></h2>
+<p>Como o <em>box map</em>, o <em>percentile map</em> foi concebido para identificar observações extremas no mapa (<em>outliers</em>), separando os dados nos percentis: &lt; 1%, 1% - 10%, 10% - 50%, 50% - 90%, 90% - 99%, &gt; 99%. Para este estudo, produziram-se os mapas para margem média de revenda e população.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-mgmedrev.png" /></p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/percentile-map-popest.png" /></p>
+</div>
+<div id="cartogram" class="section level2">
+<h2><span class="header-section-number">2.4</span> <em>Cartogram</em></h2>
+<p>O <em>cartogram</em> é um mapa que utiliza uma forma geométrica (círculo para o caso do GeoDa) para representar um polígono, sendo o tamanho e cor relativos à atributos daquele polígono. É importante observar que os posicionamentos dos círculos são gerados por um algoritmo de otimização não linear que tenta alocar o centro do círculo o mais próximo possível do centróide do polígono correspondente. Para este estudo gerou-se um <em>cartogram</em> onde:</p>
+<ul>
+<li>Tamanho do círculo: população;</li>
+<li>Cor: preço médio de revenda.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/cartogram-size-popest-color-pcmedrev.png" /></p>
+</div>
+<div id="conditional-map" class="section level2">
+<h2><span class="header-section-number">2.5</span> <em>Conditional map</em></h2>
+<p>Também conhecido como <em>conditioned choropleth map</em> e <em>micromap matrix</em>, o <em>conditional map</em> proporciona visualizações baseadas condicionalmente em 2 variáveis, e uma terceira variável como tema do mapa, ou seja, os eixos x e y representam as variáveis condicionais e o mapa é um box map da tarceira variável. Para este estudo produziram-se os seguintes mapas:</p>
+<ul>
+<li>Mapa 1</li>
+</ul>
+<p>  Condicionais: preço médio de revenda, número de postos pesquisados;</p>
+<p>  Tema: margem média de revenda.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-pcmedrev-nmpostpesq-mgmedrev.png" /></p>
+<ul>
+<li>Mapa 2</li>
+</ul>
+<p>  Condicionais: PIB e PIB per capita de 2017;</p>
+<p>  Tema: preço médio de revenda.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-pib2017-pibcap2017-pcmedrev.png" /></p>
+<ul>
+<li>Mapa 3</li>
+</ul>
+<p>  Condicionais: distância média da refinaria, distância média do distribuidor;</p>
+<p>  Tema: preço médio de revenda.</p>
+<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/geoda/conditional-map-refinmean-distmean-pcmedrev.png" /></p>
+</div>
 </div>
 
 
