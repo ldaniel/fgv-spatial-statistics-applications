@@ -10,7 +10,7 @@ output:
 ---
 
 
-```{r setup_exploration, include=FALSE}
+```{r setup_sar_gwr, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")

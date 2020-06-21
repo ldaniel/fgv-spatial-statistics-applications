@@ -9,7 +9,7 @@ output:
     code_folding: hide
 ---
 
-```{r setup_evaluation, include=FALSE}
+```{r setup_conclusion, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "./")
@@ -40,7 +40,7 @@ Iniciamos por executar a ingestão e preparação dos dados, seguido da geolocal
 
 Foram calculadas **8 variáveis para capturar a influência da distância** no preço final de comercialização de gasolina comum além de **2 variáveis econômicas, variação percentual do PIB e PIB per capita** de cada município pesquisado entre os anos de 2016 e 2017 (últimos dados de PIB por municípios obtidos do IBGE). Estas variáveis foram utilizadas como regressões nos diversos modelos de regressão linear desenvolvidos neste estudo.
 
-```{r read_mnemonics, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
+```{r read_mnemonics_again, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
 
 variables_list <- read_xlsx("../data/processed/mnemonico.xlsx", sheet = "gas_prices_hist")
 

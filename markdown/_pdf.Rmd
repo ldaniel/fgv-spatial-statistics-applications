@@ -21,6 +21,21 @@ output:
 ```{r child = '03_exploration_report.Rmd'}
 ```
 
+```{r child = '04_spatial_autocorrelation.Rmd'}
+```
+
+```{r child = '05_sar_gwr.Rmd'}
+```
+
+```{r child = 'viz_geoda.Rmd'}
+```
+
+```{r child = 'viz_qgis.Rmd'}
+```
+
+```{r child = 'viz_power_bi.Rmd'}
+```
+
 ```{r child = 'conclusion.Rmd'}
 ```
 

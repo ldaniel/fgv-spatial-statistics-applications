@@ -3,7 +3,7 @@ title: "Visualização no Power BI"
 date: "Junho de 2020"
 ---
 
-```{r setup_exploration, include=FALSE}
+```{r setup_viz_power_bi, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(fig.pos =  "h")
 knitr::opts_knit$set(root.dir = "../")
