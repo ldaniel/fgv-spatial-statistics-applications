@@ -52,7 +52,18 @@ filter(variables_list,
 
 # Avaliação da Presença de Autocorrelação Espacial
 
-Para a avaliação da presença de autocorrelação espacial utilizamos a estatística conhecida como I de Moran que funciona de forma similar a Correlação de Pearson, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a cauterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios)
+Para a avaliação da presença de autocorrelação espacial utilizamos a estatística conhecida como I de Moran que funciona de forma similar a Correlação de Pearson, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a cauterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).
+
+Foram desenvolvidas 6 matrizes de vizinhança baseadas em número de vizinhos e distância, são elas:
+
+- Matriz com largura de banda de 5.7 e distância euclidiana;
+- Matriz com kernel adaptativo, 8 vizinhos e função de decaimento gaussiano;
+- Matriz KNN = 3;
+- Matriz KNN = 4;
+- Matriz KNN = 6;
+- Matriz KNN = 8.
+
+Para essa amostra observou-se que existe um dependência espacial significativa do preço médio de revenda, com o *Moran's I* variando no intervalo de 52% à 60% para matrizes baseadas no número fixo de vizinhos. Para matrizes baseadas em distância, gerou-se um alto número de ligações, acarretando em municípios com centenas de vizinhos e diminuição acentuada do índice *Moran's I*. Não foram analisadas matrizes de vizinhança por contiguidade dado que para essa amostra, muitos municípios ficariam sem vizinhos, tornando assim ineficaz essa opção.
 
 # Análise Através de Modelos
 
