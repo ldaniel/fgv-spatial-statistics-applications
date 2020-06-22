@@ -136,24 +136,6 @@ pcmedrev_by_DistMean_plot <- ggplot(data = target@data,
 
 ggMarginal(pcmedrev_by_DistMean_plot, type = "histogram")
 
-# runing the linear model multivaluated and looking at the residuals
-target.ols.model <- lm(PcMedRev ~ 
-                         DistMean +
-                         DistDev +
-                         DistMin +
-                         RefinMean +
-                         RefinDev +
-                         RefinMin +
-                         RefinMax +
-                         ChgPIB +
-                         ChgPIBCap, 
-                       data = target)
-
-summary(target.ols.model)
-
-target$resid <- residuals(target.ols.model)
-spplot(target, "resid", main = "Residuals")
-
 # runing the lm multivaluated model
 target.lm.multivaluated.model <- lm(PcMedRev ~ 
                                       DistMean +
@@ -164,53 +146,29 @@ target.lm.multivaluated.model <- lm(PcMedRev ~
                                       RefinMin +
                                       RefinMax +
                                       ChgPIB +
-                                      ChgPIBCap, 
+                                      ChgPIBCap +
+                                      PIB_2016 +
+                                      PIB_2017 +
+                                      PIBCap2016 +
+                                      PIBCap2017 +
+                                      PopEst, 
                                     data = target)
 
 summary(target.lm.multivaluated.model)
 
 # performing the stepwise selection
-target.sar.model.stepwise <- step(target.lm.multivaluated.model, 
-                                  direction = "both", 
-                                  test = "F")
+target.lm.multivaluated.stepwise <- step(target.lm.multivaluated.model,
+                                         direction = c("both", "backward", "forward"), 
+                                         k = 2)
 
-summary(target.sar.model.stepwise)
-
-# runing the SAR model
-target.lagsarlm.model <- lagsarlm(formula = PcMedRev ~ 
-                                    DistMean +
-                                    DistDev +
-                                    DistMin +
-                                    RefinMean +
-                                    RefinDev +
-                                    RefinMin +
-                                    RefinMax +
-                                    ChgPIB +
-                                    ChgPIBCap, 
-                                  data = target,
-                                  listw = lw, 
-                                  quiet = T,
-                                  zero.policy = T, 
-                                  tol.solve = 1e-12)
-
-summary(target.lagsarlm.model)
-
-# calculate global residual SST (SQT)
-SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
-GWR_SSE <- target.lagsarlm.model$SSE
-r2_GWR <- 1 - (GWR_SSE / SST)
-r2_GWR
+summary(target.lm.multivaluated.stepwise)
 
 # maps
-target$fitted_sem <- target.lagsarlm.model$fitted.values
+target$fitted_sem <- target.lm.multivaluated.stepwise$fitted.values
 spplot(target, "fitted_sem", main = "Fitted values")
 
-target$actual_sem <- target.lagsarlm.model$y
+target$actual_sem <- target.lm.multivaluated.stepwise$y
 spplot(target, "fitted_sem", main = "Actual values")
-
-names(target.sar.model.stepwise$coefficients) <- 
-  stringr::str_sub(names(target.sar.model.stepwise$coefficients), 1, 25)
-summary(target.sar.model.stepwise)
 
 ```
 
@@ -260,6 +218,11 @@ legend(x = "bottom", cex = 1, fill = attr(cols.sar, "palette"), bty = "n",
 
 moran.test(target.sar.model.residuals, listw = lw, zero.policy = T)
 
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
+GWR_SSE <- target.sar.model$SSE
+r2_SAR <- 1 - (GWR_SSE / SST)
+print(paste('R2 = ', r2_SAR))
+
 ```
 
 ## Implementando o modelo de regressão geograficamente ponderada (GWR) 
@@ -278,7 +241,7 @@ O modelo GWR assume que os coeficientes variem no espaço, sem uma explicação 
 coords <- cbind(target$X_COORD, target$Y_COORD)
 
 # GWR model (Geographically Weighted Regression)
-target.gwr.sel <- gwr.sel(PcMedRev ~ 
+target.gwr.sel <- gwr.sel(PcMedRev ~
                             DistMean +
                             DistDev +
                             DistMin +
@@ -287,7 +250,7 @@ target.gwr.sel <- gwr.sel(PcMedRev ~
                             RefinMin +
                             RefinMax +
                             ChgPIB +
-                            ChgPIBCap, 
+                            ChgPIBCap,
                           data = target, 
                           coords = coords, 
                           adapt = TRUE, 
@@ -296,15 +259,15 @@ target.gwr.sel <- gwr.sel(PcMedRev ~
                           verbose = TRUE)
 
 target.gwr.model <- gwr(PcMedRev ~ 
-                          DistMean +
-                          DistDev +
-                          DistMin +
-                          RefinMean +
-                          RefinDev +
-                          RefinMin +
-                          RefinMax +
-                          ChgPIB +
-                          ChgPIBCap, 
+                            DistMean +
+                            DistDev +
+                            DistMin +
+                            RefinMean +
+                            RefinDev +
+                            RefinMin +
+                            RefinMax +
+                            ChgPIB +
+                            ChgPIBCap,
                         data = target, 
                         coords = coords, 
                         bandwidth = target.gwr.sel,
@@ -313,10 +276,10 @@ target.gwr.model <- gwr(PcMedRev ~
                         hatmatrix = TRUE)
 
 # calculate global residual SST (SQT)
-SST <- sum((target$DistMean - mean(target$DistMean)) ^ 2)
+SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
 GWR_SSE <- target.gwr.model$results$rss
 r2_GWR <- 1 - (GWR_SSE / SST)
-r2_GWR
+print(paste('R2 = ', r2_GWR))
 
 # residuals
 target.gwr.residuals <- target.gwr.model$SDF$gwr.e
@@ -353,11 +316,11 @@ moran.test(target.gwr.coefficients, listw = lw, zero.policy = T)
 
 ```
 
-## Implementando o modelo GWR com stepwise
+<!-- ## Implementando o modelo GWR com stepwise -->
 
-Para esta análise, será implementado o modelo GWR com *stepwise*.
+<!-- Para esta análise, será implementado o modelo GWR com *stepwise*. -->
 
-```{r gwr_stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE}
+```{r gwr_stepwise_model, echo = TRUE, out.width = '100%', fig.height = 6, warning = FALSE, eval = FALSE, include=FALSE}
 
 # GWR model (Geographically Weighted Regression)
 target.gwr.multivaluated.sel <- gwr.sel(PcMedRev ~ 
@@ -369,7 +332,7 @@ target.gwr.multivaluated.sel <- gwr.sel(PcMedRev ~
                                           RefinMin +
                                           RefinMax +
                                           ChgPIB +
-                                          ChgPIBCap, 
+                                          ChgPIBCap,
                                         data = target, 
                                         coords = coords, 
                                         adapt = TRUE, 
@@ -378,15 +341,15 @@ target.gwr.multivaluated.sel <- gwr.sel(PcMedRev ~
                                         verbose = TRUE)
 
 target.gwr.multivaluated.model <- gwr(PcMedRev ~ 
-                                        DistMean +
-                                        DistDev +
-                                        DistMin +
-                                        RefinMean +
-                                        RefinDev +
-                                        RefinMin +
-                                        RefinMax +
-                                        ChgPIB +
-                                        ChgPIBCap, 
+                                          DistMean +
+                                          DistDev +
+                                          DistMin +
+                                          RefinMean +
+                                          RefinDev +
+                                          RefinMin +
+                                          RefinMax +
+                                          ChgPIB +
+                                          ChgPIBCap,
                                       data = target, 
                                       coords = coords, 
                                       bandwidth = target.gwr.multivaluated.sel,
@@ -398,7 +361,7 @@ target.gwr.multivaluated.model <- gwr(PcMedRev ~
 SST <- sum((target$PcMedRev - mean(target$PcMedRev)) ^ 2)
 GWR_SSE <- target.gwr.multivaluated.model$results$rss
 r2_GWR <- 1 - (GWR_SSE / SST)
-r2_GWR
+print(paste('R2 = ', r2_GWR))
 
 # maps
 target$fitted_sem <- target.gwr.multivaluated.model$lm$fitted.values
