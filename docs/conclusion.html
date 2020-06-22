@@ -21,6 +21,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -458,7 +459,7 @@ $(document).ready(function () {
 <li>Matriz KNN = 6;</li>
 <li>Matriz KNN = 8.</li>
 </ul>
-<p>Para essa amostra observou-se que existe um dependência espacial significativa do preço médio de revenda, com o <em>Moran's I</em> variando no intervalo de 52% à 60% para matrizes baseadas no número fixo de vizinhos. Para matrizes baseadas em distância, gerou-se um alto número de ligações, acarretando em municípios com centenas de vizinhos e diminuição acentuada do índice <em>Moran's I</em>. Não foram analisadas matrizes de vizinhança por contiguidade dado que para essa amostra, muitos municípios ficariam sem vizinhos, tornando assim ineficaz essa opção.</p>
+<p>Para essa amostra observou-se que existe um dependência espacial significativa do preço médio de revenda, com o <em>Moran’s I</em> variando no intervalo de 52% à 60% para matrizes baseadas no número fixo de vizinhos. Para matrizes baseadas em distância, gerou-se um alto número de ligações, acarretando em municípios com centenas de vizinhos e diminuição acentuada do índice <em>Moran’s I</em>. Não foram analisadas matrizes de vizinhança por contiguidade dado que para essa amostra, muitos municípios ficariam sem vizinhos, tornando assim ineficaz essa opção.</p>
 </div>
 <div id="análise-através-de-modelos" class="section level1">
 <h1><span class="header-section-number">3</span> Análise Através de Modelos</h1>
@@ -469,7 +470,7 @@ $(document).ready(function () {
 <li>Modelo de regressão geograficamente ponderada (GWR);</li>
 <li>Modelo GWR com stepwise.</li>
 </ul>
-<p>Partindo do modelo mais simples, de regressão linear, notamos um R2 de <span class="math inline">\(0.3277\)</span> e ao aplicar o modelo SAR podemos ver que ele leva em conta o preço dos vizinhos. Ao aplicar o modelo GWR conseguimos notar a formação de <strong>clusters</strong>, contudo, para o Rio de Janeiro fica evidente um comportamento anômalo.</p>
+<p>Partindo do modelo mais simples, de regressão linear múltipla, obtemos um R2 Ajustado de <span class="math inline">\(0.3383\)</span> e ao aplicar o modelo SAR que ele leva em conta o preço dos vizinhos obtemos um R2 de <span class="math inline">\(0.3281\)</span>. Ao aplicar o modelo GWR conseguimos aumentar o nosso R2 para <span class="math inline">\(0.6588\)</span> e conseguimos notar a formação de clusters indicados pela análise do I de Moran realizada anteriormente, vale notar que para o Rio de Janeiro fica evidente um comportamento anômalo.</p>
 <p>Embora a regra geral observada na análise por GWR mostre que quanto maior a distância, maior o preço, para o Rio de Janeiro esta afirmação não é mantida. Isso sugere que outros fatores influenciam na formação do preço do combustível no Rio de Janeiro.</p>
 </div>
 <div id="considerações-finais" class="section level1">
