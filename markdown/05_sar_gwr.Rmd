@@ -163,6 +163,9 @@ target.lm.multivaluated.stepwise <- step(target.lm.multivaluated.model,
 
 summary(target.lm.multivaluated.stepwise)
 
+
+hist(target.lm.multivaluated.stepwise$residuals, col="darkmagenta", breaks = 30)
+
 # maps
 target$fitted_sem <- target.lm.multivaluated.stepwise$fitted.values
 spplot(target, "fitted_sem", main = "Fitted values")
@@ -206,7 +209,7 @@ target.sar.model.residuals <- target.sar.model$residuals
 target.sar.model.class_fx <- classIntervals(target.sar.model.residuals, 
                                             n = 5, 
                                             style = "fixed",
-                                            fixedBreaks = c(-50,-25,-5,5,25,50),
+                                            fixedBreaks = c(-1, -.75, -.25, .25, .75, 1),
                                             rtimes = 1)
 
 cols.sar <- findColours(target.sar.model.class_fx, pal)
@@ -287,7 +290,7 @@ target.gwr.residuals <- target.gwr.model$SDF$gwr.e
 hist(target.gwr.residuals, col="darkmagenta", breaks = 30)
 
 target.gwr.residuals.classes_fx <- classIntervals(target.gwr.residuals, n = 5, style = "fixed", 
-                                                  fixedBreaks = c(-50,-25,-5,5,25,50), 
+                                                  fixedBreaks = c(-1, -.75, -.25, .25, .75, 1),
                                                   rtimes = 1)
 cols.gwr.residuals <- findColours(target.gwr.residuals.classes_fx, pal)
 
@@ -298,11 +301,11 @@ legend(x = "bottom", cex = 1, fill = attr(cols.gwr.residuals,"palette"), bty = "
 
 moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
 
-
 # coefficients
 target.gwr.coefficients <- target.gwr.model$SDF$DistMean
 
-target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style = "fixed", 
+target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, 
+                                                     style = "fixed", 
                                                      fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
                                                      rtimes = 1)
 cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
@@ -375,8 +378,9 @@ target.gwr.residuals <- target.gwr.model$SDF$gwr.e
 
 hist(target.gwr.residuals, col="darkmagenta", breaks = 30)
 
-target.gwr.residuals.classes_fx <- classIntervals(target.gwr.residuals, n = 5, style = "fixed", 
-                                                  fixedBreaks = c(-50,-25,-5,5,25,50), 
+target.gwr.residuals.classes_fx <- classIntervals(target.gwr.residuals, n = 5, 
+                                                  style = "fixed", 
+                                                  fixedBreaks = c(-1, -.75, -.25, .25, .75, 1),
                                                   rtimes = 1)
 cols.gwr.residuals <- findColours(target.gwr.residuals.classes_fx, pal)
 
@@ -390,7 +394,8 @@ moran.test(target.gwr.residuals, listw = lw, zero.policy = T)
 # coefficients
 target.gwr.coefficients <- target.gwr.model$SDF$DistMean
 
-target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, style="fixed", 
+target.gwr.coefficients.classes_fx <- classIntervals(target.gwr.coefficients, n = 5, 
+                                                     style="fixed", 
                                                      fixedBreaks=c(-.005,-.003,-.001,.001,.003,.005), 
                                                      rtimes = 1)
 cols.gwr.coefficients <- findColours(target.gwr.coefficients.classes_fx, pal)
