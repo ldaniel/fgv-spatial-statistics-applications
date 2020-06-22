@@ -72,7 +72,6 @@ Foram aplicados vários modelos, disponíveis no relatório de aplicação dos [
 * Modelo de regressão linear multivariado stepwise;
 * Modelo espacial auto-regressivo (SAR);
 * Modelo de regressão geograficamente ponderada (GWR);
-* Modelo GWR com stepwise.
 
 Partindo do modelo mais simples, de regressão linear múltipla, obtemos um R2 Ajustado de $0.3383$ e ao aplicar o modelo SAR que ele leva em conta o preço dos vizinhos obtemos um R2 de $0.3281$. Ao aplicar o modelo GWR conseguimos aumentar o nosso R2 para $0.6588$ e conseguimos notar a formação de clusters indicados pela análise do I de Moran realizada anteriormente, vale notar que para o Rio de Janeiro fica evidente um comportamento anômalo. 
 
