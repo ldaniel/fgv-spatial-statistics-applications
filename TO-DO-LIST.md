@@ -2,7 +2,7 @@
 
 1) colocar a legenda nos mapas com os critérios utilizados
 
-2) colocar o mapa de resíduo com a mesma escala (cores)
+2) <strike>colocar o mapa de resíduo com a mesma escala (cores)</strike>
 
 3) fazer um mapa com a média e outro com a variância
 
