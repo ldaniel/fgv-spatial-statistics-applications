@@ -104,3 +104,23 @@ filter(gas_prices_hist, !is.na(Index)) %>%
     options = list(pageLength = 10,autoWidth = TRUE)
   )
 ```
+
+# Visualização da distribuição das variáveis dependentes.
+
+' '            |  ' '
+:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMean.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistDev.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMin.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMax.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMean.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinDev.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMin.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMax.svg)
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIB.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIBCap.svg)
+
+
+
+
+
+
+
+
+
+
