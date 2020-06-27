@@ -1,0 +1,171 @@
+<Layout worldFileMap="{787add86-938a-4895-a07c-043da6bbced1}" name="DistMean" units="mm" printResolution="300">
+ <Snapper snapToGrid="0" snapToItems="1" snapToGuides="1" tolerance="5"/>
+ <Grid offsetY="0" resUnits="mm" resolution="10" offsetUnits="mm" offsetX="0"/>
+ <PageCollection>
+  <symbol alpha="1" clip_to_extent="1" name="" type="fill" force_rhr="0">
+   <layer class="SimpleFill" enabled="1" locked="0" pass="0">
+    <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+    <prop k="color" v="255,255,255,255"/>
+    <prop k="joinstyle" v="miter"/>
+    <prop k="offset" v="0,0"/>
+    <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+    <prop k="offset_unit" v="MM"/>
+    <prop k="outline_color" v="35,35,35,255"/>
+    <prop k="outline_style" v="no"/>
+    <prop k="outline_width" v="0.26"/>
+    <prop k="outline_width_unit" v="MM"/>
+    <prop k="style" v="solid"/>
+    <data_defined_properties>
+     <Option type="Map">
+      <Option value="" name="name" type="QString"/>
+      <Option name="properties"/>
+      <Option value="collection" name="type" type="QString"/>
+     </Option>
+    </data_defined_properties>
+   </layer>
+  </symbol>
+  <LayoutItem positionLock="false" position="0,0,mm" frame="false" size="297,210,mm" id="" outlineWidthM="0.3,mm" background="true" opacity="1" excludeFromExports="0" itemRotation="0" uuid="{100ed2fe-0c78-4f19-a690-605a87fb04e4}" zValue="0" referencePoint="0" templateUuid="{100ed2fe-0c78-4f19-a690-605a87fb04e4}" frameJoinStyle="miter" type="65638" visibility="1" positionOnPage="0,0,mm" blendMode="0" groupUuid="">
+   <FrameColor alpha="255" green="0" red="0" blue="0"/>
+   <BackgroundColor alpha="255" green="255" red="255" blue="255"/>
+   <LayoutObject>
+    <dataDefinedProperties>
+     <Option type="Map">
+      <Option value="" name="name" type="QString"/>
+      <Option name="properties"/>
+      <Option value="collection" name="type" type="QString"/>
+     </Option>
+    </dataDefinedProperties>
+    <customproperties/>
+   </LayoutObject>
+   <symbol alpha="1" clip_to_extent="1" name="" type="fill" force_rhr="0">
+    <layer class="SimpleFill" enabled="1" locked="0" pass="0">
+     <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="joinstyle" v="miter"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="35,35,35,255"/>
+     <prop k="outline_style" v="no"/>
+     <prop k="outline_width" v="0.26"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="style" v="solid"/>
+     <data_defined_properties>
+      <Option type="Map">
+       <Option value="" name="name" type="QString"/>
+       <Option name="properties"/>
+       <Option value="collection" name="type" type="QString"/>
+      </Option>
+     </data_defined_properties>
+    </layer>
+   </symbol>
+  </LayoutItem>
+  <GuideCollection visible="1"/>
+ </PageCollection>
+ <LayoutItem positionLock="false" outlineWidthM="0.3,mm" positionOnPage="204.269,169.2,mm" legendFilterByMap="1" frame="false" wmsLegendHeight="25" rasterBorderColor="0,0,0,255" columnSpace="2" titleAlignment="1" id="" uuid="{6d4f1c9f-df6b-4094-b13d-3cc35e1d2c48}" symbolWidth="7" map_uuid="{787add86-938a-4895-a07c-043da6bbced1}" frameJoinStyle="miter" equalColumnWidth="0" boxSpace="2" background="false" symbolAlignment="1" templateUuid="{6d4f1c9f-df6b-4094-b13d-3cc35e1d2c48}" title="Distância em KMs (Natural Breaks)" wmsLegendWidth="50" size="90.6,38,mm" lineSpacing="1" wrapChar="" groupUuid="" excludeFromExports="0" type="65642" fontColor="#000000" symbolHeight="4" columnCount="1" splitLayer="0" itemRotation="0" rasterBorder="1" zValue="3" position="204.269,169.2,mm" referencePoint="0" legendFilterByAtlas="0" opacity="1" rasterBorderWidth="0" blendMode="0" visibility="1" resizeToContents="1">
+  <FrameColor alpha="255" green="0" red="0" blue="0"/>
+  <BackgroundColor alpha="255" green="255" red="255" blue="255"/>
+  <LayoutObject>
+   <dataDefinedProperties>
+    <Option type="Map">
+     <Option value="" name="name" type="QString"/>
+     <Option name="properties"/>
+     <Option value="collection" name="type" type="QString"/>
+    </Option>
+   </dataDefinedProperties>
+   <customproperties/>
+  </LayoutObject>
+  <styles>
+   <style marginBottom="3.5" alignment="1" name="title">
+    <styleFont style="" description="MS Shell Dlg 2,16,-1,5,50,0,0,0,0,0"/>
+   </style>
+   <style alignment="1" name="group" marginTop="3">
+    <styleFont style="" description="MS Shell Dlg 2,14,-1,5,50,0,0,0,0,0"/>
+   </style>
+   <style alignment="1" name="subgroup" marginTop="3">
+    <styleFont style="" description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0"/>
+   </style>
+   <style alignment="1" name="symbol" marginTop="2.5">
+    <styleFont style="" description="MS Shell Dlg 2,7.8,-1,5,50,0,0,0,0,0"/>
+   </style>
+   <style alignment="1" marginLeft="2" name="symbolLabel" marginTop="2">
+    <styleFont style="" description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0"/>
+   </style>
+  </styles>
+  <layer-tree-group>
+   <customproperties/>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Refinarias" providerKey="ogr" expanded="1" source="./data/processed/refinarias/refinarias.shp" id="refinarias_61380916_bc38_45ca_9779_aa081a4befd5">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Distribuidoras" providerKey="ogr" expanded="1" source="./data/raw/BIZROG_ZNMT2017_2019_Publ_10.4/v107/bizrog_znmt_2017-2019.gdb|layername=Bases_de_Combustiveis_jul19" id="Bases_de_Combustiveis_jul19_f2a3969f_1a59_46ab_8745_b4a0ffaba6bb">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Distancias Sedes para Distribuidoras" providerKey="ogr" expanded="1" source="./data/processed/distancias_municipios_distribuidoras/distancias_municipios_distribuidoras.shp" id="distancias_municipios_distribuidoras_282fbd4c_c001_4d75_b346_bda959498fa6">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Distancias Sedes para Refinarias" providerKey="ogr" expanded="0" source="./data/processed/distancias_municipios_refinarias/distancias_municipios_refinarias.shp|layername=distancias_municipios_refinarias" id="Hub_distance_51a6ab78_b0d9_4b8e_8e2a_4222add78473">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Postos" providerKey="ogr" expanded="1" source="./data/processed/gas_prices_station/gas_prices_station.shp" id="gas_prices_station_dd3044cc_005b_45e2_ade4_113a46293f37">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Sedes de Municipios" providerKey="ogr" expanded="1" source="./data/processed/br_sedes_municípios_dist_matrix/br_sedes_municípios_dist_matrix.shp|layername=br_sedes_municípios_dist_matrix" id="Refactored_a6677a02_fdd7_4606_b13e_5e4cd99c35f6">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Checked" name="Cidades Pesquisadas" providerKey="ogr" expanded="1" source="./data/processed/gas_prices_hist/gas_prices_hist.shp|layername=gas_prices_hist" id="Joined_layer_f2f33b63_2b0a_4adc_b6ca_94b34f4f0425">
+    <customproperties/>
+   </layer-tree-layer>
+   <layer-tree-layer legend_exp="" checked="Qt::Unchecked" name="Google Maps" providerKey="wms" expanded="1" source="crs=EPSG:3857&amp;format&amp;tilePixelRatio=2&amp;type=xyz&amp;url=https://mt1.google.com/vt/lyrs%3Dr%26x%3D%7Bx%7D%26y%3D%7By%7D%26z%3D%7Bz%7D&amp;zmax=18&amp;zmin=0" id="Google_Maps_298a979f_34bb_46d5_a984_e05a91ec484c">
+    <customproperties/>
+   </layer-tree-layer>
+   <custom-order enabled="0">
+    <item>gas_prices_station_dd3044cc_005b_45e2_ade4_113a46293f37</item>
+    <item>Bases_de_Combustiveis_jul19_f2a3969f_1a59_46ab_8745_b4a0ffaba6bb</item>
+    <item>Google_Maps_298a979f_34bb_46d5_a984_e05a91ec484c</item>
+    <item>distancias_municipios_distribuidoras_282fbd4c_c001_4d75_b346_bda959498fa6</item>
+    <item>Hub_distance_51a6ab78_b0d9_4b8e_8e2a_4222add78473</item>
+    <item>refinarias_61380916_bc38_45ca_9779_aa081a4befd5</item>
+    <item>Refactored_a6677a02_fdd7_4606_b13e_5e4cd99c35f6</item>
+    <item>Joined_layer_f2f33b63_2b0a_4adc_b6ca_94b34f4f0425</item>
+   </custom-order>
+  </layer-tree-group>
+ </LayoutItem>
+ <LayoutItem valign="128" positionLock="false" position="0,0,mm" frame="false" marginY="0" htmlState="0" size="297,18.4385,mm" id="" outlineWidthM="0.3,mm" background="false" opacity="1" excludeFromExports="0" labelText="Distância Média para as 10 Distribuiroras mais Próximas" itemRotation="0" uuid="{b1492273-40eb-4b3e-9828-9d6a9a3c7c41}" zValue="2" referencePoint="0" templateUuid="{b1492273-40eb-4b3e-9828-9d6a9a3c7c41}" marginX="0" frameJoinStyle="miter" type="65641" visibility="1" positionOnPage="0,0,mm" blendMode="0" halign="4" groupUuid="">
+  <FrameColor alpha="255" green="0" red="0" blue="0"/>
+  <BackgroundColor alpha="255" green="255" red="255" blue="255"/>
+  <LayoutObject>
+   <dataDefinedProperties>
+    <Option type="Map">
+     <Option value="" name="name" type="QString"/>
+     <Option name="properties"/>
+     <Option value="collection" name="type" type="QString"/>
+    </Option>
+   </dataDefinedProperties>
+   <customproperties/>
+  </LayoutObject>
+  <LabelFont style="Regular" description="MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0,Regular"/>
+  <FontColor alpha="255" green="0" red="0" blue="0"/>
+ </LayoutItem>
+ <LayoutItem labelMargin="0,mm" positionLock="false" keepLayerSet="false" position="-3.38709e-15,18.4385,mm" frame="false" mapRotation="0" size="297,191.562,mm" followPreset="false" id="" drawCanvasItems="true" outlineWidthM="0.3,mm" background="true" opacity="1" excludeFromExports="0" followPresetName="" itemRotation="0" uuid="{787add86-938a-4895-a07c-043da6bbced1}" zValue="1" referencePoint="0" templateUuid="{787add86-938a-4895-a07c-043da6bbced1}" mapFlags="0" frameJoinStyle="miter" type="65639" visibility="1" positionOnPage="-3.38709e-15,18.4385,mm" blendMode="0" groupUuid="">
+  <FrameColor alpha="255" green="0" red="0" blue="0"/>
+  <BackgroundColor alpha="255" green="248" red="248" blue="248"/>
+  <LayoutObject>
+   <dataDefinedProperties>
+    <Option type="Map">
+     <Option value="" name="name" type="QString"/>
+     <Option name="properties"/>
+     <Option value="collection" name="type" type="QString"/>
+    </Option>
+   </dataDefinedProperties>
+   <customproperties/>
+  </LayoutObject>
+  <Extent xmin="-85.15406197491078899" ymin="-34.90612144882911139" xmax="-20.50499166771536608" ymax="6.79177541364405357"/>
+  <LayerSet/>
+  <AtlasMap atlasDriven="0" scalingMode="2" margin="0.10000000000000001"/>
+  <labelBlockingItems/>
+ </LayoutItem>
+ <customproperties>
+  <property key="atlasRasterFormat" value="png"/>
+ </customproperties>
+ <Atlas filenamePattern="'output_'||@atlas_featurenumber" enabled="0" sortFeatures="0" hideCoverage="0" filterFeatures="0" coverageLayer="" pageNameExpression=""/>
+</Layout>
