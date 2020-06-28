@@ -392,18 +392,22 @@ $(document).ready(function () {
 </ul></li>
 </ul></li>
 <li><a href="#observações-acerca-das-análises-realizadas"><span class="toc-section-number">4</span> Observações acerca das análises realizadas</a></li>
+<li><a href="#autocorrelação-espacial-das-variáveis-independentes"><span class="toc-section-number">5</span> Autocorrelação espacial das variáveis independentes</a></li>
 </ul>
 </div>
 
 <div id="introdução" class="section level1">
 <h1><span class="header-section-number">1</span> Introdução</h1>
-<p>A autocorrelação espacial é uma técnica da análise exploratória espacial que caracteriza a dependência de atributos no espaço, ou seja, o quanto um atributo de uma região está relacionado ao mesmo atributo de regiões vizinhas. Para a análise a seguir será utilizado o índice de autocorrelação espacial <em>Moran’s I</em>.</p>
-<p>O índice <em>Moran’s I</em> é o indicador mais utilizado atualmente e funciona de forma similar a <em>Correlação de Pearson</em>, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).</p>
+<p>A autocorrelação espacial é uma técnica da análise exploratória espacial que caracteriza a dependência de atributos no espaço, ou seja, o quanto um atributo de uma região está relacionado ao mesmo atributo de regiões vizinhas. Para a análise a seguir será utilizado o índice de autocorrelação espacial <em>Moran's I</em>.</p>
+<p>O índice <em>Moran's I</em> é o indicador mais utilizado atualmente e funciona de forma similar a <em>Correlação de Pearson</em>, onde o valor varia entre -1 e 1, significando que para resultados próximos a esses valores existem alta autocorrelação espacial (Tendência a clusterização), e para resultados próximos a 0 não existem autocorrelação espacial (Padrões aleatórios).</p>
 </div>
 <div id="abordagem" class="section level1">
 <h1><span class="header-section-number">2</span> Abordagem</h1>
-<p>Para a análise de autocorrelação espacial com o índice <em>Moran’s I</em>, utilizou-se o atributo <em>PcMedRev (Preço Médio de Revenda)</em> da amostra da semana <strong>26-Abr-2020 a 02-Mai-2020</strong> dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png" /></p>
+<p>Para a análise de autocorrelação espacial com o índice <em>Moran's I</em>, utilizou-se o atributo <em>PcMedRev (Preço Médio de Revenda)</em> da amostra da semana <strong>26-Abr-2020 a 02-Mai-2020</strong> dos dados do Levantamento de Preços e de Margens de Comercialização de Combustíveis realizado pela ANP.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/spatial-autocorrelation-gas-price-hist-map.png" />
+
+</div>
 <p>A partir dessa amostra, composta por 458 munícipios como é possível observar na imagem acima, contruiu-se 6 matrizes de vizinhança com intuito de avaliar o resultado para diferentes configurações. Todas as matrizes foram construidas ponderadas pela distância, dado que existem muitos polígonos sem contiguidade com outros. Na seção seguinte observam-se os <em>connectivity graphs</em> de cada uma delas e análises desenvolvidas.</p>
 <div id="arquivos-com-as-matrizes-de-vizinha" class="section level2">
 <h2><span class="header-section-number">2.1</span> Arquivos com as matrizes de vizinha</h2>
@@ -417,14 +421,26 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Matriz de Vizinhança</h3>
 <p>Para esta primeira análise desenvolveu-se uma matriz de vizinhança por distância, com largura de banda de 5.7 e distância euclidiana. Nota-se pelo seu <em>connectivity graph</em> que a matriz ficou bastante densa onde há concentração maior de polígonos, isso se deve ao fato de existirem municípios com centenas de vizinhos.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> Autocorrelação Espacial</h3>
-<p>Observa-se no gráfico de dispersão do <em>Moran’s I</em> um valor de .15 para autocorrelação espacial, ou seja, significa dizer que 15.2% da variação do preço médio de revenda é explicado pela geografia. Apesar de mais da metade dos municípios terem um p-valor significante, a autocorrelação alcançou um valor baixo, o que pode estar relacionado à sua matriz de vizinhança devido ao grande número de vizinhos como comentado anteriormente.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/morans-i.png" /></p>
+<p>Observa-se no gráfico de dispersão do <em>Moran's I</em> um valor de .15 para autocorrelação espacial, ou seja, significa dizer que 15.2% da variação do preço médio de revenda é explicado pela geografia. Apesar de mais da metade dos municípios terem um p-valor significante, a autocorrelação alcançou um valor baixo, o que pode estar relacionado à sua matriz de vizinhança devido ao grande número de vizinhos como comentado anteriormente.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/distanceband5/morans-i.png" />
+
+</div>
 </div>
 </div>
 <div id="segunda-análise" class="section level2">
@@ -432,14 +448,26 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança-1" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Matriz de Vizinhança</h3>
 <p>Na segunda análise desenvolveu-se uma matriz de vizinhança utilizando kernel adaptativo com 8 vizinhos e função de decaimento gaussiano. Nota-se pelo seu <em>connectivity graph</em> que, comparado com a matriz da análise anterior, existe um equilíbrio maior no número de ligações.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial-1" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Autocorrelação Espacial</h3>
-<p>Observa-se no gráfico de dispersão do <em>Moran’s I</em> um valor de .57 para autocorrelação espacial, ou seja, significa dizer que 57.6% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 242 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do país, indicando, em conjunto com o <em>Moran’s I</em>, uma dependência espacial forte do atributo preço médio de revenda.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/morans-i.png" /></p>
+<p>Observa-se no gráfico de dispersão do <em>Moran's I</em> um valor de .57 para autocorrelação espacial, ou seja, significa dizer que 57.6% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 242 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões alto-alto, baixo-baixo se formam no norte, nordeste, sudeste e sul do país, indicando, em conjunto com o <em>Moran's I</em>, uma dependência espacial forte do atributo preço médio de revenda.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/adaptativekernelgaussian8n/morans-i.png" />
+
+</div>
 </div>
 </div>
 <div id="terceira-análise" class="section level2">
@@ -447,14 +475,26 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança-2" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> Matriz de Vizinhança</h3>
 <p>Para esta terceira análise desenvolveu-se uma matriz de vizinhança utilizando KNN (<em>k-nearest neighbors</em>) com 3 vizinhos.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial-2" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> Autocorrelação Espacial</h3>
-<p>Observa-se no gráfico de dispersão do <em>Moran’s I</em> um valor de .60 para autocorrelação espacial, ou seja, significa dizer que 60.3% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 123 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões alto-alto, baixo-baixo nas mesmas áreas das análises anteriores, indicando, em conjunto com o <em>Moran’s I</em>, uma dependência espacial forte do atributo preço médio de revenda.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/morans-i.png" /></p>
+<p>Observa-se no gráfico de dispersão do <em>Moran's I</em> um valor de .60 para autocorrelação espacial, ou seja, significa dizer que 60.3% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 123 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões alto-alto, baixo-baixo nas mesmas áreas das análises anteriores, indicando, em conjunto com o <em>Moran's I</em>, uma dependência espacial forte do atributo preço médio de revenda.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn3/morans-i.png" />
+
+</div>
 </div>
 </div>
 <div id="quarta-análise" class="section level2">
@@ -462,14 +502,26 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança-3" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Matriz de Vizinhança</h3>
 <p>Para esta quarta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (<em>k-nearest neighbors</em>) com 4 vizinhos.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial-3" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Autocorrelação Espacial</h3>
-<p>Observa-se no gráfico de dispersão do <em>Moran’s I</em> um valor de .58 para autocorrelação espacial, ou seja, significa dizer que 58.8% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 156 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões similares das análises anteriores, indicando, em conjunto com o <em>Moran’s I</em>, uma dependência espacial ainda forte do atributo preço médio de revenda.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/morans-i.png" /></p>
+<p>Observa-se no gráfico de dispersão do <em>Moran's I</em> um valor de .58 para autocorrelação espacial, ou seja, significa dizer que 58.8% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 156 municípios tem p-valor significante, e no <em>Lisa Cluster Map</em> padrões similares das análises anteriores, indicando, em conjunto com o <em>Moran's I</em>, uma dependência espacial ainda forte do atributo preço médio de revenda.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn4/morans-i.png" />
+
+</div>
 </div>
 </div>
 <div id="quinta-análise" class="section level2">
@@ -477,14 +529,26 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança-5" class="section level3">
 <h3><span class="header-section-number">3.5.1</span> Matriz de Vizinhança 5</h3>
 <p>Para esta quinta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (<em>k-nearest neighbors</em>) com 6 vizinhos.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial-4" class="section level3">
 <h3><span class="header-section-number">3.5.2</span> Autocorrelação Espacial</h3>
-<p>É possível observar no gráfico de dispersão do <em>Moran’s I</em> um valor de .55 para autocorrelação espacial, ou seja, significa dizer que 55% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 201 municípios tem p-valor significante, ou seja, em comparação com os KNNs anteriores, ao se aumentar o número de vizinhos, o número de municípios significantes também aumenta, em contrapartida o <em>Moran’s I</em> diminui.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/morans-i.png" /></p>
+<p>É possível observar no gráfico de dispersão do <em>Moran's I</em> um valor de .55 para autocorrelação espacial, ou seja, significa dizer que 55% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 201 municípios tem p-valor significante, ou seja, em comparação com os KNNs anteriores, ao se aumentar o número de vizinhos, o número de municípios significantes também aumenta, em contrapartida o <em>Moran's I</em> diminui.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn6/morans-i.png" />
+
+</div>
 </div>
 </div>
 <div id="sexta-análise" class="section level2">
@@ -492,22 +556,119 @@ $(document).ready(function () {
 <div id="matriz-de-vizinhança-4" class="section level3">
 <h3><span class="header-section-number">3.6.1</span> Matriz de Vizinhança</h3>
 <p>Para esta sexta análise desenvolveu-se uma matriz de vizinhança utilizando KNN (<em>k-nearest neighbors</em>) com 8 vizinhos.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/spatial-weights-matrix.png" />
+
+</div>
 </div>
 <div id="autocorrelação-espacial-5" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Autocorrelação Espacial</h3>
-<p>É possível observar no gráfico de dispersão do <em>Moran’s I</em> um valor de .52 para autocorrelação espacial, ou seja, significa dizer que 52.2% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 232 municípios tem p-valor significante, corroborando o que foi dito anteriormente sobre o aumento do número de vizinhos. Apesar disso, o <em>Moran’s I</em> ainda alcançou um valor interessante para este estudo.</p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-significance-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-cluster-map.png" /></p>
-<p><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/morans-i.png" /></p>
+<p>É possível observar no gráfico de dispersão do <em>Moran's I</em> um valor de .52 para autocorrelação espacial, ou seja, significa dizer que 52.2% da variação do preço médio de revenda é explicado pela geografia. Observa-se no <em>Lisa Significance Map</em> que 232 municípios tem p-valor significante, corroborando o que foi dito anteriormente sobre o aumento do número de vizinhos. Apesar disso, o <em>Moran's I</em> ainda alcançou um valor interessante para este estudo.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-significance-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/lisa-cluster-map.png" />
+
+</div>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/knn8/morans-i.png" />
+
+</div>
 </div>
 </div>
 </div>
 <div id="observações-acerca-das-análises-realizadas" class="section level1">
 <h1><span class="header-section-number">4</span> Observações acerca das análises realizadas</h1>
-<p>A análise de autocorrelação espacial do preço médio de revenda da gasolina desenvolvida neste trabalho mostrou que existe uma dependência espacial significativa na amostra de municípios usada, variando no intervalo de 52% à 60% do <em>Moran’s I</em> para matrizes de vizinhança entre 3 e 8 vizinhos, com e sem kernel adaptativo.</p>
+<p>A análise de autocorrelação espacial do preço médio de revenda da gasolina desenvolvida neste trabalho mostrou que existe uma dependência espacial significativa na amostra de municípios usada, variando no intervalo de 52% à 60% do <em>Moran's I</em> para matrizes de vizinhança entre 3 e 8 vizinhos, com e sem kernel adaptativo.</p>
 <p>Utilizando uma matriz baseada em largura de banda, o índice de autocorrelação diminui de forma acentuada, dado que para o software usado (<em>GeoDa</em>), com o menor valor posível de largura de banda (5.7) foi gerado uma matriz com ligações excessivas, alguns municípios chegando na casa das centenas de vizinhos.</p>
 <p>Portanto acredita-se que esse fato tenha impactado no índice de autocorrelação. Matrizes de vizinhança por contiguidade não foram analisadas já que muitos municípios não teriam vizinhos, tornando essa opção ineficaz para esta análise.</p>
+</div>
+<div id="autocorrelação-espacial-das-variáveis-independentes" class="section level1">
+<h1><span class="header-section-number">5</span> Autocorrelação espacial das variáveis independentes</h1>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Distância Média das Distribuidoras</th>
+<th align="center">Desvio Padrão da Distância das Distribuidoras</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmean.png" /></td>
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distdev.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Distância Mínima das Distribuidoras</th>
+<th align="center">Distância Máxima das Distribuidoras</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmin.png" /></td>
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmax.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="51%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Distância Média das Refinarias</th>
+<th align="center">Desvio Padrão das Distâncias das Refinarias</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmean.png" /></td>
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refindev.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Distância Mínima das Refinarias</th>
+<th align="center">Distância Máxima das Refinarias</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmin.png" /></td>
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmax.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="51%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Variação no PIB de 2016 para 2017</th>
+<th align="center">Variação no PIB per Capita de 2016 para 2017</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-chgpib.png" /></td>
+<td align="center"><img src="https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-chgpibcap.png" /></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
