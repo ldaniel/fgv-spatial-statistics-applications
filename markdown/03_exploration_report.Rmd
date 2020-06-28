@@ -52,6 +52,13 @@ ggplot(data = gas_prices_station) +
         aspect.ratio = 1.2)
 ```
 
+
+# Visualização do Preço Médio e Desvio Padrão da Gasolina Comum por Estado.
+
+Preço Médio                           |Desvio Padrão  
+:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/UF_PcMedRev.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/UF_PcMedRevDev.svg)
+
 # Localização de Refinarias e Distribuidoras de Combustíveis no Território nacional
 
 Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país (**`338`**) assim como a localização de todas as refinarias de combustíveis (**`16`**)em território nacional.
@@ -107,20 +114,12 @@ filter(gas_prices_hist, !is.na(Index)) %>%
 
 # Visualização da distribuição das variáveis dependentes.
 
-' '            |  ' '
+''                           |''  
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMean.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistDev.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMin.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/DistMax.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMean.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinDev.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMin.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMax.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIB.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIBCap.svg)
-
-
-
-
-
-
-
-
 
 
