@@ -113,7 +113,7 @@ filter(gas_prices_hist, !is.na(Index)) %>%
   )
 ```
 
-# Visualização da distribuição das variáveis dependentes.
+# Visualização da distribuição das variáveis independentes
 
 ''                           |''  
 :-------------------------:|:-------------------------:
