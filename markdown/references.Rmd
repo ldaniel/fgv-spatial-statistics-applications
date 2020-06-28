@@ -1,6 +1,7 @@
 ---
 title: "References"
 date: "Junho de 2020"
+output: word_document
 ---
 
 # Referências utilizadas para a elaboração e desenvolvimento deste trabalho

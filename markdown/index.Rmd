@@ -15,9 +15,6 @@ library(knitr)
 # loading mind map library
 library(mindr)
 
-# setting the encoding up
-options(encoding = "UTF-8")
-
 ```
 
 # Spatial-Statistics-Applications
