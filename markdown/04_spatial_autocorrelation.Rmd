@@ -136,6 +136,8 @@ Portanto acredita-se que esse fato tenha impactado no índice de autocorrelaçã
 
 # Autocorrelação espacial das variáveis independentes
 
+Abaixo a análise de autocorrelação espacial das variáveis independentes utilizando a matriz de vizinhança com maior I de Moran na análise de autocorrelação espacial do preço médio da gasolina comum (KNN = 3).
+
 |Distância Média das Distribuidoras            | Desvio Padrão da Distância das Distribuidoras|
 :---------------------------------------------:|:---------------------------------------------:
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmean.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distdev.png)
