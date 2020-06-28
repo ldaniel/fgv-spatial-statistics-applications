@@ -8,4 +8,4 @@
 
 4) <strike>mapa temático de cada variável que ficou no modelo final, por poligono mesmo, com a variavel x</strike>
 
-5) colocar o lisa map (só se tivermos fôlego, segundo ele)
+5) <strike>colocar o lisa map (só se tivermos fôlego, segundo ele)</strike>
