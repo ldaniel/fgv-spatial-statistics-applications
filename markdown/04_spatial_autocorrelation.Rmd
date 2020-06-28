@@ -133,3 +133,29 @@ A análise de autocorrelação espacial do preço médio de revenda da gasolina 
 Utilizando uma matriz baseada em largura de banda, o índice de autocorrelação diminui de forma acentuada, dado que para o software usado (*GeoDa*), com o menor valor posível de largura de banda (5.7) foi gerado uma matriz com ligações excessivas, alguns municípios chegando na casa das centenas de vizinhos. 
 
 Portanto acredita-se que esse fato tenha impactado no índice de autocorrelação. Matrizes de vizinhança por contiguidade não foram analisadas já que muitos municípios não teriam vizinhos, tornando essa opção ineficaz para esta análise.
+
+# Autocorrelação espacial das variáveis independentes
+
+|Distância Média das Distribuidoras            | Desvio Padrão da Distância das Distribuidoras|
+:---------------------------------------------:|:---------------------------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmean.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distdev.png)
+
+
+|Distância Mínima das Distribuidoras           | Distância Máxima das Distribuidoras          |
+:---------------------------------------------:|:---------------------------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmin.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-distmax.png)
+
+
+|Distância Média das Refinarias                | Desvio Padrão das Distâncias das Refinarias|
+:---------------------------------------------:|:-------------------------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmean.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refindev.png)
+
+
+|Distância Mínima das Refinarias                | Distância Máxima das Refinarias           |
+:---------------------------------------------:|:-------------------------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmin.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-refinmax.png)
+
+
+|Variação no PIB de 2016 para 2017              | Variação no PIB per Capita de 2016 para 2017|
+:----------------------------------------------:|:--------------------------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-chgpib.png)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/spatialautocorrelation/lisamapvariables/lisa-cluster-map-chgpibcap.png)
