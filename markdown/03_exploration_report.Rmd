@@ -121,5 +121,3 @@ filter(gas_prices_hist, !is.na(Index)) %>%
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMean.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinDev.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMin.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/RefinMax.svg)
 ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIB.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/ChgPIBCap.svg)
-
-
