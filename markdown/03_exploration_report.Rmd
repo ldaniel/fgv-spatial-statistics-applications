@@ -63,9 +63,10 @@ Preço Médio                           |Desvio Padrão
 
 Com base nos dados do Zoneamento Nacional de Recursos de Óleo e Gás 2017-2019 publicados pela Empresa de Pesquisa Energética (EPE) obtemos as localizações de todos os pontos de distribuição de combustível do país (**`338`**) assim como a localização de todas as refinarias de combustíveis (**`16`**)em território nacional.
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_dist_combust.svg)
+Distribuidoras             |Refinarias  
+:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_dist_combust.svg)  |  ![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_refin_combust.svg)
 
-![](https://raw.githubusercontent.com/ldaniel/Spatial-Statistics-Applications/master/images/eda/loc_refin_combust.svg)
 
 ```{r exploration_target_2, echo = FALSE, out.width = '100%', fig.height = 6, warning = FALSE}
 refin <- readOGR('data/processed/refinarias/refinarias.shp', 
