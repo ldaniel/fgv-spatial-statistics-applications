@@ -7,7 +7,7 @@ Spatial analysis or spatial statistics includes any of the formal techniques whi
 
 This repository intends to present the work analysis for the *"Spatial Statistics Applications"* class.
 
-:octocat: See the final website report at: [https://ldaniel.github.io/Spatial-Statistics-Applications](https://ldaniel.github.io/fgv-spatial-statistics-applications).
+:octocat: See the final website report at: [https://ldaniel.github.io/fgv-spatial-statistics-applications](https://ldaniel.github.io/fgv-spatial-statistics-applications).
 
 :octocat: Alternatively, run the project on binder at: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ldaniel/Spatial-Statistics-Applications/master?urlpath=rstudio)
 
